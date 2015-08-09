@@ -34,6 +34,11 @@ class Object implements IObject{
 	}
 };
 ###############################################################################
+/**
+ * class Type is the main class in the Reflection namespace. Currently it is a prototype implementation with the 
+ * bare minimum required implementation just for the framework to function (as long as you don't expect to be using GetType for real)
+ * TODO: Remove dummy implementation and replace with a real one (or remove the whole class alltogether if necessary)
+ */
 class Type extends Object{
 	private $_className, $_moduleName, $_namespace, $_methods, $_properties;
 	private function __construct($className='Object'){
