@@ -29,7 +29,7 @@ class HtmlElement extends HtmlNode{
 	###########################################################################
 	# Constructor
 	###########################################################################
-	public function __construct($tag, $id='', $class='', $title='', $style='', array $attributes = null, $isEmptyElement=false, $contents='', $indentContents=true){
+	public function __construct($tag, array $attributes = null, $contents='', $id='', $class='', $title='', $style='', $indentContents=true, $isEmptyElement=false){
 		$this->_tag = $tag; $this->Id = $id; $this->Class = $class; $this->Title = $title; $this->Style = $style; $this->_isEmpty = $isEmptyElement;
 		$this->_attributes = U::NA($attributes)?array():$this->extractValidAttributes($attributes);
 		$this->_contents = $isEmptyElement?null:(U::NA($contents)?array():$this->extractValidContents($contents));

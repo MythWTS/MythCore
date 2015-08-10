@@ -1,7 +1,7 @@
 <?php
 class HtmlEmptyElement extends HtmlElement{
-	public function __construct($tag, $id='', $class='', $title='', $style='', array $attributes = null){
-		parent::__construct($tag, $id, $class, $title, $style, $attributes, true, '', true);
+	public function __construct($tag, array $attributes = null, $id='', $class='', $title='', $style=''){
+		parent::__construct($tag, $attributes, $contents, $id, $class, $title, $style, false, true);
 	}
 };
 ?>

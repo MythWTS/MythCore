@@ -1,7 +1,7 @@
 <?php
 class HtmlLinkElement extends HtmlEmptyElement{
-	public function __construct($href='', $rel='stylesheet', $type='text/css', $id='', array $attributes = null){
-		parent::__construct(Html5Tags::$LINK, $id, '', '', '', $attributes);
+	public function __construct($href='', $rel='stylesheet', $type='text/css', array $attributes = null, $id='', $class='', $title='', $style=''){
+		parent::__construct(Html5Tags::$LINK, $attributes, $id, $class, $title, $style);
 		if(!U::NA($rel)){$this->_attributes[Html5Attributes::$Rel] = $rel;}
 		if(!U::NA($href)){$this->_attributes[Html5Attributes::$Href] = $href;}
 		if(!U::NA($type)){$this->_attributes[Html5Attributes::$Type] = $type;}
