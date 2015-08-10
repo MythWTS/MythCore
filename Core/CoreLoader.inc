@@ -10,28 +10,14 @@ $Loader = new CoreLoader(
 		"Core/IO/Serialization" => array(
 			"ISerializable"
 		),
-		"Core/Settings" => array(
-		),
-		"Core/Exceptions" => array(
-		),
-		"Data" => array(
-		),
-		"Data/DB/Sql" => array(
-		),
-		"Data/DB" => array(
-		),
-		"Data/DB/MySql" => array(
-		),
-		"Data/Xml" => array(
-		),
-		"Web" => array(
+		"Core/Lookups" => array(
+			"IANAMediaTypes"
 		),
 		"Web/Html" => array(
-			"Html", "Html5Attributes", "Html5Tags", "HtmlContainerElement", "HtmlElement", "HtmlEmptyElement", "HtmlLinkElement",
-			"HtmlLinkRelValues", "HtmlLinkTypeValues", "HtmlNode", "HtmlRawTextNode",
+			"Html", "Html5Attributes", "Html5Tags", "HtmlCommentNode", "HtmlContainerElement", "HtmlDocTypeNode", "HtmlDocTypes",
+			"HtmlElement", "HtmlEmptyElement", "HtmlLinkElement",
+			"HtmlLinkRelValues", "HtmlLinkTypeValues", "HtmlNode", "HtmlRawTextNode", "HtmlTags"
 		),
-		"Web/Controls" => array(
-		)
 	), 
 	$Config->BasePath, ".php"
 );

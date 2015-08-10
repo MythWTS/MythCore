@@ -1,5 +1,9 @@
 <?php
+/**
+ * CURRENTLY THIS FILE IS USED MAINLY FOR TESTING IN THE LOCAL DEVELOPMENT ENVIRONMENT.
+ * BY ACTIVATING THE CLASS LOADER WE CAN, JUST BY MENTIONING A CLASS, MAKE PHP PARSE IT, RIGHT!
+ */
 require_once "Core.inc";
-$x = FileOpenMode::$ReadWriteCreateOnly;
-echo $x->Name;
+$x = IANAMediaTypes::$App1DInterleavedParityfec;
+echo "<b>{$x->Name}:</b> {$x->Value}";
 ?>
