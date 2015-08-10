@@ -5,9 +5,10 @@ $Loader = new CoreLoader(
 			"Enum"
 		),
 		"Core/IO" => array(
-			"IStream", "IReader", "IWriter", "FileOpenMode", "FileStream", "TextReader", "TextWriter"
+			"FileOpenMode", "FileStream", "IReader", "IStream", "IWriter", "TextReader", "TextWriter"
 		),
 		"Core/IO/Serialization" => array(
+			"ISerializable"
 		),
 		"Core/Settings" => array(
 		),
@@ -26,7 +27,8 @@ $Loader = new CoreLoader(
 		"Web" => array(
 		),
 		"Web/Html" => array(
-			"HtmlNode"
+			"Html", "Html5Attributes", "Html5Tags", "HtmlContainerElement", "HtmlElement", "HtmlEmptyElement", "HtmlLinkElement",
+			"HtmlLinkRelValues", "HtmlLinkTypeValues", "HtmlNode", "HtmlRawTextNode",
 		),
 		"Web/Controls" => array(
 		)
