@@ -1,7 +1,7 @@
 <?php
 final class HtmlMetaNames extends Enum{
 	//Common Meta Name Attribute Values
-	public static $ApplicationName, $Author, $Description, $Generator, $Keywords;
+	public static $ApplicationName, $Author, $Description, $Generator, $Keywords, $Viewport;
 	//Less Common
 	public static $Robots, $GoogleBot, $Slurp, $BingBot;
 	
@@ -12,7 +12,7 @@ final class HtmlMetaNames extends Enum{
 		self::$Description = new HtmlMetaNames('Description', 'description');
 		self::$Generator = new HtmlMetaNames('Generator', 'generator');
 		self::$Keywords = new HtmlMetaNames('Keywords', 'keywords');
-		
+		self::$Viewport = new HtmlMetaNames('Viewport', 'viewport');		
 		self::$Robots = new HtmlMetaNames('Robots', 'robots');
 		self::$GoogleBot = new HtmlMetaNames('GoogleBot', 'googlebot');
 		self::$Slurp = new HtmlMetaNames('Slurp', 'Slurp');

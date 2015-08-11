@@ -35,5 +35,14 @@ class HtmlScriptElement extends HtmlContainerElement{
 			else if(isset($this->_attributes['async'])){unset($this->_attributes['async']);}
 		}
 	}
+	
+	public static function NewScript($src, $id=''){return new HtmlScriptElement($src, 'text/javascript', '', false, false, $id);}
+	public static function NewDefered($src, $id=''){return new HtmlScriptElement($src, 'text/javascript', '', true, false, $id);}
+	public static function NewAsync($src, $id=''){return new HtmlScriptElement($src, 'text/javascript', '', false, true, $id);}
+	public static function NewDeferedAsync($src, $id=''){return new HtmlScriptElement($src, 'text/javascript', '', true, true, $id);}
+
+	public static function NewVBScript($src, $id=''){return new HtmlScriptElement($src, 'text/vbscript', '', false, false, $id);}
+	public static function NewTCLScript($src, $id=''){return new HtmlScriptElement($src, 'text/tcl', '', false, false, $id);}
+	public static function NewJScript($src, $id=''){return new HtmlScriptElement($src, 'text/jscript', '', false, false, $id);}
 };
 ?>

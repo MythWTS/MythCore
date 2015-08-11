@@ -24,7 +24,7 @@ class HtmlMetaElement extends HtmlEmptyElement{
 		else{$this->_attributes['charset'] = $value;}
 	}
 	//Factory methods
-	public static function NewCharset($charset){$res = new HtmlMetaElement('', '', ''); $res->Charset($charset); return $res;}
+	public static function NewCharset($charset='UTF-8'){$res = new HtmlMetaElement('', '', ''); $res->Charset($charset); return $res;}
 	public static function NewHttpEquiv($httpEquiv, $value, $id=''){$res = new HtmlMetaElement('', $value, $id); $res->HttpEquiv($httpEquiv); return $res;}
 	public static function NewContentType($contentType, $id=''){$res = new HtmlMetaElement('', $contentType, $id); $res->HttpEquiv('content-type'); return $res;}
 	public static function NewDefaultStyle($defaultStyle, $id=''){$res = new HtmlMetaElement('', $defaultStyle, $id); $res->HttpEquiv('default-style'); return $res;}
@@ -34,6 +34,7 @@ class HtmlMetaElement extends HtmlEmptyElement{
 	public static function NewDescription($desc, $id=''){return new HtmlMetaElement('description', $desc, $id);}
 	public static function NewGenerator($generator, $id=''){return new HtmlMetaElement('generator', $generator, $id);}
 	public static function NewKeywords($keywords, $id=''){return new HtmlMetaElement('keywords', $keywords, $id);}
+	public static function NewViewport($viewport='width=device-width; initial-scale=1.0', $id=''){return new HtmlMetaElement('viewport', $viewport, $id);}
 	public static function NewRobots($robots, $id=''){return new HtmlMetaElement('robots', $robots, $id);}
 	public static function NewGoogleBot($googleBot, $id=''){return new HtmlMetaElement('googlebot', $googleBot, $id);}
 	public static function NewBingBot($bingbot, $id=''){return new HtmlMetaElement('bingbot', $bingbot, $id);}
