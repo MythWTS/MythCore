@@ -107,7 +107,7 @@ final class U extends Object{
 			foreach ($arr as $line) {
 				$res .= str_repeat(self::$TAB, $indent) . $line . self::$NL;
 			}
-			return $res;
+			return rtrim($res, self::$NL);
 		}
 	}
 	/** Returns a $_SERVER['DOCUMENT_ROOT'] with a slash at the end */

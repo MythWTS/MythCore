@@ -78,7 +78,7 @@ class HtmlElement extends HtmlNode{
 	###########################################################################
 	protected function openTagHtml($indent=0){
 		if($this->_isEmpty){return U::TAB($indent) . '<' . trim("{$this->_tag} {$this->attributesString()}") . '/>';}
-		else {return U::TAB($indent) . "<{$this->_tag} {$this->attributesString()}>" . ($this->_indentContents?U::$NL:"");}
+		else {return U::TAB($indent) . '<' . trim("{$this->_tag} {$this->attributesString()}") . '>' . ($this->_indentContents?U::$NL:"");}
 	}
 	protected function contentsHtml($indent=1){
 		if($this->_isEmpty){return "";}
