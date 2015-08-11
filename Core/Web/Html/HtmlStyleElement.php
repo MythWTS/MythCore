@@ -5,7 +5,7 @@ class HtmlStyleElement extends HtmlContainerElement{
 		parent::__construct(Html5Tags::$STYLE, null, $content, $id, '', '', '', true);
 	}
 	public function Style($value=null){
-		if($value===null){return $this->_contents[0];}
+		if($value===null){return $this->_contents[0]->Html;}
 		else{$this->_contents[0] = new HtmlRawTextNode($value);}
 	}
 	//Override to disable assigning values to ChildNodes directly

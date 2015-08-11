@@ -64,6 +64,7 @@ $Loader = new CoreLoader(
 			'HtmlMetaHttpEquivValues',
 			'HtmlMetaNames',
 			'HtmlNode',
+			'HtmlNoScriptElement',
 			'HtmlOutputElement',
 			'HtmlParamElement',
 			'HtmlQElement',

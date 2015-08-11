@@ -12,7 +12,7 @@ class HtmlInlineScriptElement extends HtmlContainerElement{
 	}
 	
 	public function Script($value=null){
-		if($value===null){return $this->_contents[0];}
+		if($value===null){return $this->_contents[0]->Html;}
 		else{$this->_contents[0] = new HtmlRawTextNode($value);}
 	}
 	//Override to disable assigning values to ChildNodes directly
