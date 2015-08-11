@@ -77,7 +77,7 @@ class HtmlElement extends HtmlNode{
 	# Protected Virtual Utility Methods
 	###########################################################################
 	protected function openTagHtml($indent=0){
-		if($this->_isEmpty){return U::TAB($indent) . "<{$this->_tag} {$this->attributesString()} />";}
+		if($this->_isEmpty){return U::TAB($indent) . '<' . trim("{$this->_tag} {$this->attributesString()}") . '/>';}
 		else {return U::TAB($indent) . "<{$this->_tag} {$this->attributesString()}>" . ($this->_indentContents?U::$NL:"");}
 	}
 	protected function contentsHtml($indent=1){
@@ -92,14 +92,14 @@ class HtmlElement extends HtmlNode{
 	}
 	protected function closeTagHtml($indent=0){if($this->_isEmpty){return "";}else{return U::TAB($indent) . "</{$this->_tag}>";}}
 	protected function attributesString(){
-		$res = '';
+		$res = ''; $q= U::$Q;
 		foreach ($this->_attributes as $key => $value) {
-			$res .= "{$key}={U::$Q}{$value}{U::$Q} ";
+			$res .= "{$key}={$q}{$value}{$q} ";
 		}
-		if(!U::NA($this->Id)){$res .= " id={U::$Q}{$this->Id}{U::$Q}";}
-		if(!U::NA($this->Class)){$res .= " id={U::$Q}{$this->Class}{U::$Q}";}
-		if(!U::NA($this->Title)){$res .= " id={U::$Q}{$this->Title}{U::$Q}";}
-		if(!U::NA($this->Style)){$res .= " id={U::$Q}{$this->Style}{U::$Q}";}
+		if(!U::NA($this->Id)){$res .= " id={$q}{$this->Id}{$q}";}
+		if(!U::NA($this->Class)){$res .= " class={$q}{$this->Class}{$q}";}
+		if(!U::NA($this->Title)){$res .= " title={$q}{$this->Title}{$q}";}
+		if(!U::NA($this->Style)){$res .= " style={$q}{$this->Style}{$q}";}
 		return trim($res);
 	}
 	###########################################################################

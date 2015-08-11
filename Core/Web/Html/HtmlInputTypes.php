@@ -6,29 +6,29 @@ final class HtmlInputTypes extends Enum{
 	
 	protected function __construct($name, $value){parent::__construct($name, $value);}
 	public static function Initialize(){
-		self::$Button = new Html5Tags('Button', 'button');
-		self::$Checkbox = new Html5Tags('Checkbox', 'checkbox');
-		self::$Color = new Html5Tags('Color', 'color');
-		self::$Date = new Html5Tags('Date', 'date');
-		self::$DateTime = new Html5Tags('DateTime', 'datetime');
-		self::$DateTimeLocal = new Html5Tags('DateTimeLocal', 'datetime-local');
-		self::$Email = new Html5Tags('Email', 'email');
-		self::$File = new Html5Tags('File', 'file');
-		self::$Hidden = new Html5Tags('Hidden', 'hidden');
-		self::$Image = new Html5Tags('Image', 'image');
-		self::$Month = new Html5Tags('Month', 'month');
-		self::$Number = new Html5Tags('Number', 'number');
-		self::$Password = new Html5Tags('Password', 'password');
-		self::$Radio = new Html5Tags('Radio', 'radio');
-		self::$Range = new Html5Tags('Range', 'range');
-		self::$Reset = new Html5Tags('Reset', 'reset');
-		self::$Search = new Html5Tags('Search', 'search');
-		self::$Submit = new Html5Tags('Submit', 'submit');
-		self::$Tel = new Html5Tags('Tel', 'tel');
-		self::$Text = new Html5Tags('Text', 'text');
-		self::$Time = new Html5Tags('Time', 'time');
-		self::$Url = new Html5Tags('Url', 'url');
-		self::$Week = new Html5Tags('Week', 'week');
+		self::$Button = new HtmlInputTypes('Button', 'button');
+		self::$Checkbox = new HtmlInputTypes('Checkbox', 'checkbox');
+		self::$Color = new HtmlInputTypes('Color', 'color');
+		self::$Date = new HtmlInputTypes('Date', 'date');
+		self::$DateTime = new HtmlInputTypes('DateTime', 'datetime');
+		self::$DateTimeLocal = new HtmlInputTypes('DateTimeLocal', 'datetime-local');
+		self::$Email = new HtmlInputTypes('Email', 'email');
+		self::$File = new HtmlInputTypes('File', 'file');
+		self::$Hidden = new HtmlInputTypes('Hidden', 'hidden');
+		self::$Image = new HtmlInputTypes('Image', 'image');
+		self::$Month = new HtmlInputTypes('Month', 'month');
+		self::$Number = new HtmlInputTypes('Number', 'number');
+		self::$Password = new HtmlInputTypes('Password', 'password');
+		self::$Radio = new HtmlInputTypes('Radio', 'radio');
+		self::$Range = new HtmlInputTypes('Range', 'range');
+		self::$Reset = new HtmlInputTypes('Reset', 'reset');
+		self::$Search = new HtmlInputTypes('Search', 'search');
+		self::$Submit = new HtmlInputTypes('Submit', 'submit');
+		self::$Tel = new HtmlInputTypes('Tel', 'tel');
+		self::$Text = new HtmlInputTypes('Text', 'text');
+		self::$Time = new HtmlInputTypes('Time', 'time');
+		self::$Url = new HtmlInputTypes('Url', 'url');
+		self::$Week = new HtmlInputTypes('Week', 'week');
 	}
 };
 HtmlInputTypes::Initialize();

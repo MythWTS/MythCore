@@ -1,8 +1,8 @@
 <?php
 class HtmlAreaElement extends HtmlEmptyElement{
-	public function __construct($shape, $coords, $href='', $alt='', array $attributes = null){
-		parent::__construct(Html5Tags::$AREA, $attributes);
-		$this->_attributes['shape'] = $shape;
+	public function __construct(HtmlAreaShapes $shape, $coords, $href='', $alt='', array $attributes = null, $id=''){
+		parent::__construct(Html5Tags::$AREA, $attributes, $id);
+		$this->_attributes['shape'] = $shape->__toString();
 		$this->_attributes['coords'] = $coords;
 		if(!U::NA($href)){$this->_attributes['href'] = $href;}
 		if(!U::NA($alt)){$this->_attributes['alt'] = $alt;}

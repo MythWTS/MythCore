@@ -19,7 +19,7 @@ $Loader = new CoreLoader(
 		'Core/Lookups' => array(
 			'IANAMediaTypes'
 		),
-		'Web/Html' => array(
+		'Core/Web/Html' => array(
 			'Html',
 			'Html5Attributes',
 			'Html5Tags',

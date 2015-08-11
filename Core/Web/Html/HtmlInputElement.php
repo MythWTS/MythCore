@@ -1,7 +1,7 @@
 <?php
 class HtmlInputElement extends HtmlEmptyElement{
 	public function __construct($type='', $name='', array $attributes = null, $id='', $class='', $title='', $style=''){
-		parent::__construct(Html5Tags::$IMG, $attributes, $id, $class, $title, $style);
+		parent::__construct(Html5Tags::$INPUT, $attributes, $id, $class, $title, $style);
 		if(!U::NA($type)){$this->_attributes['type'] = $type;}
 		if(!U::NA($name)){$this->_attributes['name'] = $name;}
 	}
