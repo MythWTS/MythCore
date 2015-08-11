@@ -120,12 +120,25 @@ class HtmlElement extends HtmlNode{
 		}
 		return $res;
 	}
-	private function extractValidContents(array $contents){
+	private function extractValidContents($contents){
 		$res = array();
-		foreach ($contents as $value) {
-			if(is_a($value, "HtmlNode")){$res[] = $value;}
-			else if(is_a($value, "IObject")){$res[] = new HtmlRawTextNode($value->__toString());}
-			else if(is_scalar($value)){$res[] = new HtmlRawTextNode($value);}
+		if(is_scalar($contents)){$res[] = new HtmlRawTextNode($contents);}
+		else if(is_array($contents)){
+			foreach ($contents as $value) {
+				if(is_scalar($value)){$res[] = new HtmlRawTextNode($value);}
+				else if(is_a($value, "HtmlNode")){$res[] = $value;}
+				else if(is_a($value, "IObject")){$res[] = new HtmlRawTextNode($value->__toString());}
+				else if(is_object($value)){
+					if(method_exists($value, '__toString()')){$res[] = new HtmlRawTextNode($value->__toString());}
+					else if(method_exists($value, 'ToString()')){$res[] = new HtmlRawTextNode($value->ToString());}
+				}
+			}
+		}
+		else if(is_a($contents, 'HtmlNode')){$res[] = $contents;}
+		else if(is_a($contents, 'IObject')){$res[] = new HtmlRawTextNode($contents->__toString());}
+		else if(is_object($contents)){
+			if(method_exists($contents, '__toString()')){$res[] = new HtmlRawTextNode($contents->__toString());}
+			else if(method_exists($contents, 'ToString()')){$res[] = new HtmlRawTextNode($contents->ToString());}
 		}
 		return $res;
 	}

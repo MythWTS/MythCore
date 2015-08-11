@@ -5,7 +5,13 @@ class HtmlRawTextNode extends HtmlNode{
 		$this->Html = $html; $this->UseIndent = $useIndent;
 	}
 	public function OuterHtml($indent=0){
-		return $this->UseIndent?U::Indent($this->Html, $indent):$this->Html;
+		$html = '';
+		if(is_scalar($this->Html)){$html = $this->Html;}
+		else if(is_object($this->Html)){
+			if(method_exists($this->Html, '__toString')){$html = $this->Html->__toString();}
+			else if(method_exists($this->Html, 'ToString')){$html = $this->Html->ToString();}
+		}
+		return !U::NA($html)?($this->UseIndent?U::Indent($html, $indent):$html):'';
 	}
 };
 ?>
