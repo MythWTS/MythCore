@@ -7,7 +7,7 @@ final class HtmlTags extends Enum{
 		$EM,$EMBED,$FIELDSET,$FIGCAPTION,$FIGURE,$FOOTER,$FORM,$H1,$H2,$H3,$H4,$H5,$H6,$HEAD,$HEADER,$HR,$HTML,
 		$I,$IFRAME,$IMG,$INPUT,$INS,$KBD,$KEYGEN,$LABEL,$LEGEND,$LI,$LINK,$MAIN,$MAP,$MARK,$MENU,$MENUITEM,$META,$METER,$NAV,$NOSCRIPT,
 		$OBJECT,$OL,$OPTGROUP,$OPTION,$OUTPUT,$P,$PARAM,$PRE,$PROGRESS,$Q,$RP,$RT,$RUBY,$S,$SAMP,$SCRIPT,$SECTION,$SELECT,$SMALL,$SOURCE,
-		$SPAN,$STRONG,$STYLE,$SUB,$SUMMARY,$SUP,$TABLE,$TBODY,$TD,$TEXTAREA,$TFOOT,$TH,$THEAD,$TIME,$TITLE,$TR,$TRACK,$U,$UL,$VARIABLE,$VIDEO,
+		$SPAN,$STRONG,$STYLE,$SUB,$SUMMARY,$SUP,$TABLE,$TBODY,$TD,$TEXTAREA,$TFOOT,$TH,$THEAD,$TIME,$TITLE,$TR,$TRACK,$U,$UL,$VAR,$VIDEO,
 		$WBR;
 	//Before HTML 5
 	public static $Acronym, $Applet, $BaseFont, $Big, $Center, $Dir, $Font, $Frame, $Frameset, $NoFrames, $Strike, $Tt;
@@ -119,7 +119,7 @@ final class HtmlTags extends Enum{
 		self::$TRACK = new HtmlTags('TRACK', 'track');
 		self::$U = new HtmlTags('U', 'u');
 		self::$UL = new HtmlTags('UL', 'ul');
-		self::$VARIABLE = new HtmlTags('VARIABLE', 'var');
+		self::$VAR = new HtmlTags('VAR', 'var');
 		self::$VIDEO = new HtmlTags('VIDEO', 'video');
 		self::$WBR = new HtmlTags('WBR', 'wbr');
 		//Before HTML 5

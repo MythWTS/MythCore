@@ -6,7 +6,7 @@ final class Html5Tags extends Enum{
 		$EM,$EMBED,$FIELDSET,$FIGCAPTION,$FIGURE,$FOOTER,$FORM,$H1,$H2,$H3,$H4,$H5,$H6,$HEAD,$HEADER,$HR,$HTML,
 		$I,$IFRAME,$IMG,$INPUT,$INS,$KBD,$KEYGEN,$LABEL,$LEGEND,$LI,$LINK,$MAIN,$MAP,$MARK,$MENU,$MENUITEM,$META,$METER,$NAV,$NOSCRIPT,
 		$OBJECT,$OL,$OPTGROUP,$OPTION,$OUTPUT,$P,$PARAM,$PRE,$PROGRESS,$Q,$RP,$RT,$RUBY,$S,$SAMP,$SCRIPT,$SECTION,$SELECT,$SMALL,$SOURCE,
-		$SPAN,$STRONG,$STYLE,$SUB,$SUMMARY,$SUP,$TABLE,$TBODY,$TD,$TEXTAREA,$TFOOT,$TH,$THEAD,$TIME,$TITLE,$TR,$TRACK,$U,$UL,$VARIABLE,$VIDEO,
+		$SPAN,$STRONG,$STYLE,$SUB,$SUMMARY,$SUP,$TABLE,$TBODY,$TD,$TEXTAREA,$TFOOT,$TH,$THEAD,$TIME,$TITLE,$TR,$TRACK,$U,$UL,$VAR,$VIDEO,
 		$WBR;
 	protected function __construct($name, $value){parent::__construct($name, $value);}
 	public static function Initialize(){
@@ -116,7 +116,7 @@ final class Html5Tags extends Enum{
 		self::$TRACK = new Html5Tags('TRACK', 'track');
 		self::$U = new Html5Tags('U', 'u');
 		self::$UL = new Html5Tags('UL', 'ul');
-		self::$VARIABLE = new Html5Tags('VARIABLE', 'var');
+		self::$VAR = new Html5Tags('VAR', 'var');
 		self::$VIDEO = new Html5Tags('VIDEO', 'video');
 		self::$WBR = new Html5Tags('WBR', 'wbr');
 	}

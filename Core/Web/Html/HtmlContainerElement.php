@@ -17,9 +17,24 @@ class HtmlContainerElement extends HtmlElement{
 		return is_array($this->_contents) && count($this->_contents) > 0;
 	}
 	###########################################################################
-	# Content Adding Methods (Chainable-EmptyElements)
+	# Content Adding Methods - Generic
 	###########################################################################
 	public function AddNode(HtmlNode $node){$this->_contents[] = $node; return $this;}
+	public function RAddNode(HtmlNode $node){return $this->_contents[] = $node;}
+	
+	public function AddNodes(array $nodes){
+		if(!U::NA($nodes)){
+			foreach ($nodes as $node) {
+				if(is_a($node, 'HtmlNode')){$this->_contents[] = $node;}
+				else if(is_a($node, 'IObject')){$this->_contents[] = new HtmlRawTextNode($node->__toString());}
+				else if(is_scalar($node)){$this->_contents[] = new HtmlRawTextNode($node);}
+			}
+		}
+		return $this;
+	}
+	###########################################################################
+	# Specific Content Adding Methods (Chainable-EmptyElements)
+	###########################################################################
 	public function AddRawHtml($html, $useIndent){$this->_contents[] = new HtmlRawTextNode($html, $useIndent); return $this;}
 	public function AddComment($comment, $indentContents=false){$this->_contents[] = new HtmlCommentNode($comment, $indentContents); return $this;}
 	public function AddArea(HtmlAreaShapes $shape, $coords, $href='', $alt='', array $attributes = null, $id=''){$this->_contents[] = new HtmlAreaElement($shape, $coords, $href, $alt, $attributes, $id); return $this;}
@@ -30,13 +45,15 @@ class HtmlContainerElement extends HtmlElement{
 	public function AddImg($src='', $alt='', $width='', $height='', array $attributes = null, $id='', $class='', $title='', $style=''){$this->_contents[] = new HtmlImgElement($src, $alt, $width, $height, $attributes, $id, $class, $title, $style); return $this;}
 	public function AddInput($type='', $name='', array $attributes = null, $id='', $class='', $title='', $style=''){$this->_contents[] = new HtmlInputElement($type, $name, $attributes, $id, $class, $title, $style); return $this;}
 	public function AddKeygen($name='', HtmlKeyTypes $keytype=null, array $attributes = null){$this->_contents[] = new HtmlKeygenElement($name, $keytype, $attributes); return $this;}
+	public function AddMeta($name, $content){$this->_contents[] = new HtmlMetaElement($name, $content); return $this;}
+	public function AddMetaHttpEquiv($httpEquiv, $value){$this->_contents[] = HtmlMetaElement::NewHttpEquiv($httpEquiv, $value); return $this;}
+	public function AddMetaCharset($charset){$this->_contents[] = HtmlMetaElement::NewCharset($charset); return $this;}
 	public function AddParam($name, $value='', array $attributes = null){$this->_contents[] = new HtmlParamElement($name, $value, $attributes); return $this;}
 	public function AddSource($src, $type='audio', array $attributes = null){$this->_contents[] = new HtmlSourceElement($src, $type, $attributes); return $this;}
 	public function AddWbr(array $attributes = null, $id='', $class='', $title='', $style=''){$this->_contents[] = new HtmlWbrElement($attributes, $id, $class, $title, $style); return $this;}
 	###########################################################################
-	# Content Adding Methods (Returns the newly added content-EmptyElements)
+	# Specific Content Adding Methods (Returns the newly added content-EmptyElements)
 	###########################################################################
-	public function RAddNode(HtmlNode $node){return $this->_contents[] = $node;}
 	public function RAddRawHtml($html, $useIndent){return $this->_contents[] = new HtmlRawTextNode($html, $useIndent);}
 	public function RAddComment($comment, $indentContents=false){return $this->_contents[] = new HtmlCommentNode($comment, $indentContents);}
 	public function RAddArea(HtmlAreaShapes $shape, $coords, $href='', $alt='', array $attributes = null, $id=''){return $this->_contents[] = new HtmlAreaElement($shape, $coords, $href, $alt, $attributes, $id);}
@@ -47,6 +64,9 @@ class HtmlContainerElement extends HtmlElement{
 	public function RAddImg($src='', $alt='', $width='', $height='', array $attributes = null, $id='', $class='', $title='', $style=''){return $this->_contents[] = new HtmlImgElement($src, $alt, $width, $height, $attributes, $id, $class, $title, $style);}
 	public function RAddInput($type='', $name='', array $attributes = null, $id='', $class='', $title='', $style=''){return $this->_contents[] = new HtmlInputElement($type, $name, $attributes, $id, $class, $title, $style);}
 	public function RAddKeygen($name='', HtmlKeyTypes $keytype=null, array $attributes = null){return $this->_contents[] = new HtmlKeygenElement($name, $keytype, $attributes);}
+	public function RAddMeta($name, $content){return $this->_contents[] = new HtmlMetaElement($name, $content);}
+	public function RAddMetaHttpEquiv($httpEquiv, $value){return $this->_contents[] = HtmlMetaElement::NewHttpEquiv($httpEquiv, $value);}
+	public function RAddMetaCharset($charset){return $this->_contents[] = HtmlMetaElement::NewCharset($charset);}
 	public function RAddParam($name, $value='', array $attributes = null){return $this->_contents[] = new HtmlParamElement($name, $value, $attributes);}
 	public function RAddSource($src, $type='audio', array $attributes = null){return $this->_contents[] = new HtmlSourceElement($src, $type, $attributes);}
 	public function RAddWbr(array $attributes = null, $id='', $class='', $title='', $style=''){return $this->_contents[] = new HtmlWbrElement($attributes, $id, $class, $title, $style);}
