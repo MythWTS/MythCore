@@ -70,5 +70,7 @@ final class Html extends Object{
 	###########################################################################
 	public static function Title($pageTitle, $id=''){return new HtmlTitleElement($pageTitle, $id);}
 	public static function Style($style, $id=''){return new HtmlStyleElement($style, $id);}
+	public static function Base($href='', $target='', $id=''){return new HtmlBaseElement($href, $target, $attributes);}
+	public static function NoScript($note, $id=''){return new HtmlNoScriptElement($note, $id);}
 };
 ?>

@@ -1,7 +1,7 @@
 <?php
 class HtmlBaseElement extends HtmlEmptyElement{
-	public function __construct($href='', $target='', array $attributes = null){
-		parent::__construct(Html5Tags::$BASE, $attributes);
+	public function __construct($href='', $target='', $id=''){
+		parent::__construct(Html5Tags::$BASE, null, $id);
 		if(!U::NA($href)){$this->_attributes['href'] = $href;}
 		if(!U::NA($target)){$this->_attributes['target'] = $target;}
 	}

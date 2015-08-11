@@ -1,8 +1,8 @@
 <?php
 class HtmlNoScriptElement extends HtmlContainerElement{
-	public function __construct($note){
+	public function __construct($note, $id=''){
 		$content = new HtmlRawTextNode($note, true);
-		parent::__construct(Html5Tags::$NOSCRIPT, null, $content, '', '', '', '', false);
+		parent::__construct(Html5Tags::$NOSCRIPT, null, $content, $id, '', '', '', false);
 	}
 	
 	public function Note($value=null){
