@@ -52,8 +52,47 @@ class Type extends Object{
 final class U extends Object{
 	public static $TAB = "\t", $NL = "\n", $DS = DIRECTORY_SEPARATOR, $Q = '"';
 	private function __construct(){}
+	///TODO: Test the ES Method
+	/**
+	 * Extract String from mixed variable. Depending on the variable, tries to return a string representation (mostly suitable for use in the framework)
+	 * - if a scalar, return the scalar enclosed in a string
+	 * - if IObject, calls the __toString method
+	 * - if object that has __toString() or ToString() method, calls one of them (__toString first)
+	 * - if array, goes through the elements one by one and:
+	 * - tries to obtain a string from it (any array elements will be recursively expanded with an indent string suitable to the level of depth)
+	 * - adds the string to the result as a new line 
+	 */
+	public static function ES($var){
+		if($var === null || $var === '' || (is_array($var) && count($var) == 0)){return '';}
+		else if(is_scalar($var)){return "$var";}
+		else if(is_a($var, 'IObject')){return $var->__toString();}
+		else if(is_object($var)){
+			if(method_exists($var, '__toString')){return $var->__toString();}
+			else if(method_exists($var, 'ToString')){return $var->ToString();}
+		}
+		else if(is_array($var)){
+			$res = '';
+			foreach ($var as $item) {
+				if(is_array($item)){
+					$temp = self::ES($item);
+					$res .= self::Indent($temp, 1);
+				}
+				else{
+					$res .= self::ES($item) . self::$NL;
+				}
+			}
+			return $res;
+		}
+		else{return '';}
+	}
+	/** Extracts a boolean value out of any mixed var and always return a true or false result */
+	public static function EB($var){return $var?true:false;}
+	/** Converts a mixed variable to string and then replaces html special characters with entities */
+	public static function ENC($var){return htmlspecialchars(self::ES($var));}
 	/** Checks to see if a variable is null or an empty string (if it's not set by the user) */
 	public static function NA($var){return $var === null || $var === '';}
+	/** Checks to see if a variable is null or an empty string/array */
+	public static function NAE($var){return $var === null || $var === '' || (is_array($var) && count($var) == 0);}
 	/** Checks to see if the variable is null, empty string or all whitespace characters (not available or whitespaces) */
 	public static function NAW($var){return $var === null || $var === '' || trim($var) === '';}
 	/** Returns $n number of tab/indentation characters as set in this class's $TAB public static property */
@@ -92,23 +131,16 @@ final class U extends Object{
 	public static function Explode($delimiter, $string){return explode($delimiter, $string);}
 	/** Returns a string resulting from gluing the array of strings $pieces using $glue in between each array element */
 	public static function Implode($glue, array $pieces){return implode($glue, $pieces);}
-	/** Returns an indented version of $text. $text can be an array of strings or a string. If it is an array, the return is an array of the same strings indented $indent times. If it is a string, the string is split into lines and each line is indented the the results are glued back together  */
+	/** Returns an indented version of $text. $text can be an array of strings or a string. If it is an array, it is converted to a string first using U::ES */
 	public static function Indent($text, $indent){
+		$arr = array();
+		if(is_array($text)){$arr = self::ES($text);}
+		else{$arr = explode(U::$NL, $text);}
 		$res = '';
-		if(is_array($text)){
-			$res = array();
-			foreach ($text as $line) {
-				$res[] = str_repeat(self::$TAB, $indent) . $line;
-			}
-			return $res;
+		foreach ($arr as $line) {
+			$res .= str_repeat(self::$TAB, $indent) . $line . self::$NL;
 		}
-		else{
-			$arr = explode(U::$NL, $text);
-			foreach ($arr as $line) {
-				$res .= str_repeat(self::$TAB, $indent) . $line . self::$NL;
-			}
-			return rtrim($res, self::$NL);
-		}
+		return rtrim($res, self::$NL);
 	}
 	/** Returns a $_SERVER['DOCUMENT_ROOT'] with a slash at the end */
 	public static function DocRoot(){return rtrim($_SERVER['DOCUMENT_ROOT'], self::$DS) . self::$DS;}

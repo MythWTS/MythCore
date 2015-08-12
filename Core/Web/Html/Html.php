@@ -1,11 +1,26 @@
 <?php
 final class Html extends Object{
 	private function __constructor(){}
-
+	public static function DocType(HtmlDocTypes $type){return new HtmlDocTypeNode($type);}
+	###########################################################################
+	# Raw Text Nodes
+	###########################################################################
 	public static function RawHtml($html, $useIndent=true){return new HtmlRawTextNode($html, $useIndent);}
-	public static function Element($tag, array $attributes = null, $contents='', $id='', $class='', $title='', $style='', $indentContents=true, $isEmptyElement=false){
-		return new HtmlElement($tag, $attributes, $contents, $id, $class, $title, $style, $indentContents, $isEmptyElement);
-	}
+	public static function TextNode($txt){return new HtmlRawTextNode(U::ENC($txt), true);}
+	public static function UnIndentedTextNode($txt){return new HtmlRawTextNode(U::ENC($txt), false);}
+	###########################################################################
+	# Script Elements
+	###########################################################################
+	public static function Script($src, $id=''){return new HtmlScriptElement($src, 'text/javascript', '', false, false, $id);}
+	public static function ScriptDefered($src, $id=''){return new HtmlScriptElement($src, 'text/javascript', '', true, false, $id);}
+	public static function ScriptAsync($src, $id=''){return new HtmlScriptElement($src, 'text/javascript', '', false, true, $id);}
+	public static function ScriptDeferedAsync($src, $id=''){return new HtmlScriptElement($src, 'text/javascript', '', true, true, $id);}
+
+	public static function ScriptVBScript($src, $id=''){return new HtmlScriptElement($src, 'text/vbscript', '', false, false, $id);}
+	public static function ScriptTCLScript($src, $id=''){return new HtmlScriptElement($src, 'text/tcl', '', false, false, $id);}
+	public static function ScriptJScript($src, $id=''){return new HtmlScriptElement($src, 'text/jscript', '', false, false, $id);}
+	
+	public static function InlineScript($script, $id='', $type='text/javascript'){return new HtmlInlineScriptElement($script, $type, $id, true);}
 	###########################################################################
 	# Link Elements
 	###########################################################################
@@ -53,24 +68,11 @@ final class Html extends Object{
 	public static function MetaBingBot($bingbot, $id=''){return new HtmlMetaElement('bingbot', $bingbot, $id);}
 	public static function MetaSlurp($slurp, $id=''){return new HtmlMetaElement('Slurp', $slurp, $id);}
 	###########################################################################
-	# Script Elements
-	###########################################################################
-	public static function Script($src, $id=''){return new HtmlScriptElement($src, 'text/javascript', '', false, false, $id);}
-	public static function ScriptDefered($src, $id=''){return new HtmlScriptElement($src, 'text/javascript', '', true, false, $id);}
-	public static function ScriptAsync($src, $id=''){return new HtmlScriptElement($src, 'text/javascript', '', false, true, $id);}
-	public static function ScriptDeferedAsync($src, $id=''){return new HtmlScriptElement($src, 'text/javascript', '', true, true, $id);}
-
-	public static function ScriptVBScript($src, $id=''){return new HtmlScriptElement($src, 'text/vbscript', '', false, false, $id);}
-	public static function ScriptTCLScript($src, $id=''){return new HtmlScriptElement($src, 'text/tcl', '', false, false, $id);}
-	public static function ScriptJScript($src, $id=''){return new HtmlScriptElement($src, 'text/jscript', '', false, false, $id);}
-	
-	public static function InlineScript($script, $id='', $type='text/javascript'){return new HtmlInlineScriptElement($script, $type, $id, true);}
-	###########################################################################
 	# Other Head Elements
 	###########################################################################
 	public static function Title($pageTitle, $id=''){return new HtmlTitleElement($pageTitle, $id);}
 	public static function Style($style, $id=''){return new HtmlStyleElement($style, $id);}
-	public static function Base($href='', $target='', $id=''){return new HtmlBaseElement($href, $target, $attributes);}
+	public static function Base($href='', $target='', $id=''){return new HtmlBaseElement($href, $target, null);}
 	public static function NoScript($note, $id=''){return new HtmlNoScriptElement($note, $id);}
 };
 ?>

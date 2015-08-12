@@ -1,18 +1,24 @@
 <?php
+require_once "Core.inc";
 /**
  * CURRENTLY THIS FILE IS USED MAINLY FOR TESTING IN THE LOCAL DEVELOPMENT ENVIRONMENT.
- * BY ACTIVATING THE CLASS LOADER WE CAN, JUST BY MENTIONING A CLASS, MAKE PHP PARSE IT, RIGHT!
+ * MOST OF THE TIME THE CONTENTS OF THIS FILE WILL NOT MAKE ANY SENSE, THIS SHOULD CHANGE AT THE ALPHA RELEASE
  */
-require_once "Core.inc";
+################################################################################################################
 $tst = new HtmlHeadElement();
+$tst->AddBase('', '_new', 'docBaseTarget');
 $tst->AddMetaCharset();
 $tst->AddMetaXUACompatible();
-$tst->AddTitle("Testing Head Element and Meta Content elements");
-$tst->AddMetaDescription('Just testing the different DOM write element classes');
+$tst->AddTitle('Head Element Test');
+$tst->AddMetaDescription('Some Description');
 $tst->AddMetaAuthor('Mohamed A. Abumarsa');
-$tst->AddMetaGenerator('MythCore');
-$tst->AddMetaKeywords('MythCore, Myth, MythSDP');
-$tst->AddShortcutIcon('/favicon.png');
-$tst->AddAppleTouchIcon('/favicon.png');
+$tst->AddMetaGenerator('MythCore Framework');
+$tst->AddMetaViewport();
+$tst->AddRawText("");
+$tst->AddShortcutIcon('/favicon.ico');
+$tst->AddAppleTouchIcon('/favico.png');
+$tst->AddRawText("\n");
+$tst->AddStylesheet('/styles.css', 'ssMain', HtmlLinkTypeValues::$Css);
+
 echo $tst;
 ?>
