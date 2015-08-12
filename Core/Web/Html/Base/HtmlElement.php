@@ -50,7 +50,6 @@ class HtmlElement extends HtmlNode{
 	###########################################################################
 	# Constructor
 	###########################################################################
-	///TODO: Make constructor protected so no instances can be directly created
 	/**
 	 * Constructor($tag, array $attributes = null, $contents='', $id='', $class='', 
 	 * 				$title='', $style='', $indentContents=true, $isEmptyElement=false)
@@ -62,7 +61,7 @@ class HtmlElement extends HtmlNode{
 	 * Acceptable values are: scalars/HtmlNode(s)/IObjects/Objects with __toString() or ToString()/array of any of the former
 	 * $attributes are extracted the same way as in Attributes.
 	 */
-	public function __construct($tag, array $attributes = null, $contents='', $id='', $class='', $title='', $style='', $indentContents=true, $isEmptyElement=false){
+	protected function __construct($tag, array $attributes = null, $contents='', $id='', $class='', $title='', $style='', $indentContents=true, $isEmptyElement=false){
 		$this->_tag = $tag; $this->_attributes = U::NA($attributes)?array():$this->extractValidAttributes($attributes); 
 		if(!U::NA($id)){$this->_attributes['id'] = $id;}
 		if(!U::NA($class)){$this->_attributes['class'] = $id;}

@@ -27,6 +27,7 @@ $Loader = new CoreLoader(
 			'Html',
 		),
 		'Core/Web/Html/Base' => array(
+			'HtmlContainerElement',
 			'HtmlElement',
 			'HtmlEmptyElement',
 			'HtmlGenericContainerElement',
@@ -35,8 +36,12 @@ $Loader = new CoreLoader(
 			'IDOMNode'
 		),
 		'Core/Web/Html/Doc' => array(
+			'HtmlBodyElement',
 			'HtmlDocTypeNode',
 			'HtmlHeadElement',
+		),
+		'Core/Web/Html/Embedded' => array(
+			'HtmlImgElement',
 		),
 		'Core/Web/Html/Enum' => array(
 			'Html5Attributes',
