@@ -1,5 +1,5 @@
 <?php
-class HtmlInputElement extends HtmlEmptyElement{
+class HtmlInputElement extends HtmlEmptyElement implements IDOMPhrasing, IDOMFlow{
 	public function __construct($type='', $name='', array $attributes = null, $id='', $class='', $title='', $style=''){
 		parent::__construct(Html5Tags::$INPUT, $attributes, $id, $class, $title, $style);
 		if(!U::NA($type)){$this->_attributes['type'] = $type;}

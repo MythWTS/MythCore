@@ -1,5 +1,5 @@
 <?php
-class HtmlAreaElement extends HtmlEmptyElement{
+class HtmlAreaElement extends HtmlEmptyElement implements IDOMFlow, IDOMPhrasing{
 	public function __construct(HtmlAreaShapes $shape, $coords, $href='', $alt='', array $attributes = null, $id=''){
 		parent::__construct(Html5Tags::$AREA, $attributes, $id);
 		$this->_attributes['shape'] = $shape->__toString();

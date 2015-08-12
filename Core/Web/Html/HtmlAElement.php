@@ -1,5 +1,5 @@
 <?php
-class HtmlAElement extends HtmlContainerElement{
+class HtmlAElement extends HtmlContainerElement implements IDOMFlow, IDOMPhrasing, IDOMInteractive, IDOMPalpable{
 	public function __construct($content, $href='', $id='', $class='', $title='', $style='', $indentContent=false){
 		parent::__construct(Html5Tags::$A, null, $content, $id, $class, $title, $style, $indentContent);
 		if(!U::NA($href)){$this->_attributes['href'] = $href;}

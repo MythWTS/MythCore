@@ -1,5 +1,5 @@
 <?php
-class HtmlMetaElement extends HtmlEmptyElement{
+class HtmlMetaElement extends HtmlEmptyElement implements IDOMMetaData{
 	public function __construct($name, $content='', $id=''){
 		parent::__construct(Html5Tags::$META);
 		$this->Id = $id;

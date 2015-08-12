@@ -1,5 +1,5 @@
 <?php
-class HtmlScriptElement extends HtmlContainerElement{
+class HtmlScriptElement extends HtmlContainerElement implements IDOMMetaData, IDOMFlow, IDOMPhrasing{
 	public function __construct($src, $type='text/javascript', $charset='UTF-8', $defer=false, $async=false, $id=''){
 		parent::__construct(Html5Tags::$SCRIPT, null, null, $id, '', '', '', false);
 		$this->_attributes['src'] = $src;

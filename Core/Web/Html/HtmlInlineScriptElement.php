@@ -1,5 +1,5 @@
 <?php
-class HtmlInlineScriptElement extends HtmlContainerElement{
+class HtmlInlineScriptElement extends HtmlContainerElement implements IDOMMetaData, IDOMFlow, IDOMPhrasing{
 	public function __construct($script, $type='text/javascript', $id='', $indentScript=true){
 		$s = new HtmlRawTextNode($script, $indentScript);
 		parent::__construct(Html5Tags::$SCRIPT, null, $s, $id, '', '', '', false);

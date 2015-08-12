@@ -1,5 +1,5 @@
 <?php
-class HtmlLinkElement extends HtmlEmptyElement{
+class HtmlLinkElement extends HtmlEmptyElement implements IDOMMetaData{
 	public function __construct($href='', $rel='stylesheet', $type='text/css', array $attributes = null, $id='', $class='', $title='', $style=''){
 		parent::__construct(Html5Tags::$LINK, $attributes, $id, $class, $title, $style);
 		if(!U::NA($rel)){$this->_attributes['rel'] = $rel;}
