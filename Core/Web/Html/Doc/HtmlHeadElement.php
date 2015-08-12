@@ -1,7 +1,7 @@
 <?php
 class HtmlHeadElement extends HtmlGenericContainerElement {
-	/** Constructor($content = null, $id = '', $indentContent = true) */
-	public function __construct($content = null, $id = '', $indentContent = true) {
+	/** Constructor($id = '', $indentContent = true) */
+	public function __construct($id = '', $indentContent = true) {
 		parent::__construct(Html5Tags::$HEAD, null, $content, $id, '', '', '', $indentContent);
 	}
 	###########################################################################
