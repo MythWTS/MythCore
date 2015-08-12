@@ -1,5 +1,6 @@
 <?php
 class HtmlTitleElement extends HtmlElement implements IDOMMetaData{
+	/** Constructor($pageTitle, $id='') */
 	public function __construct($pageTitle, $id=''){
 		$content = new HtmlRawTextNode($pageTitle, true);
 		parent::__construct(Html5Tags::$TITLE, null, $content, $id, '', '', '', false);

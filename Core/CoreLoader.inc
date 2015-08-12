@@ -58,6 +58,9 @@ $Loader = new CoreLoader(
 			'HtmlTags',
 			'HtmlTargetCommonValues',
 		),
+		'Core/Web/Html/Heading' => array(
+			'HtmlH1Element', 'HtmlH2Element', 'HtmlH3Element', 'HtmlH4Element', 'HtmlH5Element', 'HtmlH6Element'
+		),
 		'Core/Web/Html/MetaData' => array(
 			'HtmlBaseElement',
 			'HtmlLinkElement',

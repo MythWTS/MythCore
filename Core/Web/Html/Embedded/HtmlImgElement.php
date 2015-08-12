@@ -1,5 +1,6 @@
 <?php
 class HtmlImgElement extends HtmlEmptyElement{
+	/** Constructor($src='', $alt='', $width='', $height='', array $attributes = null, $id='', $class='', $title='', $style='') */
 	public function __construct($src='', $alt='', $width='', $height='', array $attributes = null, $id='', $class='', $title='', $style=''){
 		parent::__construct(Html5Tags::$IMG, $attributes, $id, $class, $title, $style);
 		if(!U::NA($src)){$this->_attributes['src'] = $src;}

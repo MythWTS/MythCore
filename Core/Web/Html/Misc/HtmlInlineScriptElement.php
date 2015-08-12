@@ -1,5 +1,6 @@
 <?php
 class HtmlInlineScriptElement extends HtmlElement implements IDOMMetaData{
+	/** Constructor($script, $type='text/javascript', $id='', $indentScript=true) */
 	public function __construct($script, $type='text/javascript', $id='', $indentScript=true){
 		$s = new HtmlRawTextNode($script, $indentScript);
 		parent::__construct(Html5Tags::$SCRIPT, null, $s, $id, '', '', '', false);

@@ -1,6 +1,7 @@
 <?php
 final class HtmlDocTypeNode extends HtmlNode{
 	private $_docType;
+	/** Constructor(HtmlDocTypes $docType) */
 	public function __construct(HtmlDocTypes $docType){
 		$this->_docType = $docType;
 	}

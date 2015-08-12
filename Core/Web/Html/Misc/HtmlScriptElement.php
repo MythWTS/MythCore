@@ -1,5 +1,6 @@
 <?php
 class HtmlScriptElement extends HtmlElement implements IDOMMetaData{
+	/** Constructor($src, $type='text/javascript', $charset='UTF-8', $defer=false, $async=false, $id='') */
 	public function __construct($src, $type='text/javascript', $charset='UTF-8', $defer=false, $async=false, $id=''){
 		parent::__construct(Html5Tags::$SCRIPT, null, null, $id, '', '', '', false);
 		$this->_attributes['src'] = U::ES($src);

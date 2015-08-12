@@ -1,5 +1,6 @@
 <?php
 class HtmlMetaElement extends HtmlEmptyElement implements IDOMMetaData{
+	/** Constructor($name='', $content='', $id='') */
 	public function __construct($name='', $content='', $id=''){
 		parent::__construct(Html5Tags::$META);
 		if(!U::NA($id)){$this->_attributes['id'] = $id;}

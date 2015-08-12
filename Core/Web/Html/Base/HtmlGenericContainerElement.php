@@ -3,9 +3,7 @@ class HtmlGenericContainerElement extends HtmlElement{
 	###########################################################################
 	# Constructor
 	###########################################################################
-	/**
-	 * Constructor($tag, array $attributes = null, $contents=null, $id='', $class='', $title='', $style='', $indentContents=true)
-	 */
+	/** Constructor($tag, array $attributes = null, $contents=null, $id='', $class='', $title='', $style='', $indentContents=true) */
 	protected function __construct($tag, array $attributes = null, $contents=null, $id='', $class='', $title='', $style='', $indentContents=true){
 		parent::__construct($tag, $attributes, $contents, $id, $class, $title, $style, $indentContents, false);
 	}

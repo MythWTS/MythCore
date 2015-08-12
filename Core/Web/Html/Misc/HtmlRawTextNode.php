@@ -1,6 +1,7 @@
 <?php
 class HtmlRawTextNode extends HtmlNode implements IDOMMetaData{
 	public $Html, $UseIndent;
+	/** Constructor($html, $useIndent=true) */
 	public function __construct($html, $useIndent=true){
 		$this->Html = $html; $this->UseIndent = $useIndent;
 	}

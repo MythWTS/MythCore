@@ -1,5 +1,6 @@
 <?php
 class HtmlBaseElement extends HtmlEmptyElement implements IDOMMetaData{
+	/** Constructor($href='', $target='', $id='') */
 	public function __construct($href='', $target='', $id=''){
 		parent::__construct(Html5Tags::$BASE, null, $id);
 		if(!U::NA($href)){$this->_attributes['href'] = $href;}

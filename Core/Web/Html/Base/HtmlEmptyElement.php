@@ -3,9 +3,7 @@ class HtmlEmptyElement extends HtmlElement{
 	###########################################################################
 	# Constructor
 	###########################################################################
-	/**
-	 * Constructor($tag, array $attributes = null, $id='', $class='', $title='', $style='')
-	 */
+	/** Constructor($tag, array $attributes = null, $id='', $class='', $title='', $style='') */
 	public function __construct($tag, array $attributes = null, $id='', $class='', $title='', $style=''){
 		parent::__construct($tag, $attributes, null, $id, $class, $title, $style, false, true);
 	}

@@ -1,6 +1,7 @@
 <?php
 final class HtmlCommentNode extends HtmlNode implements IDOMMetaData{
 	private $_comment, $_indentContents;
+	/** Constructor($comment, $indentContents=false) */
 	public function __construct($comment, $indentContents=false){
 		$this->_comment = $comment; $this->_indentContents = $indentContents;
 	}
