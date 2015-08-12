@@ -1,5 +1,5 @@
 <?php
-class HtmlImgElement extends HtmlEmptyElement implements IDOMEmbedded, IDOMFlow, IDOMPhrasing, IDOMPalpable, IDOMInteractive{
+class HtmlImgElement extends HtmlEmptyElement implements IDOMEmbedded, IDOMFlow, IDOMPhrasing, IDOMInteractive{
 	public function __construct($src='', $alt='', $width='', $height='', array $attributes = null, $id='', $class='', $title='', $style=''){
 		parent::__construct(Html5Tags::$IMG, $attributes, $id, $class, $title, $style);
 		if(!U::NA($src)){$this->_attributes['src'] = $src;}

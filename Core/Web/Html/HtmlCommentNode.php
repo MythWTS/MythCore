@@ -1,5 +1,5 @@
 <?php
-final class HtmlCommentNode extends HtmlNode implements IDOMFlow, IDOMPhrasing, IDOMPalpable, 
+final class HtmlCommentNode extends HtmlNode implements IDOMFlow, IDOMPhrasing, 
 														IDOMEmbedded, IDOMHeading, IDOMInteractive, IDOMMetaData, IDOMSectioning {
 	private $_comment, $_indentContents;
 	public function __construct($comment, $indentContents=false){
