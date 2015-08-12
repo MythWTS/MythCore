@@ -87,9 +87,9 @@ class HtmlElement extends HtmlNode{
 	protected function __construct($tag, array $attributes = null, $contents='', $id='', $class='', $title='', $style='', $indentContents=true, $isEmptyElement=false){
 		$this->_tag = $tag; $this->_attributes = U::NA($attributes)?array():$this->extractValidAttributes($attributes); 
 		if(!U::NA($id)){$this->_attributes['id'] = $id;}
-		if(!U::NA($class)){$this->_attributes['class'] = $id;}
-		if(!U::NA($title)){$this->_attributes['title'] = $id;}
-		if(!U::NA($style)){$this->_attributes['style'] = $id;}
+		if(!U::NA($class)){$this->_attributes['class'] = $class;}
+		if(!U::NA($title)){$this->_attributes['title'] = $title;}
+		if(!U::NA($style)){$this->_attributes['style'] = $style;}
 		$this->_isEmpty = $isEmptyElement;
 		$this->_contents = $isEmptyElement?null:(U::NA($contents)?array():$this->extractValidContents($contents));
 		$this->_indentContents = $indentContents;
@@ -114,28 +114,6 @@ class HtmlElement extends HtmlNode{
 	###########################################################################
 	# Protected Virtual Utility Methods
 	###########################################################################
-	/** Returns the html of the openning tag of the element. Should be overriden if necessary. */
-	protected function openTagHtml($indent=0){
-		if($this->_isEmpty){return U::TAB($indent) . '<' . trim("{$this->_tag} {$this->attributesString()}") . '/>';}
-		else {return U::TAB($indent) . '<' . trim("{$this->_tag} {$this->attributesString()}") . '>' . ($this->_indentContents?U::$NL:"");}
-	}
-	/**
-	 * Returns the contents html (inner html) of the element if applicable
-	 * This method is responsible for handling the indentation of the child elements, not the child elements themselves as it
-	 * passes the indent value to the child
-	 */ 
-	protected function contentsHtml($indent=1){
-		if($this->_isEmpty){return "";}
-		else{
-			$res = "";
-			foreach ($this->_contents as $value) {
-				$res .= $value->OuterHtml($this->_indentContents?$indent:0) . ($this->_indentContents?U::$NL:"");
-			}
-			return $res;
-		}
-	}
-	/** Returns the html of the closing tag of the element. Should be overriden if necessary. */
-	protected function closeTagHtml($indent=0){if($this->_isEmpty){return "";}else{return U::TAB($indent) . "</{$this->_tag}>";}}
 	/** Returns the string representing the attributes of this element to be used in the openning tag. */
 	protected function attributesString(){
 		$res = ''; $q= U::$Q;
@@ -174,12 +152,39 @@ class HtmlElement extends HtmlNode{
 		}
 		return $res;
 	}
+	/** Returns the html of the openning tag of the element. Should be overriden if necessary. */
+	protected function openTagHtml($indent=0){
+		if($this->_isEmpty){return U::TAB($indent) . '<' . trim("{$this->_tag} {$this->attributesString()}") . '/>';}
+		else {return U::TAB($indent) . '<' . trim("{$this->_tag} {$this->attributesString()}") . '>';}
+	}
+	/**
+	 * Returns the contents html (inner html) of the element if applicable
+	 * This method is responsible for handling the indentation of the child elements, not the child elements themselves as it
+	 * passes the indent value to the child
+	 */ 
+	protected function contentsHtml($indent=1){
+		if($this->_isEmpty){return "";}
+		else{
+			$res = "";
+			foreach ($this->_contents as $value) {
+				$res .= $value->OuterHtml($this->_indentContents?$indent:0) . ($this->_indentContents?U::$NL:"");
+			}
+			return $res;
+		}
+	}
+	/** Returns the html of the closing tag of the element. Should be overriden if necessary. */
+	protected function closeTagHtml($indent=0){return U::TAB($indent) . "</{$this->_tag}>";}
 	###########################################################################
 	# Base Overrides
 	###########################################################################
 	/** Returns the html of this element */
 	public function OuterHtml($indent=0){
-		return $this->openTagHtml($indent) . $this->contentsHtml($indent+1) . $this->closeTagHtml();
+		if($this->_isEmpty){return $this->openTagHtml($indent);}
+		else{
+			$res = $this->contentsHtml($indent+1);
+			if(U::NA($res)){return $this->openTagHtml($indent).$this->closeTagHtml(0);}
+			else{return $this->openTagHtml($indent) . ($this->_indentContents?U::$NL:"") . $res . $this->closeTagHtml($this->_indentContents?$indent:0);}
+		}
 	}
 	###########################################################################
 	# Private Utility Methods
