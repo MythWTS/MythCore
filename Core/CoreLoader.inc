@@ -86,6 +86,7 @@ $Loader = new CoreLoader(
 			'HtmlUElement',
 			'HtmlVarElement',
 			'HtmlWbrElement',
+			'IDOMNode',
 		),
 	), 
 	$Config->BasePath, '.php'
