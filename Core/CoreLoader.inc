@@ -41,7 +41,13 @@ $Loader = new CoreLoader(
 			'HtmlHeadElement',
 		),
 		'Core/Web/Html/Embedded' => array(
+			'HtmlAudioElement',
+			'HtmlCanvasElement',
+			'HtmlEmbedElement',
+			'HtmlIFrameElement',
 			'HtmlImgElement',
+			'HtmlObjectElement',
+			'HtmlVideoElement',
 		),
 		'Core/Web/Html/Enum' => array(
 			'Html5Attributes',
@@ -106,6 +112,10 @@ $Loader = new CoreLoader(
 			'HtmlUElement',
 			'HtmlVarElement',
 			'HtmlWbrElement',
+		),
+		'Core/Web/Html/Specific' => array(
+			'HtmlParamElement',
+			'HtmlSourceElement',
 		),
 	), 
 	$Config->BasePath, '.php'

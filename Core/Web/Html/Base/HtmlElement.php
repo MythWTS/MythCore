@@ -47,6 +47,29 @@ class HtmlElement extends HtmlNode{
 		if($value===null){return $this->_attributes['style'];}
 		else{$this->_attributes['style'] = U::ES($value);}
 	}
+	public function TabIndex($value=null){
+		if($value===null){return $this->_attributes['tabindex'];}
+		else{$this->_attributes['tabindex'] = U::ES($value);}
+	}
+	public function AccessKey($value=null){
+		if($value===null){return $this->_attributes['accesskey'];}
+		else{$this->_attributes['accesskey'] = U::ES($value);}
+	}
+	public function Hidden($value=null){
+		if($value===null){return $this->_attributes['hidden'];}
+		else{
+			if($value){$this->_attributes['hidden'] = 'hidden';}
+			else{if(array_key_exists('hidden', $this->_attributes)){unset($this->_attributes['hidden']);}}
+		}
+	}
+	public function ContentEditable($value=null){
+		if($value===null){return $this->_attributes['contenteditable'] == 'true';}
+		else{$this->_attributes['contenteditable'] = $value?'true':'false';}
+	}
+	public function Draggable($value=null){
+		if($value===null){return $this->_attributes['draggable'] == 'true';}
+		else{$this->_attributes['draggable'] = $value?'true':'false';}
+	}
 	###########################################################################
 	# Constructor
 	###########################################################################
