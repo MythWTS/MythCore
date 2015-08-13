@@ -1,7 +1,7 @@
 <?php
 class HtmlFormElement extends HtmlContainerElement{
-	/** Constructor($action='', $method='', $id='', $class='', $title='', $style='', $indentContent=false) */
-	public function __construct($action='', $method='', $id='', $class='', $title='', $style='', $indentContent=false){
+	/** Constructor($action='', $method='', $id='', $class='', $title='', $style='', $indentContent=true) */
+	public function __construct($action='', $method='', $id='', $class='', $title='', $style='', $indentContent=true){
 		parent::__construct(Html5Tags::$FORM, null, null, $id, $class, $title, $style, $indentContent);
 		if(!U::NA($action)){$this->_attributes['action'] = U::ES($action);}
 		if(!U::NA($method)){$this->_attributes['method'] = U::ES($method);}

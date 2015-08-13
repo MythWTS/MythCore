@@ -5,4 +5,9 @@ require_once "Core.inc";
  * MOST OF THE TIME THE CONTENTS OF THIS FILE WILL NOT MAKE ANY SENSE, THIS SHOULD CHANGE AT THE ALPHA RELEASE
  */
 ################################################################################################################
+$tst = new HtmlBodyElement();
+$tst->AddNode($n = new HtmlArticleElement("Something"));
+$n->AddSection(Html::Dialog());
+
+echo $tst;
 ?>

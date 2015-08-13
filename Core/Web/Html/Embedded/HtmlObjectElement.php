@@ -1,7 +1,7 @@
 <?php
 class HtmlObjectElement extends HtmlGenericContainerElement{
-	/** Constructor($content, $id='', $class='', $title='', $style='', $indentContent=false) */
-	public function __construct($data='', $type='', $id='', $class='', $title='', $style='', $indentContent=false){
+	/** Constructor($content, $id='', $class='', $title='', $style='', $indentContent=true) */
+	public function __construct($data='', $type='', $id='', $class='', $title='', $style='', $indentContent=true){
 		parent::__construct(Html5Tags::$OBJECT, null, null, $id, $class, $title, $style, $indentContent);
 		if(!U::NA($data)){$this->_attributes['data'] = U::ES($data);}
 		if(!U::NA($type)){$this->_attributes['type'] = U::ES($type);}

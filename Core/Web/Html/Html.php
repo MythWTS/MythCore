@@ -132,44 +132,44 @@ final class Html extends Object{
 	###########################################################################
 	# List Elements
 	###########################################################################
-	public static function Dl($id='', $class='', $title='', $style='', $indentContent=false){return new HtmlDlElement($id, $class, $title, $style, $indentContent);}
-	public static function Ol($id='', $class='', $title='', $style='', $indentContent=false){return new HtmlOlElement($id, $class, $title, $style, $indentContent);}
-	public static function Ul($id='', $class='', $title='', $style='', $indentContent=false){return new HtmlUlElement($id, $class, $title, $style, $indentContent);}
+	public static function Dl($id='', $class='', $title='', $style='', $indentContent=true){return new HtmlDlElement($id, $class, $title, $style, $indentContent);}
+	public static function Ol($id='', $class='', $title='', $style='', $indentContent=true){return new HtmlOlElement($id, $class, $title, $style, $indentContent);}
+	public static function Ul($id='', $class='', $title='', $style='', $indentContent=true){return new HtmlUlElement($id, $class, $title, $style, $indentContent);}
 	###########################################################################
 	# Block Elements
 	###########################################################################
-	public static function Blockquote($content='', $id='', $class='', $title='', $style='', $indentContents=false){return new HtmlBlockquoteElement($content, $id, $class, $title, $style, $indentContents);}
+	public static function Blockquote($content='', $id='', $class='', $title='', $style='', $indentContents=true){return new HtmlBlockquoteElement($content, $id, $class, $title, $style, $indentContents);}
 	public static function Br($id='', $class='', $title='', $style=''){return new HtmlBrElement($id, $class, $title, $style);}
-	public static function Details($content='', $id='', $class='', $title='', $style='', $indentContents=false){return new HtmlDetailsElement($content, $id, $class, $title, $style, $indentContents);}
-	public static function Dialog($content='', $id='', $class='', $title='', $style='', $indentContents=false){return new HtmlDialogElement($content, $id, $class, $title, $style, $indentContents);}
-	public static function Div($content='', $id='', $class='', $title='', $style='', $indentContents=false){return new HtmlDivElement($content, $id, $class, $title, $style, $indentContents);}
-	public static function Figure($content='', $id='', $class='', $title='', $style='', $indentContents=false){return new HtmlFigureElement($content, $id, $class, $title, $style, $indentContents);}
-	public static function Footer($content='', $id='', $class='', $title='', $style='', $indentContents=false){return new HtmlFooterElement($content, $id, $class, $title, $style, $indentContents);}
-	public static function Header($content='', $id='', $class='', $title='', $style='', $indentContents=false){return new HtmlHeaderElement($content, $id, $class, $title, $style, $indentContents);}
+	public static function Details($content='', $id='', $class='', $title='', $style='', $indentContents=true){return new HtmlDetailsElement($content, $id, $class, $title, $style, $indentContents);}
+	public static function Dialog($content='', $id='', $class='', $title='', $style='', $indentContents=true){return new HtmlDialogElement($content, $id, $class, $title, $style, $indentContents);}
+	public static function Div($content='', $id='', $class='', $title='', $style='', $indentContents=true){return new HtmlDivElement($content, $id, $class, $title, $style, $indentContents);}
+	public static function Figure($content='', $id='', $class='', $title='', $style='', $indentContents=true){return new HtmlFigureElement($content, $id, $class, $title, $style, $indentContents);}
+	public static function Footer($content='', $id='', $class='', $title='', $style='', $indentContents=true){return new HtmlFooterElement($content, $id, $class, $title, $style, $indentContents);}
+	public static function Header($content='', $id='', $class='', $title='', $style='', $indentContents=true){return new HtmlHeaderElement($content, $id, $class, $title, $style, $indentContents);}
 	public static function Hr($id='', $class='', $title='', $style=''){return new HtmlHrElement($id, $class, $title, $style);}
-	public static function Main($content='', $id='', $class='', $title='', $style='', $indentContents=false){return new HtmlMainElement($content, $id, $class, $title, $style, $indentContents);}
-	public static function P($content='', $id='', $class='', $title='', $style='', $indentContents=false){return new HtmlPElement($content, $id, $class, $title, $style, $indentContents);}
+	public static function Main($content='', $id='', $class='', $title='', $style='', $indentContents=true){return new HtmlMainElement($content, $id, $class, $title, $style, $indentContents);}
+	public static function P($content='', $id='', $class='', $title='', $style='', $indentContents=true){return new HtmlPElement($content, $id, $class, $title, $style, $indentContents);}
 	public static function Pre($content='', $id='', $class='', $title='', $style='', $indentContents=false){return new HtmlPreElement($content, $id, $class, $title, $style, $indentContents);}
 	###########################################################################
 	# Sectioning Elements
 	###########################################################################
-	public static function Article($content='', $id='', $class='', $title='', $style='', $indentContents=false){return new HtmlArticleElement($content, $id, $class, $title, $style, $indentContents);}
-	public static function Aside($content='', $id='', $class='', $title='', $style='', $indentContents=false){return new HtmlAsideElement($content, $id, $class, $title, $style, $indentContents);}
-	public static function Nav($content='', $id='', $class='', $title='', $style='', $indentContents=false){return new HtmlNavElement($content, $id, $class, $title, $style, $indentContents);}
-	public static function Section($content='', $id='', $class='', $title='', $style='', $indentContents=false){return new HtmlSectionElement($content, $id, $class, $title, $style, $indentContents);}
+	public static function Article($content='', $id='', $class='', $title='', $style='', $indentContents=true){return new HtmlArticleElement($content, $id, $class, $title, $style, $indentContents);}
+	public static function Aside($content='', $id='', $class='', $title='', $style='', $indentContents=true){return new HtmlAsideElement($content, $id, $class, $title, $style, $indentContents);}
+	public static function Nav($content='', $id='', $class='', $title='', $style='', $indentContents=true){return new HtmlNavElement($content, $id, $class, $title, $style, $indentContents);}
+	public static function Section($content='', $id='', $class='', $title='', $style='', $indentContents=true){return new HtmlSectionElement($content, $id, $class, $title, $style, $indentContents);}
 	###########################################################################
 	# Form Elements
 	###########################################################################
 	public static function Button($content='', $id='', $class='', $title='', $style='', $indentContents=false){return new HtmlButtonElement($content, $id, $class, $title, $style, $indentContents);}
-	public static function Fieldset($content='', $id='', $class='', $title='', $style='', $indentContents=false){return new HtmlFieldsetElement($content, $id, $class, $title, $style, $indentContents);}
-	public static function Form($action='', $method='', $id='', $class='', $title='', $style='', $indentContent=false){return new HtmlFormElement($action, $method, $id, $class, $title, $style, $indentContents);}
+	public static function Fieldset($content='', $id='', $class='', $title='', $style='', $indentContents=true){return new HtmlFieldsetElement($content, $id, $class, $title, $style, $indentContents);}
+	public static function Form($action='', $method='', $id='', $class='', $title='', $style='', $indentContent=true){return new HtmlFormElement($action, $method, $id, $class, $title, $style, $indentContents);}
 	public static function Input($type='', $name='', array $attributes = null, $id='', $class='', $title='', $style=''){return new HtmlInputElement($type, $name, $attributes, $id, $class, $title, $style);}
 	public static function Keygen($name='', HtmlKeyTypes $keytype=null, array $attributes = null){return new HtmlKeygenElement($name, $keytype, $attributes);}
 	public static function Label($content='', $id='', $class='', $title='', $style='', $indentContents=false){return new HtmlLabelElement($content, $id, $class, $title, $style, $indentContents);}
 	public static function Legend($content='', $id='', $class='', $title='', $style='', $indentContents=false){return new HtmlLegendElement($content, $id, $class, $title, $style, $indentContents);}
-	public static function OptGroup($content='', $id='', $class='', $title='', $style='', $indentContents=false){return new HtmlOptGroupElement($content, $id, $class, $title, $style, $indentContents);}
+	public static function OptGroup($content='', $id='', $class='', $title='', $style='', $indentContents=true){return new HtmlOptGroupElement($content, $id, $class, $title, $style, $indentContents);}
 	public static function Option($content, $value='', $id='', $class='', $title='', $style='', $indentContent=false){return new HtmlOptionElement($content, $value, $id, $class, $title, $style, $indentContents);}
-	public static function Select($content='', $id='', $class='', $title='', $style='', $indentContents=false){return new HtmlSelectElement($content, $id, $class, $title, $style, $indentContents);}
-	public static function TextArea($content='', $id='', $class='', $title='', $style='', $indentContents=false){return new HtmlTextAreaElement($content, $id, $class, $title, $style, $indentContents);}
+	public static function Select($content='', $id='', $class='', $title='', $style='', $indentContents=true){return new HtmlSelectElement($content, $id, $class, $title, $style, $indentContents);}
+	public static function TextArea($content='', $id='', $class='', $title='', $style='', $indentContents=true){return new HtmlTextAreaElement($content, $id, $class, $title, $style, $indentContents);}
 };
 ?>
