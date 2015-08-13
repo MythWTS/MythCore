@@ -32,6 +32,10 @@ class HtmlContainerElement extends HtmlGenericContainerElement{
 		$this->_contents[] = new HtmlAddressElement($content, $id, $class, $title, $style, $indentContents);
 		return $this;
 	}
+	public function AddArea(HtmlAreaShapes $shape, $coords, $href='', $alt='', $id=''){
+		$this->_contents[] = new HtmlAreaElement($shape, $coords, $href, $alt, null, $id);
+		return $this;
+	}
 	public function AddA($content, $href='', $id='', $class='', $title='', $style='', $indentContent=false){
 		$this->_contents[] = new HtmlAElement($content, $href, $id, $class, $title, $style, $indentContent);
 		return $this;
@@ -56,6 +60,10 @@ class HtmlContainerElement extends HtmlGenericContainerElement{
 		$this->_contents[] = new HtmlCodeElement($content, $id, $class, $title, $style, $indentContents);
 		return $this;
 	}
+	public function AddDataList($content='', $id='', $class='', $title='', $style='', $indentContents=false){
+		$this->_contents[] = new HtmlDataListElement($content, $id, $class, $title, $style, $indentContents);
+		return $this;
+	}
 	public function AddDel($content='', $id='', $class='', $title='', $style='', $indentContents=false){
 		$this->_contents[] = new HtmlDelElement($content, $id, $class, $title, $style, $indentContents);
 		return $this;
@@ -78,6 +86,10 @@ class HtmlContainerElement extends HtmlGenericContainerElement{
 	}
 	public function AddKbd($content='', $id='', $class='', $title='', $style='', $indentContents=false){
 		$this->_contents[] = new HtmlKbdElement($content, $id, $class, $title, $style, $indentContents);
+		return $this;
+	}
+	public function AddMap($content='', $id='', $class='', $title='', $style='', $indentContents=false){
+		$this->_contents[] = new HtmlMapElement($content, $id, $class, $title, $style, $indentContents);
 		return $this;
 	}
 	public function AddMark($content='', $id='', $class='', $title='', $style='', $indentContents=false){

@@ -79,18 +79,21 @@ final class Html extends Object{
 	###########################################################################
 	public static function Abbr($content='', $id='', $class='', $title='', $style='', $indentContents=false){return new HtmlAbbrElement($content, $id, $class, $title, $style, $indentContents);}
 	public static function Address($content='', $id='', $class='', $title='', $style='', $indentContents=false){return new HtmlAddressElement($content, $id, $class, $title, $style, $indentContents);}
+	public static function Area(HtmlAreaShapes $shape, $coords, $href='', $alt='', array $attributes = null, $id=''){return new HtmlAreaElement($shape, $coords, $href, $alt, null, $id);}
 	public static function A($content, $href='', $id='', $class='', $title='', $style='', $indentContent=false){return new HtmlAElement($content, $href, $id, $class, $title, $style, $indentContent);}
 	public static function Bdi($content='', $id='', $class='', $title='', $style='', $indentContents=false){return new HtmlBdiElement($content, $id, $class, $title, $style, $indentContents);}
 	public static function Bdo($content='', $id='', $class='', $title='', $style='', $indentContents=false){return new HtmlBdoElement($content, $id, $class, $title, $style, $indentContents);}
 	public static function B($content='', $id='', $class='', $title='', $style='', $indentContents=false){return new HtmlBElement($content, $id, $class, $title, $style, $indentContents);}
 	public static function Cite($content='', $id='', $class='', $title='', $style='', $indentContents=false){return new HtmlCiteElement($content, $id, $class, $title, $style, $indentContents);}
 	public static function Code($content='', $id='', $class='', $title='', $style='', $indentContents=false){return new HtmlCodeElement($content, $id, $class, $title, $style, $indentContents);}
+	public static function DataList($content='', $id='', $class='', $title='', $style='', $indentContents=false){return new HtmlDataListElement($content, $id, $class, $title, $style, $indentContents);}
 	public static function Del($content='', $id='', $class='', $title='', $style='', $indentContents=false){return new HtmlDelElement($content, $id, $class, $title, $style, $indentContents);}
 	public static function Dfn($content='', $id='', $class='', $title='', $style='', $indentContents=false){return new HtmlDfnElement($content, $id, $class, $title, $style, $indentContents);}
 	public static function Em($content='', $id='', $class='', $title='', $style='', $indentContents=false){return new HtmlEmElement($content, $id, $class, $title, $style, $indentContents);}
 	public static function I($content='', $id='', $class='', $title='', $style='', $indentContents=false){return new HtmlIElement($content, $id, $class, $title, $style, $indentContents);}
 	public static function Ins($content='', $id='', $class='', $title='', $style='', $indentContents=false){return new HtmlInsElement($content, $id, $class, $title, $style, $indentContents);}
 	public static function Kbd($content='', $id='', $class='', $title='', $style='', $indentContents=false){return new HtmlKbdElement($content, $id, $class, $title, $style, $indentContents);}
+	public static function Map($content='', $id='', $class='', $title='', $style='', $indentContents=false){return new HtmlMapElement($content, $id, $class, $title, $style, $indentContents);}
 	public static function Mark($content='', $id='', $class='', $title='', $style='', $indentContents=false){return new HtmlMarkElement($content, $id, $class, $title, $style, $indentContents);}
 	public static function Meter($content='', $id='', $class='', $title='', $style='', $indentContents=false){return new HtmlMeterElement($content, $id, $class, $title, $style, $indentContents);}
 	public static function Output($content='', $id='', $class='', $title='', $style='', $indentContents=false){return new HtmlOutputElement($content, $id, $class, $title, $style, $indentContents);}
