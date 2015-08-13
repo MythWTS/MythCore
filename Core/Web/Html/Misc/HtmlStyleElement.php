@@ -1,7 +1,7 @@
 <?php
 class HtmlStyleElement extends HtmlElement implements IDOMMetaData{
-	/** Constructor($styleText, $id='') */
-	public function __construct($styleText, $id=''){
+	/** Constructor($styleText='', $id='') */
+	public function __construct($styleText='', $id=''){
 		$content = new HtmlRawTextNode($styleText, true);
 		parent::__construct(Html5Tags::$STYLE, null, $content, $id, '', '', '', true);
 	}

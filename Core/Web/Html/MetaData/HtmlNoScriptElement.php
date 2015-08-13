@@ -1,7 +1,7 @@
 <?php
 class HtmlNoScriptElement extends HtmlElement implements IDOMMetaData{
-	/** Constructor($note, $id='') */
-	public function __construct($note, $id=''){
+	/** Constructor($note='', $id='') */
+	public function __construct($note='', $id=''){
 		$content = new HtmlRawTextNode($note, true);
 		parent::__construct(Html5Tags::$NOSCRIPT, null, $content, $id, '', '', '', false);
 	}

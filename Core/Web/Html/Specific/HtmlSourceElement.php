@@ -1,6 +1,7 @@
 <?php
 class HtmlSourceElement extends HtmlEmptyElement{
-	public function __construct($src, $type='audio', array $attributes = null){
+	/** Constructor($src='', $type='audio', array $attributes = null) */
+	public function __construct($src='', $type='audio', array $attributes = null){
 		parent::__construct(Html5Tags::$SOURCE, $attributes);
 		if(!U::NA($src)){$this->_attributes['src'] = U::ES($src);}
 		if(!U::NA($type)){$this->_attributes['type'] = U::ES($type);}
