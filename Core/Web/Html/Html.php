@@ -150,5 +150,12 @@ final class Html extends Object{
 	public static function Main($content='', $id='', $class='', $title='', $style='', $indentContents=false){return new HtmlMainElement($content, $id, $class, $title, $style, $indentContents);}
 	public static function P($content='', $id='', $class='', $title='', $style='', $indentContents=false){return new HtmlPElement($content, $id, $class, $title, $style, $indentContents);}
 	public static function Pre($content='', $id='', $class='', $title='', $style='', $indentContents=false){return new HtmlPreElement($content, $id, $class, $title, $style, $indentContents);}
+	###########################################################################
+	# Sectioning Elements
+	###########################################################################
+	public static function Article($content='', $id='', $class='', $title='', $style='', $indentContents=false){return new HtmlArticleElement($content, $id, $class, $title, $style, $indentContents);}
+	public static function Aside($content='', $id='', $class='', $title='', $style='', $indentContents=false){return new HtmlAsideElement($content, $id, $class, $title, $style, $indentContents);}
+	public static function Nav($content='', $id='', $class='', $title='', $style='', $indentContents=false){return new HtmlNavElement($content, $id, $class, $title, $style, $indentContents);}
+	public static function Section($content='', $id='', $class='', $title='', $style='', $indentContents=false){return new HtmlSectionElement($content, $id, $class, $title, $style, $indentContents);}
 };
 ?>

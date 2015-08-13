@@ -280,5 +280,24 @@ class HtmlContainerElement extends HtmlGenericContainerElement{
 		$this->_contents[] = new HtmlPreElement($content, $id, $class, $title, $style, $indentContents);
 		return $this;
 	}
+	###########################################################################
+	# Methods to add sectioning elements
+	###########################################################################
+	public function AddArticle($content='', $id='', $class='', $title='', $style='', $indentContents=false){
+		$this->_contents[] = new HtmlArticleElement($content, $id, $class, $title, $style, $indentContents);
+		return $this;
+	}
+	public function AddAside($content='', $id='', $class='', $title='', $style='', $indentContents=false){
+		$this->_contents[] = new HtmlAsideElement($content, $id, $class, $title, $style, $indentContents);
+		return $this;
+	}
+	public function AddNav($content='', $id='', $class='', $title='', $style='', $indentContents=false){
+		$this->_contents[] = new HtmlNavElement($content, $id, $class, $title, $style, $indentContents);
+		return $this;
+	}
+	public function AddSection($content='', $id='', $class='', $title='', $style='', $indentContents=false){
+		$this->_contents[] = new HtmlSectionElement($content, $id, $class, $title, $style, $indentContents);
+		return $this;
+	}
 };
 ?>

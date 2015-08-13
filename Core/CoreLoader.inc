@@ -140,6 +140,12 @@ $Loader = new CoreLoader(
 			'HtmlVarElement',
 			'HtmlWbrElement',
 		),
+		'Core/Web/Html/Sectioning' => array(
+			'HtmlArticleElement',
+			'HtmlAsideElement',
+			'HtmlNavElement',
+			'HtmlSectionElement',
+		),
 		'Core/Web/Html/Specific' => array(
 			'HtmlDdElement',
 			'HtmlDtElement',
