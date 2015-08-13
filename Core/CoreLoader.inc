@@ -53,6 +53,7 @@ $Loader = new CoreLoader(
 			'HtmlBodyElement',
 			'HtmlDocTypeNode',
 			'HtmlHeadElement',
+			'HtmlHtmlElement',
 		),
 		'Core/Web/Html/Embedded' => array(
 			'HtmlAudioElement',
