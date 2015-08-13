@@ -160,6 +160,9 @@ $Loader = new CoreLoader(
 			'HtmlSectionElement',
 		),
 		'Core/Web/Html/Specific' => array(
+			'HtmlCaptionElement',
+			'HtmlColElement',
+			'HtmlColGroupElement',
 			'HtmlDdElement',
 			'HtmlDtElement',
 			'HtmlFigCaptionElement',
@@ -167,6 +170,15 @@ $Loader = new CoreLoader(
 			'HtmlParamElement',
 			'HtmlSourceElement',
 			'HtmlTrackElement',
+		),
+		'Core/Web/Html/Table' => array(
+			'HtmlTableElement',
+			'HtmlTBodyElement',
+			'HtmlTdElement',
+			'HtmlTFootElement',
+			'HtmlTHeadElement',
+			'HtmlThElement',
+			'HtmlTrElement',
 		),
 	), 
 	$Config->BasePath, '.php'

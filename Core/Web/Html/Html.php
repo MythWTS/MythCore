@@ -171,5 +171,18 @@ final class Html extends Object{
 	public static function Option($content, $value='', $id='', $class='', $title='', $style='', $indentContent=false){return new HtmlOptionElement($content, $value, $id, $class, $title, $style, $indentContents);}
 	public static function Select($content='', $id='', $class='', $title='', $style='', $indentContents=true){return new HtmlSelectElement($content, $id, $class, $title, $style, $indentContents);}
 	public static function TextArea($content='', $id='', $class='', $title='', $style='', $indentContents=true){return new HtmlTextAreaElement($content, $id, $class, $title, $style, $indentContents);}
+	###########################################################################
+	# Table Elements
+	###########################################################################
+	public static function Table($id='', $class='', $title='', $style='', $indentContent=true){return new HtmlTableElement($id, $class, $title, $style, $indentContents);}
+	public static function Tr($id='', $class='', $title='', $style='', $indentContent=true){return new HtmlTrElement($id, $class, $title, $style, $indentContent);}
+	public static function TBody($id='', $class='', $title='', $style='', $indentContent=true){return new HtmlTBodyElement($id, $class, $title, $style, $indentContent);}
+	public static function THead($id='', $class='', $title='', $style='', $indentContent=true){return new HtmlTHeadElement($id, $class, $title, $style, $indentContent);}
+	public static function TFoot($id='', $class='', $title='', $style='', $indentContent=true){return new HtmlTFootElement($id, $class, $title, $style, $indentContent);}
+	public static function ColGroup($id='', $class='', $title='', $style='', $indentContent=true){return new HtmlColGroupElement($id, $class, $title, $style, $indentContent);}
+	public static function Col($span='', array $attributes = null, $id='', $class='', $title='', $style=''){return new HtmlColElement($span, $attributes, $id, $class, $title, $style);}
+	public static function Caption($content, $id='', $class='', $title='', $style='', $indentContent=true){return new HtmlCaptionElement($content, $id, $class, $title, $style, $indentContent);}
+	public static function Td($content, $id='', $class='', $title='', $style='', $indentContent=true){return new HtmlTdElement($content, $id, $class, $title, $style, $indentContent);}
+	public static function Th($content, $id='', $class='', $title='', $style='', $indentContent=true){return new HtmlThElement($content, $id, $class, $title, $style, $indentContent);}
 };
 ?>

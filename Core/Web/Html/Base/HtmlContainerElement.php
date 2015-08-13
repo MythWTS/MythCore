@@ -346,5 +346,12 @@ class HtmlContainerElement extends HtmlGenericContainerElement{
 		$this->_contents[] = new HtmlTextAreaElement($content, $id, $class, $title, $style, $indentContents);
 		return $this;
 	}
+	###########################################################################
+	# Methods to add table element
+	###########################################################################
+	public function AddTable($id='', $class='', $title='', $style='', $indentContent=true){
+		$this->_contents[] = new HtmlTableElement($id, $class, $title, $style, $indentContents);
+		return $this;
+	}
 };
 ?>
