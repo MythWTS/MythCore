@@ -209,6 +209,7 @@ class CoreLoader extends ClassLoaderBase{
 	protected function canLoad($className){return array_key_exists($className, $this->_classes);}
 	protected function getRequiredFileForClass($className){
 		$group = U::CP($this->_groups[$this->_classes[$className]]);
+		if(strpos($className, "\\") !== false){$className = substr($className, strrpos($className, "\\") + 1); }
 		return "{$this->_basePath}{$group}{$className}{$this->_fext}";
 	}
 	public function AddClass($className, $classGroupName){

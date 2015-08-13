@@ -23,5 +23,5 @@ namespace Core\Data\Db{
 			return $this->_fieldsInfo;
 		}
 	};
-};
+}
 ?>

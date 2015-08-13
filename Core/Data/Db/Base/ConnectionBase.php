@@ -40,5 +40,5 @@ namespace Core\Data\Db{
 		abstract public function IsClosed();
 		abstract public function ExecuteSql();
 	};
-};
+}
 ?>

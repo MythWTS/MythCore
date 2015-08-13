@@ -7,5 +7,5 @@ namespace Core\Data\Db{
 		function RowsCount();
 		function FieldsInfo();
 	};
-};
+}
 ?>

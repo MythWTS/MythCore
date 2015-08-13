@@ -7,5 +7,5 @@ namespace Core\Data\Db{
 		function IsClosed();
 		function ExecuteSql();
 	};
-};
+}
 ?>

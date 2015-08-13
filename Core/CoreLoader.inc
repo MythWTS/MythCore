@@ -8,11 +8,14 @@ $Loader = new CoreLoader(
 		'Core' => array(
 			'Enum'
 		),
-		'Core/Data/Db/' => array(
+		'Core/Data/Db/Base' => array(
 			'Core\Data\Db\ConnectionBase',
 			'Core\Data\Db\IConnection',
 			'Core\Data\Db\IQueryResults',
 			'Core\Data\Db\QueryResultsBase',
+		),
+		'Core/Data/Db/MySql' => array(
+			'Core\Data\Db\MySql\Connection',
 		),
 		'Core/IO' => array(
 			'FileOpenMode',
