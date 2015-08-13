@@ -157,5 +157,19 @@ final class Html extends Object{
 	public static function Aside($content='', $id='', $class='', $title='', $style='', $indentContents=false){return new HtmlAsideElement($content, $id, $class, $title, $style, $indentContents);}
 	public static function Nav($content='', $id='', $class='', $title='', $style='', $indentContents=false){return new HtmlNavElement($content, $id, $class, $title, $style, $indentContents);}
 	public static function Section($content='', $id='', $class='', $title='', $style='', $indentContents=false){return new HtmlSectionElement($content, $id, $class, $title, $style, $indentContents);}
+	###########################################################################
+	# Form Elements
+	###########################################################################
+	public static function Button($content='', $id='', $class='', $title='', $style='', $indentContents=false){return new HtmlButtonElement($content, $id, $class, $title, $style, $indentContents);}
+	public static function Fieldset($content='', $id='', $class='', $title='', $style='', $indentContents=false){return new HtmlFieldsetElement($content, $id, $class, $title, $style, $indentContents);}
+	public static function Form($action='', $method='', $id='', $class='', $title='', $style='', $indentContent=false){return new HtmlFormElement($action, $method, $id, $class, $title, $style, $indentContents);}
+	public static function Input($type='', $name='', array $attributes = null, $id='', $class='', $title='', $style=''){return new HtmlInputElement($type, $name, $attributes, $id, $class, $title, $style);}
+	public static function Keygen($name='', HtmlKeyTypes $keytype=null, array $attributes = null){return new HtmlKeygenElement($name, $keytype, $attributes);}
+	public static function Label($content='', $id='', $class='', $title='', $style='', $indentContents=false){return new HtmlLabelElement($content, $id, $class, $title, $style, $indentContents);}
+	public static function Legend($content='', $id='', $class='', $title='', $style='', $indentContents=false){return new HtmlLegendElement($content, $id, $class, $title, $style, $indentContents);}
+	public static function OptGroup($content='', $id='', $class='', $title='', $style='', $indentContents=false){return new HtmlOptGroupElement($content, $id, $class, $title, $style, $indentContents);}
+	public static function Option($content, $value='', $id='', $class='', $title='', $style='', $indentContent=false){return new HtmlOptionElement($content, $value, $id, $class, $title, $style, $indentContents);}
+	public static function Select($content='', $id='', $class='', $title='', $style='', $indentContents=false){return new HtmlSelectElement($content, $id, $class, $title, $style, $indentContents);}
+	public static function TextArea($content='', $id='', $class='', $title='', $style='', $indentContents=false){return new HtmlTextAreaElement($content, $id, $class, $title, $style, $indentContents);}
 };
 ?>
