@@ -229,5 +229,56 @@ class HtmlContainerElement extends HtmlGenericContainerElement{
 		$this->_contents[] = new HtmlUlElement($id, $class, $title, $style, $indentContent);
 		return $this;
 	}
+	###########################################################################
+	# Methods to add block elements
+	###########################################################################
+	public function AddBlockquote($content='', $id='', $class='', $title='', $style='', $indentContents=false){
+		$this->_contents[] = new HtmlBlockquoteElement($content, $id, $class, $title, $style, $indentContents);
+		return $this;
+	}
+	public function AddBr($id='', $class='', $title='', $style=''){
+		$this->_contents[] = new HtmlBrElement($id, $class, $title, $style);
+		return $this;
+	}
+	public function AddDetails($content='', $id='', $class='', $title='', $style='', $indentContents=false){
+		$this->_contents[] = new HtmlDetailsElement($content, $id, $class, $title, $style, $indentContents);
+		return $this;
+	}
+	public function AddDialog($content='', $id='', $class='', $title='', $style='', $indentContents=false){
+		$this->_contents[] = new HtmlDialogElement($content, $id, $class, $title, $style, $indentContents);
+		return $this;
+	}
+	public function AddDiv($content='', $id='', $class='', $title='', $style='', $indentContents=false){
+		$this->_contents[] = new HtmlDivElement($content, $id, $class, $title, $style, $indentContents);
+		return $this;
+	}
+	public function AddFigure($content='', $id='', $class='', $title='', $style='', $indentContents=false){
+		$this->_contents[] = new HtmlFigureElement($content, $id, $class, $title, $style, $indentContents);
+		return $this;
+	}
+	public function AddFooter($content='', $id='', $class='', $title='', $style='', $indentContents=false){
+		$this->_contents[] = new HtmlFooterElement($content, $id, $class, $title, $style, $indentContents);
+		return $this;
+	}
+	public function AddHeader($content='', $id='', $class='', $title='', $style='', $indentContents=false){
+		$this->_contents[] = new HtmlHeaderElement($content, $id, $class, $title, $style, $indentContents);
+		return $this;
+	}
+	public function AddHr($id='', $class='', $title='', $style=''){
+		$this->_contents[] = new HtmlHrElement($id, $class, $title, $style);
+		return $this;
+	}
+	public function AddMain($content='', $id='', $class='', $title='', $style='', $indentContents=false){
+		$this->_contents[] = new HtmlMainElement($content, $id, $class, $title, $style, $indentContents);
+		return $this;
+	}
+	public function AddP($content='', $id='', $class='', $title='', $style='', $indentContents=false){
+		$this->_contents[] = new HtmlPElement($content, $id, $class, $title, $style, $indentContents);
+		return $this;
+	}
+	public function AddPre($content='', $id='', $class='', $title='', $style='', $indentContents=false){
+		$this->_contents[] = new HtmlPreElement($content, $id, $class, $title, $style, $indentContents);
+		return $this;
+	}
 };
 ?>

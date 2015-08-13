@@ -135,5 +135,20 @@ final class Html extends Object{
 	public static function Dl($id='', $class='', $title='', $style='', $indentContent=false){return new HtmlDlElement($id, $class, $title, $style, $indentContent);}
 	public static function Ol($id='', $class='', $title='', $style='', $indentContent=false){return new HtmlOlElement($id, $class, $title, $style, $indentContent);}
 	public static function Ul($id='', $class='', $title='', $style='', $indentContent=false){return new HtmlUlElement($id, $class, $title, $style, $indentContent);}
+	###########################################################################
+	# Block Elements
+	###########################################################################
+	public static function Blockquote($content='', $id='', $class='', $title='', $style='', $indentContents=false){return new HtmlBlockquoteElement($content, $id, $class, $title, $style, $indentContents);}
+	public static function Br($id='', $class='', $title='', $style=''){return new HtmlBrElement($id, $class, $title, $style);}
+	public static function Details($content='', $id='', $class='', $title='', $style='', $indentContents=false){return new HtmlDetailsElement($content, $id, $class, $title, $style, $indentContents);}
+	public static function Dialog($content='', $id='', $class='', $title='', $style='', $indentContents=false){return new HtmlDialogElement($content, $id, $class, $title, $style, $indentContents);}
+	public static function Div($content='', $id='', $class='', $title='', $style='', $indentContents=false){return new HtmlDivElement($content, $id, $class, $title, $style, $indentContents);}
+	public static function Figure($content='', $id='', $class='', $title='', $style='', $indentContents=false){return new HtmlFigureElement($content, $id, $class, $title, $style, $indentContents);}
+	public static function Footer($content='', $id='', $class='', $title='', $style='', $indentContents=false){return new HtmlFooterElement($content, $id, $class, $title, $style, $indentContents);}
+	public static function Header($content='', $id='', $class='', $title='', $style='', $indentContents=false){return new HtmlHeaderElement($content, $id, $class, $title, $style, $indentContents);}
+	public static function Hr($id='', $class='', $title='', $style=''){return new HtmlHrElement($id, $class, $title, $style);}
+	public static function Main($content='', $id='', $class='', $title='', $style='', $indentContents=false){return new HtmlMainElement($content, $id, $class, $title, $style, $indentContents);}
+	public static function P($content='', $id='', $class='', $title='', $style='', $indentContents=false){return new HtmlPElement($content, $id, $class, $title, $style, $indentContents);}
+	public static function Pre($content='', $id='', $class='', $title='', $style='', $indentContents=false){return new HtmlPreElement($content, $id, $class, $title, $style, $indentContents);}
 };
 ?>

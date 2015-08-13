@@ -35,6 +35,20 @@ $Loader = new CoreLoader(
 			'IDOMMetaData',
 			'IDOMNode'
 		),
+		'Core/Web/Html/Block' => array(
+			'HtmlBlockquoteElement',
+			'HtmlBrElement',
+			'HtmlDetailsElement',
+			'HtmlDialogElement',
+			'HtmlDivElement',
+			'HtmlFigureElement',
+			'HtmlFooterElement',
+			'HtmlHeaderElement',
+			'HtmlHrElement',
+			'HtmlMainElement',
+			'HtmlPElement',
+			'HtmlPreElement',
+		),
 		'Core/Web/Html/Doc' => array(
 			'HtmlBodyElement',
 			'HtmlDocTypeNode',
