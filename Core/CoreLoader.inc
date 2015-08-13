@@ -78,6 +78,19 @@ $Loader = new CoreLoader(
 			'HtmlTags',
 			'HtmlTargetCommonValues',
 		),
+		'Core/Web/Html/Form' => array(
+			'HtmlButtonElement',
+			'HtmlFieldsetElement',
+			'HtmlFormElement',
+			'HtmlInputElement',
+			'HtmlKeygenElement',
+			'HtmlLabelElement',
+			'HtmlLegendElement',
+			'HtmlOptGroupElement',
+			'HtmlOptionElement',
+			'HtmlSelectElement',
+			'HtmlTextAreaElement',
+		),
 		'Core/Web/Html/Heading' => array(
 			'HtmlH1Element',
 			'HtmlH2Element',
@@ -149,6 +162,7 @@ $Loader = new CoreLoader(
 		'Core/Web/Html/Specific' => array(
 			'HtmlDdElement',
 			'HtmlDtElement',
+			'HtmlFigCaptionElement',
 			'HtmlLiElement',
 			'HtmlParamElement',
 			'HtmlSourceElement',

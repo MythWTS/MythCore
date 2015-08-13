@@ -299,5 +299,52 @@ class HtmlContainerElement extends HtmlGenericContainerElement{
 		$this->_contents[] = new HtmlSectionElement($content, $id, $class, $title, $style, $indentContents);
 		return $this;
 	}
+	###########################################################################
+	# Methods to add sectioning elements
+	###########################################################################
+	public function AddButton($content='', $id='', $class='', $title='', $style='', $indentContents=false){
+		$this->_contents[] = new HtmlButtonElement($content, $id, $class, $title, $style, $indentContents);
+		return $this;
+	}
+	public function AddFieldset($content='', $id='', $class='', $title='', $style='', $indentContents=false){
+		$this->_contents[] = new HtmlFieldsetElement($content, $id, $class, $title, $style, $indentContents);
+		return $this;
+	}
+	public function AddForm($action='', $method='', $id='', $class='', $title='', $style='', $indentContent=false){
+		$this->_contents[] = new HtmlFormElement($action, $method, $id, $class, $title, $style, $indentContents);
+		return $this;
+	}
+	public function AddInput($type='', $name='', array $attributes = null, $id='', $class='', $title='', $style=''){
+		$this->_contents[] = new HtmlInputElement($type, $name, $attributes, $id, $class, $title, $style);
+		return $this;
+	}
+	public function AddKeygen($name='', HtmlKeyTypes $keytype=null, array $attributes = null){
+		$this->_contents[] = new HtmlKeygenElement($name, $keytype, $attributes);
+		return $this;
+	}
+	public function AddLabel($content='', $id='', $class='', $title='', $style='', $indentContents=false){
+		$this->_contents[] = new HtmlLabelElement($content, $id, $class, $title, $style, $indentContents);
+		return $this;
+	}
+	public function AddLegend($content='', $id='', $class='', $title='', $style='', $indentContents=false){
+		$this->_contents[] = new HtmlLegendElement($content, $id, $class, $title, $style, $indentContents);
+		return $this;
+	}
+	public function AddOptGroup($content='', $id='', $class='', $title='', $style='', $indentContents=false){
+		$this->_contents[] = new HtmlOptGroupElement($content, $id, $class, $title, $style, $indentContents);
+		return $this;
+	}
+	public function AddOption($content, $value='', $id='', $class='', $title='', $style='', $indentContent=false){
+		$this->_contents[] = new HtmlOptionElement($content, $value, $id, $class, $title, $style, $indentContents);
+		return $this;
+	}
+	public function AddSelect($content='', $id='', $class='', $title='', $style='', $indentContents=false){
+		$this->_contents[] = new HtmlSelectElement($content, $id, $class, $title, $style, $indentContents);
+		return $this;
+	}
+	public function AddTextArea($content='', $id='', $class='', $title='', $style='', $indentContents=false){
+		$this->_contents[] = new HtmlTextAreaElement($content, $id, $class, $title, $style, $indentContents);
+		return $this;
+	}
 };
 ?>
