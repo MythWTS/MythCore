@@ -217,22 +217,22 @@ class HtmlContainerElement extends HtmlGenericContainerElement{
 	###########################################################################
 	# Methods to add lists
 	###########################################################################
-	public function AddDl($id='', $class='', $title='', $style='', $indentContent=false){
+	public function AddDl($id='', $class='', $title='', $style='', $indentContent=true){
 		$this->_contents[] = new HtmlDlElement($id, $class, $title, $style, $indentContent);
 		return $this;
 	}
-	public function AddOl($id='', $class='', $title='', $style='', $indentContent=false){
+	public function AddOl($id='', $class='', $title='', $style='', $indentContent=true){
 		$this->_contents[] = new HtmlOlElement($id, $class, $title, $style, $indentContent);
 		return $this;
 	}
-	public function AddUl($id='', $class='', $title='', $style='', $indentContent=false){
+	public function AddUl($id='', $class='', $title='', $style='', $indentContent=true){
 		$this->_contents[] = new HtmlUlElement($id, $class, $title, $style, $indentContent);
 		return $this;
 	}
 	###########################################################################
 	# Methods to add block elements
 	###########################################################################
-	public function AddBlockquote($content='', $id='', $class='', $title='', $style='', $indentContents=false){
+	public function AddBlockquote($content='', $id='', $class='', $title='', $style='', $indentContents=true){
 		$this->_contents[] = new HtmlBlockquoteElement($content, $id, $class, $title, $style, $indentContents);
 		return $this;
 	}
@@ -240,27 +240,27 @@ class HtmlContainerElement extends HtmlGenericContainerElement{
 		$this->_contents[] = new HtmlBrElement($id, $class, $title, $style);
 		return $this;
 	}
-	public function AddDetails($content='', $id='', $class='', $title='', $style='', $indentContents=false){
+	public function AddDetails($content='', $id='', $class='', $title='', $style='', $indentContents=true){
 		$this->_contents[] = new HtmlDetailsElement($content, $id, $class, $title, $style, $indentContents);
 		return $this;
 	}
-	public function AddDialog($content='', $id='', $class='', $title='', $style='', $indentContents=false){
+	public function AddDialog($content='', $id='', $class='', $title='', $style='', $indentContents=true){
 		$this->_contents[] = new HtmlDialogElement($content, $id, $class, $title, $style, $indentContents);
 		return $this;
 	}
-	public function AddDiv($content='', $id='', $class='', $title='', $style='', $indentContents=false){
+	public function AddDiv($content='', $id='', $class='', $title='', $style='', $indentContents=true){
 		$this->_contents[] = new HtmlDivElement($content, $id, $class, $title, $style, $indentContents);
 		return $this;
 	}
-	public function AddFigure($content='', $id='', $class='', $title='', $style='', $indentContents=false){
+	public function AddFigure($content='', $id='', $class='', $title='', $style='', $indentContents=true){
 		$this->_contents[] = new HtmlFigureElement($content, $id, $class, $title, $style, $indentContents);
 		return $this;
 	}
-	public function AddFooter($content='', $id='', $class='', $title='', $style='', $indentContents=false){
+	public function AddFooter($content='', $id='', $class='', $title='', $style='', $indentContents=true){
 		$this->_contents[] = new HtmlFooterElement($content, $id, $class, $title, $style, $indentContents);
 		return $this;
 	}
-	public function AddHeader($content='', $id='', $class='', $title='', $style='', $indentContents=false){
+	public function AddHeader($content='', $id='', $class='', $title='', $style='', $indentContents=true){
 		$this->_contents[] = new HtmlHeaderElement($content, $id, $class, $title, $style, $indentContents);
 		return $this;
 	}
@@ -268,11 +268,11 @@ class HtmlContainerElement extends HtmlGenericContainerElement{
 		$this->_contents[] = new HtmlHrElement($id, $class, $title, $style);
 		return $this;
 	}
-	public function AddMain($content='', $id='', $class='', $title='', $style='', $indentContents=false){
+	public function AddMain($content='', $id='', $class='', $title='', $style='', $indentContents=true){
 		$this->_contents[] = new HtmlMainElement($content, $id, $class, $title, $style, $indentContents);
 		return $this;
 	}
-	public function AddP($content='', $id='', $class='', $title='', $style='', $indentContents=false){
+	public function AddP($content='', $id='', $class='', $title='', $style='', $indentContents=true){
 		$this->_contents[] = new HtmlPElement($content, $id, $class, $title, $style, $indentContents);
 		return $this;
 	}
@@ -283,19 +283,19 @@ class HtmlContainerElement extends HtmlGenericContainerElement{
 	###########################################################################
 	# Methods to add sectioning elements
 	###########################################################################
-	public function AddArticle($content='', $id='', $class='', $title='', $style='', $indentContents=false){
+	public function AddArticle($content='', $id='', $class='', $title='', $style='', $indentContents=true){
 		$this->_contents[] = new HtmlArticleElement($content, $id, $class, $title, $style, $indentContents);
 		return $this;
 	}
-	public function AddAside($content='', $id='', $class='', $title='', $style='', $indentContents=false){
+	public function AddAside($content='', $id='', $class='', $title='', $style='', $indentContents=true){
 		$this->_contents[] = new HtmlAsideElement($content, $id, $class, $title, $style, $indentContents);
 		return $this;
 	}
-	public function AddNav($content='', $id='', $class='', $title='', $style='', $indentContents=false){
+	public function AddNav($content='', $id='', $class='', $title='', $style='', $indentContents=true){
 		$this->_contents[] = new HtmlNavElement($content, $id, $class, $title, $style, $indentContents);
 		return $this;
 	}
-	public function AddSection($content='', $id='', $class='', $title='', $style='', $indentContents=false){
+	public function AddSection($content='', $id='', $class='', $title='', $style='', $indentContents=true){
 		$this->_contents[] = new HtmlSectionElement($content, $id, $class, $title, $style, $indentContents);
 		return $this;
 	}
@@ -306,11 +306,11 @@ class HtmlContainerElement extends HtmlGenericContainerElement{
 		$this->_contents[] = new HtmlButtonElement($content, $id, $class, $title, $style, $indentContents);
 		return $this;
 	}
-	public function AddFieldset($content='', $id='', $class='', $title='', $style='', $indentContents=false){
+	public function AddFieldset($content='', $id='', $class='', $title='', $style='', $indentContents=true){
 		$this->_contents[] = new HtmlFieldsetElement($content, $id, $class, $title, $style, $indentContents);
 		return $this;
 	}
-	public function AddForm($action='', $method='', $id='', $class='', $title='', $style='', $indentContent=false){
+	public function AddForm($action='', $method='', $id='', $class='', $title='', $style='', $indentContent=true){
 		$this->_contents[] = new HtmlFormElement($action, $method, $id, $class, $title, $style, $indentContents);
 		return $this;
 	}
@@ -330,7 +330,7 @@ class HtmlContainerElement extends HtmlGenericContainerElement{
 		$this->_contents[] = new HtmlLegendElement($content, $id, $class, $title, $style, $indentContents);
 		return $this;
 	}
-	public function AddOptGroup($content='', $id='', $class='', $title='', $style='', $indentContents=false){
+	public function AddOptGroup($content='', $id='', $class='', $title='', $style='', $indentContents=true){
 		$this->_contents[] = new HtmlOptGroupElement($content, $id, $class, $title, $style, $indentContents);
 		return $this;
 	}
@@ -338,11 +338,11 @@ class HtmlContainerElement extends HtmlGenericContainerElement{
 		$this->_contents[] = new HtmlOptionElement($content, $value, $id, $class, $title, $style, $indentContents);
 		return $this;
 	}
-	public function AddSelect($content='', $id='', $class='', $title='', $style='', $indentContents=false){
+	public function AddSelect($content='', $id='', $class='', $title='', $style='', $indentContents=true){
 		$this->_contents[] = new HtmlSelectElement($content, $id, $class, $title, $style, $indentContents);
 		return $this;
 	}
-	public function AddTextArea($content='', $id='', $class='', $title='', $style='', $indentContents=false){
+	public function AddTextArea($content='', $id='', $class='', $title='', $style='', $indentContents=true){
 		$this->_contents[] = new HtmlTextAreaElement($content, $id, $class, $title, $style, $indentContents);
 		return $this;
 	}
