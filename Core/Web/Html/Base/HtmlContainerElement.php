@@ -5,6 +5,23 @@ class HtmlContainerElement extends HtmlGenericContainerElement{
 		parent::__construct($tag, $attributes, $contents, $id, $class, $title, $style, $indentContents);
 	}
 	###########################################################################
+	# Methods to add generic nodes
+	###########################################################################
+	public function AddNode(IDOMNode $node){
+		$this->_contents[] = $node;
+		return $this;
+	}
+	public function AddNodes(array $nodes){
+		foreach ($nodes as $node) {
+			if(is_a($node, 'IDOMNode')){$this->_contents[] = $node;}
+		}
+		return $this;
+	}
+
+	public function RAddNode(IDOMNode $node){
+		return $this->_contents[] = $node;
+	}
+	###########################################################################
 	# Methods to add phrase elements
 	###########################################################################
 	public function AddAbbr($content='', $id='', $class='', $title='', $style='', $indentContents=false){
@@ -183,6 +200,21 @@ class HtmlContainerElement extends HtmlGenericContainerElement{
 	}
 	public function AddVideo($src='', $poster='', $id='', $class='', $title='', $style='', $indentContents=true){
 		$this->_contents[] = new HtmlVideoElement($src, $poster, $id, $class, $title, $style, $indentContents);
+		return $this;
+	}
+	###########################################################################
+	# Methods to add lists
+	###########################################################################
+	public function AddDl($id='', $class='', $title='', $style='', $indentContent=false){
+		$this->_contents[] = new HtmlDlElement($id, $class, $title, $style, $indentContent);
+		return $this;
+	}
+	public function AddOl($id='', $class='', $title='', $style='', $indentContent=false){
+		$this->_contents[] = new HtmlOlElement($id, $class, $title, $style, $indentContent);
+		return $this;
+	}
+	public function AddUl($id='', $class='', $title='', $style='', $indentContent=false){
+		$this->_contents[] = new HtmlUlElement($id, $class, $title, $style, $indentContent);
 		return $this;
 	}
 };

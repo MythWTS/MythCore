@@ -72,6 +72,11 @@ $Loader = new CoreLoader(
 			'HtmlH5Element',
 			'HtmlH6Element'
 		),
+		'Core/Web/Html/Lists' => array(
+			'HtmlDlElement',
+			'HtmlOlElement',
+			'HtmlUlElement'
+		),
 		'Core/Web/Html/MetaData' => array(
 			'HtmlBaseElement',
 			'HtmlLinkElement',
@@ -119,6 +124,9 @@ $Loader = new CoreLoader(
 			'HtmlWbrElement',
 		),
 		'Core/Web/Html/Specific' => array(
+			'HtmlDdElement',
+			'HtmlDtElement',
+			'HtmlLiElement',
 			'HtmlParamElement',
 			'HtmlSourceElement',
 		),
