@@ -7,12 +7,20 @@ class HtmlVideoElement extends HtmlGenericContainerElement{
 		if(!U::NA($poster)){$this->_attributes['poster'] = U::ES($poster);}
 	}
 	
-	public function AddNode(HtmlSourceElement $node){
-		$this->_contents[] = $node;
-		return $this;
-	}
 	public function AddSource($src, $type){
 		$this->_contents[] = new HtmlSourceElement($src, $type);
+		return $this;
+	}
+	public function AddTrack($src='', $label='', $kind='', $srclang=''){
+		$this->_contents[] = new HtmlTrackElement($src, $label, $kind, $srclang);
+		return $this;
+	}
+	public function AddSourceNode(HtmlSourceElement $source){
+		$this->_contents[] = $source;
+		return $this;
+	}
+	public function AddTrackNode(HtmlTrackElement $track){
+		$this->_contents = $track;
 		return $this;
 	}
 

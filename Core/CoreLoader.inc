@@ -132,6 +132,7 @@ $Loader = new CoreLoader(
 			'HtmlLiElement',
 			'HtmlParamElement',
 			'HtmlSourceElement',
+			'HtmlTrackElement',
 		),
 	), 
 	$Config->BasePath, '.php'
