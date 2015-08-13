@@ -2,11 +2,13 @@
 class HtmlHeadElement extends HtmlGenericContainerElement {
 	/** Constructor($id = '', $indentContent = true) */
 	public function __construct($id = '', $indentContent = true) {
-		parent::__construct(Html5Tags::$HEAD, null, $content, $id, '', '', '', $indentContent);
+		parent::__construct(Html5Tags::$HEAD, null, null, $id, '', '', '', $indentContent);
 	}
-	###########################################################################
+	############################################################################
+	# CHAINABLE Add____ METHODS (returns $this)
+	############################################################################
 	# Content Adding Methods - General
-	###########################################################################
+	######################################
 	public function AddNode(IDOMMetaData $node) {
 		$this -> _contents[] = $node;
 		return $this;
@@ -31,9 +33,8 @@ class HtmlHeadElement extends HtmlGenericContainerElement {
 		$this -> _contents[] = new HtmlNoScriptElement($note, $id);
 		return $this;
 	}
-	###########################################################################
 	# Specific Link Elements
-	###########################################################################
+	######################################
 	public function AddStylesheet($href, $id = '', $type = 'text/css') {
 		$this -> _contents[] = new HtmlLinkElement($href, 'stylesheet', $type, null, $id);
 		return $this;
@@ -106,16 +107,15 @@ class HtmlHeadElement extends HtmlGenericContainerElement {
 		$this -> _contents[] = new HtmlLinkElement($href, 'copyright', $type);
 		return $this;
 	}
-	###########################################################################
 	# Specific Meta Elements
-	###########################################################################
-	public function AddMetaCharset($charset = 'UTF-8') {
+	######################################
+	public function AddCharsetMeta($charset = 'UTF-8') {
 		$res = new HtmlMetaElement('', '', '');
 		$res -> Charset($charset);
 		$this -> _contents[] = $res;
 		return $this;
 	}
-	public function AddMetaHttpEquiv($httpEquiv, $value, $id = '') {
+	public function AddHttpEquivMeta($httpEquiv, $value, $id = '') {
 		$res = new HtmlMetaElement('', '', $id);
 		$res -> HttpEquiv($httpEquiv);
 		$res->Content($value);
@@ -129,66 +129,212 @@ class HtmlHeadElement extends HtmlGenericContainerElement {
 		$this -> _contents[] = $res;
 		return $this;
 	}
-	public function AddMetaContentType($contentType, $id = '') {
+	public function AddContentTypeMeta($contentType, $id = '') {
 		$res = new HtmlMetaElement('', '', $id);
 		$res -> HttpEquiv('content-type');
 		$res->Content($contentType);
 		$this -> _contents[] = $res;
 		return $this;
 	}
-	public function AddMetaDefaultStyle($defaultStyle, $id = '') {
+	public function AddDefaultStyleMeta($defaultStyle, $id = '') {
 		$res = new HtmlMetaElement('', '', $id);
 		$res -> HttpEquiv('default-style');
 		$res->Content($defaultStyle);
 		$this -> _contents[] = $res;
 		return $this;
 	}
-	public function AddMetaRefresh($refresh, $id = '') {
+	public function AddRefreshMeta($refresh, $id = '') {
 		$res = new HtmlMetaElement('', '', $id);
 		$res -> HttpEquiv('refresh');
 		$res->Content($refresh);
 		$this -> _contents[] = $res;
 		return $this;
 	}
-	public function AddMetaApplicationName($appName, $id = '') {
+	public function AddApplicationNameMeta($appName, $id = '') {
 		$this -> _contents[] = new HtmlMetaElement('application-name', $appName, $id);
 		return $this;
 	}
-	public function AddMetaAuthor($author, $id = '') {
+	public function AddAuthorMeta($author, $id = '') {
 		$this -> _contents[] = new HtmlMetaElement('author', $author, $id);
 		return $this;
 	}
-	public function AddMetaDescription($desc, $id = '') {
+	public function AddDescriptionMeta($desc, $id = '') {
 		$this -> _contents[] = new HtmlMetaElement('description', $desc, $id);
 		return $this;
 	}
-	public function AddMetaGenerator($generator, $id = '') {
+	public function AddGeneratorMeta($generator, $id = '') {
 		$this -> _contents[] = new HtmlMetaElement('generator', $generator, $id);
 		return $this;
 	}
-	public function AddMetaKeywords($keywords, $id = '') {
+	public function AddKeywordsMeta($keywords, $id = '') {
 		$this -> _contents[] = new HtmlMetaElement('keywords', $keywords, $id);
 		return $this;
 	}
-	public function AddMetaViewport($viewport = 'width=device-width; initial-scale=1.0', $id = '') {
+	public function AddViewportMeta($viewport = 'width=device-width; initial-scale=1.0', $id = '') {
 		$this -> _contents[] = new HtmlMetaElement('viewport', $viewport, $id);
 		return $this;
 	}
-	public function AddMetaRobots($robots, $id = '') {
+	public function AddRobotsMeta($robots, $id = '') {
 		$this -> _contents[] = new HtmlMetaElement('robots', $robots, $id);
 		return $this;
 	}
-	public function AddMetaGoogleBot($googleBot, $id = '') {
+	public function AddGoogleBotMeta($googleBot, $id = '') {
 		$this -> _contents[] = new HtmlMetaElement('googlebot', $googleBot, $id);
 		return $this;
 	}
-	public function AddMetaBingBot($bingbot, $id = '') {
+	public function AddBingBotMeta($bingbot, $id = '') {
 		$this -> _contents[] = new HtmlMetaElement('bingbot', $bingbot, $id);
 		return $this;
 	}
-	public function AddMetaSlurp($slurp, $id = '') {
+	public function AddSlurpMeta($slurp, $id = '') {
 		$this -> _contents[] = new HtmlMetaElement('Slurp', $slurp, $id);
 		return $this;
+	}
+	############################################################################
+	# NON-CHAINABLE Add____ METHODS (returns added node)
+	############################################################################
+	# Content Adding Methods - General
+	######################################
+	public function RAddNode(IDOMMetaData $node) {
+		return $this -> _contents[] = $node;
+	}
+	public function RAddLink($href = '', $rel = 'stylesheet', $type = 'text/css', $id = '') {
+		return $this -> _contents[] = new HtmlLinkElement($href, $rel, $type, null, $id);
+	}
+	public function RAddMeta($name, $content) {
+		return $this -> _contents[] = new HtmlMetaElement($name, $content);
+	}
+	public function RAddTitle($pageTitle, $id = '') {
+		return $this -> _contents[] = new HtmlTitleElement($pageTitle, $id);
+	}
+	public function RAddBase($href = '', $target = '', $id = '') {
+		return $this -> _contents[] = new HtmlBaseElement($href, $target, null);
+	}
+	public function RAddNoScript($note, $id = '') {
+		return $this -> _contents[] = new HtmlNoScriptElement($note, $id);
+	}
+	# Specific Link Elements
+	######################################
+	public function RAddStylesheet($href, $id = '', $type = 'text/css') {
+		return $this -> _contents[] = new HtmlLinkElement($href, 'stylesheet', $type, null, $id);
+	}
+	public function RAddShortcutIcon($href, $id = '') {
+		return $this -> _contents[] = new HtmlLinkElement($href, 'shortcut icon', '', null, $id);
+	}
+	public function RAddAppleTouchIcon($href, $id = '') {
+		return $this -> _contents[] = new HtmlLinkElement($href, 'apple-touch-icon', '', null, $id);
+	}
+	public function RAddAlternateLink($href, $type = 'text/html') {
+		return $this -> _contents[] = new HtmlLinkElement($href, 'index', $type);
+	}
+	public function RAddIndexLink($href, $type = 'text/html') {
+		return $this -> _contents[] = new HtmlLinkElement($href, 'index', $type);
+	}
+	public function RAddUpLink($href, $type = 'text/html') {
+		return $this -> _contents[] = new HtmlLinkElement($href, 'up', $type);
+	}
+	public function RAddNextLink($href, $type = 'text/html') {
+		return $this -> _contents[] = new HtmlLinkElement($href, 'next', $type);
+	}
+	public function RAddPrevLink($href, $type = 'text/html') {
+		return $this -> _contents[] = new HtmlLinkElement($href, 'prev', $type);
+	}
+	public function RAddStartLink($href, $type = 'text/html') {
+		return $this -> _contents[] = new HtmlLinkElement($href, 'start', $type);
+	}
+	public function RAddChapterLink($href, $type = 'text/html') {
+		return $this -> _contents[] = new HtmlLinkElement($href, 'chapter', $type);
+	}
+	public function RAddSectionLink($href, $type = 'text/html') {
+		return $this -> _contents[] = new HtmlLinkElement($href, 'section', $type);
+	}
+	public function RAddSubsectionLink($href, $type = 'text/html') {
+		return $this -> _contents[] = new HtmlLinkElement($href, 'subsection', $type);
+	}
+	public function RAddSearchLink($href, $type = 'text/html') {
+		return $this -> _contents[] = new HtmlLinkElement($href, 'search', $type);
+	}
+	public function RAddContentsLink($href, $type = 'text/html') {
+		return $this -> _contents[] = new HtmlLinkElement($href, 'contents', $type);
+	}
+	public function RAddGlossaryLink($href, $type = 'text/html') {
+		return $this -> _contents[] = new HtmlLinkElement($href, 'glossary', $type);
+	}
+	public function RAddHelpLink($href, $type = 'text/html') {
+		return $this -> _contents[] = new HtmlLinkElement($href, 'help', $type);
+	}
+	public function RAddBookmarkLink($href, $type = 'text/html') {
+		return $this -> _contents[] = new HtmlLinkElement($href, 'bookmark', $type);
+	}
+	public function RAddCopyrightLink($href, $type = 'text/html') {
+		return $this -> _contents[] = new HtmlLinkElement($href, 'copyright', $type);
+	}
+	# Specific Meta Elements
+	######################################
+	public function RAddCharsetMeta($charset = 'UTF-8') {
+		$res = new HtmlMetaElement('', '', '');
+		$res -> Charset($charset);
+		return $this -> _contents[] = $res;
+	}
+	public function RAddHttpEquivMeta($httpEquiv, $value, $id = '') {
+		$res = new HtmlMetaElement('', '', $id);
+		$res -> HttpEquiv($httpEquiv);
+		$res->Content($value);
+		return $this -> _contents[] = $res;
+	}
+	public function RAddMetaXUACompatible() {
+		$res = new HtmlMetaElement();
+		$res -> HttpEquiv('X-UA-Compatible');
+		$res->Content('IE=edge,chrome=1');
+		return $this -> _contents[] = $res;
+	}
+	public function RAddContentTypeMeta($contentType, $id = '') {
+		$res = new HtmlMetaElement('', '', $id);
+		$res -> HttpEquiv('content-type');
+		$res->Content($contentType);
+		return $this -> _contents[] = $res;
+	}
+	public function RAddDefaultStyleMeta($defaultStyle, $id = '') {
+		$res = new HtmlMetaElement('', '', $id);
+		$res -> HttpEquiv('default-style');
+		$res->Content($defaultStyle);
+		return $this -> _contents[] = $res;
+	}
+	public function RAddRefreshMeta($refresh, $id = '') {
+		$res = new HtmlMetaElement('', '', $id);
+		$res -> HttpEquiv('refresh');
+		$res->Content($refresh);
+		return $this -> _contents[] = $res;
+	}
+	public function RAddApplicationNameMeta($appName, $id = '') {
+		return $this -> _contents[] = new HtmlMetaElement('application-name', $appName, $id);
+	}
+	public function RAddAuthorMeta($author, $id = '') {
+		return $this -> _contents[] = new HtmlMetaElement('author', $author, $id);
+	}
+	public function RAddDescriptionMeta($desc, $id = '') {
+		return $this -> _contents[] = new HtmlMetaElement('description', $desc, $id);
+	}
+	public function RAddGeneratorMeta($generator, $id = '') {
+		return $this -> _contents[] = new HtmlMetaElement('generator', $generator, $id);
+	}
+	public function RAddKeywordsMeta($keywords, $id = '') {
+		return $this -> _contents[] = new HtmlMetaElement('keywords', $keywords, $id);
+	}
+	public function RAddViewportMeta($viewport = 'width=device-width; initial-scale=1.0', $id = '') {
+		return $this -> _contents[] = new HtmlMetaElement('viewport', $viewport, $id);
+	}
+	public function RAddRobotsMeta($robots, $id = '') {
+		return $this -> _contents[] = new HtmlMetaElement('robots', $robots, $id);
+	}
+	public function RAddGoogleBotMeta($googleBot, $id = '') {
+		return $this -> _contents[] = new HtmlMetaElement('googlebot', $googleBot, $id);
+	}
+	public function RAddBingBotMeta($bingbot, $id = '') {
+		return $this -> _contents[] = new HtmlMetaElement('bingbot', $bingbot, $id);
+	}
+	public function RAddSlurpMeta($slurp, $id = '') {
+		return $this -> _contents[] = new HtmlMetaElement('Slurp', $slurp, $id);
 	}
 };
 ?>
