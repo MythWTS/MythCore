@@ -21,9 +21,11 @@ class HtmlContainerElement extends HtmlGenericContainerElement{
 	public function RAddNode(IDOMNode $node){
 		return $this->_contents[] = $node;
 	}
-	###########################################################################
+	############################################################################
+	# CHAINABLE Add____ METHODS (returns $this)
+	############################################################################
 	# Methods to add phrase elements
-	###########################################################################
+	######################################
 	public function AddAbbr($content='', $id='', $class='', $title='', $style='', $indentContents=false){
 		$this->_contents[] = new HtmlAbbrElement($content, $id, $class, $title, $style, $indentContents);
 		return $this;
@@ -352,6 +354,264 @@ class HtmlContainerElement extends HtmlGenericContainerElement{
 	public function AddTable($id='', $class='', $title='', $style='', $indentContent=true){
 		$this->_contents[] = new HtmlTableElement($id, $class, $title, $style, $indentContents);
 		return $this;
+	}
+
+	############################################################################
+	# NON-CHAINABLE Add____ METHODS (returns added node)
+	############################################################################
+	# Methods to add phrase elements
+	######################################
+	public function RAddAbbr($content='', $id='', $class='', $title='', $style='', $indentContents=false){
+		return $this->_contents[] = new HtmlAbbrElement($content, $id, $class, $title, $style, $indentContents);
+	}
+	public function RAddAddress($content='', $id='', $class='', $title='', $style='', $indentContents=false){
+		return $this->_contents[] = new HtmlAddressElement($content, $id, $class, $title, $style, $indentContents);
+	}
+	public function RAddArea(HtmlAreaShapes $shape, $coords, $href='', $alt='', $id=''){
+		return $this->_contents[] = new HtmlAreaElement($shape, $coords, $href, $alt, null, $id);
+	}
+	public function RAddA($content, $href='', $id='', $class='', $title='', $style='', $indentContent=false){
+		return $this->_contents[] = new HtmlAElement($content, $href, $id, $class, $title, $style, $indentContent);
+	}
+	public function RAddBdi($content='', $id='', $class='', $title='', $style='', $indentContents=false){
+		return $this->_contents[] = new HtmlBdiElement($content, $id, $class, $title, $style, $indentContents);
+	}
+	public function RAddBdo($content='', $id='', $class='', $title='', $style='', $indentContents=false){
+		return $this->_contents[] = new HtmlBdoElement($content, $id, $class, $title, $style, $indentContents);
+	}
+	public function RAddB($content='', $id='', $class='', $title='', $style='', $indentContents=false){
+		return $this->_contents[] = new HtmlBElement($content, $id, $class, $title, $style, $indentContents);
+	}
+	public function RAddCite($content='', $id='', $class='', $title='', $style='', $indentContents=false){
+		return $this->_contents[] = new HtmlCiteElement($content, $id, $class, $title, $style, $indentContents);
+	}
+	public function RAddCode($content='', $id='', $class='', $title='', $style='', $indentContents=false){
+		return $this->_contents[] = new HtmlCodeElement($content, $id, $class, $title, $style, $indentContents);
+	}
+	public function RAddDataList($content='', $id='', $class='', $title='', $style='', $indentContents=false){
+		return $this->_contents[] = new HtmlDataListElement($content, $id, $class, $title, $style, $indentContents);
+	}
+	public function RAddDel($content='', $id='', $class='', $title='', $style='', $indentContents=false){
+		return $this->_contents[] = new HtmlDelElement($content, $id, $class, $title, $style, $indentContents);
+	}
+	public function RAddDfn($content='', $id='', $class='', $title='', $style='', $indentContents=false){
+		return $this->_contents[] = new HtmlDfnElement($content, $id, $class, $title, $style, $indentContents);
+	}
+	public function RAddEm($content='', $id='', $class='', $title='', $style='', $indentContents=false){
+		return $this->_contents[] = new HtmlEmElement($content, $id, $class, $title, $style, $indentContents);
+	}
+	public function RAddI($content='', $id='', $class='', $title='', $style='', $indentContents=false){
+		return $this->_contents[] = new HtmlIElement($content, $id, $class, $title, $style, $indentContents);
+	}
+	public function RAddIns($content='', $id='', $class='', $title='', $style='', $indentContents=false){
+		return $this->_contents[] = new HtmlInsElement($content, $id, $class, $title, $style, $indentContents);
+	}
+	public function RAddKbd($content='', $id='', $class='', $title='', $style='', $indentContents=false){
+		return $this->_contents[] = new HtmlKbdElement($content, $id, $class, $title, $style, $indentContents);
+	}
+	public function RAddMap($content='', $id='', $class='', $title='', $style='', $indentContents=false){
+		return $this->_contents[] = new HtmlMapElement($content, $id, $class, $title, $style, $indentContents);
+	}
+	public function RAddMark($content='', $id='', $class='', $title='', $style='', $indentContents=false){
+		return $this->_contents[] = new HtmlMarkElement($content, $id, $class, $title, $style, $indentContents);
+	}
+	public function RAddMeter($content='', $id='', $class='', $title='', $style='', $indentContents=false){
+		return $this->_contents[] = new HtmlMeterElement($content, $id, $class, $title, $style, $indentContents);
+	}
+	public function RAddOutput($content='', $id='', $class='', $title='', $style='', $indentContents=false){
+		return $this->_contents[] = new HtmlOutputElement($content, $id, $class, $title, $style, $indentContents);
+	}
+	public function RAddProgress($content='', $id='', $class='', $title='', $style='', $indentContents=false){
+		return $this->_contents[] = new HtmlProgressElement($content, $id, $class, $title, $style, $indentContents);
+	}
+	public function RAddQ($content='', $id='', $class='', $title='', $style='', $indentContents=false){
+		return $this->_contents[] = new HtmlQElement($content, $id, $class, $title, $style, $indentContents);
+	}
+	public function RAddSamp($content='', $id='', $class='', $title='', $style='', $indentContents=false){
+		return $this->_contents[] = new HtmlSampElement($content, $id, $class, $title, $style, $indentContents);
+	}
+	public function RAddS($content='', $id='', $class='', $title='', $style='', $indentContents=false){
+		return $this->_contents[] = new HtmlSElement($content, $id, $class, $title, $style, $indentContents);
+	}
+	public function RAddSmall($content='', $id='', $class='', $title='', $style='', $indentContents=false){
+		return $this->_contents[] = new HtmlSmallElement($content, $id, $class, $title, $style, $indentContents);
+	}
+	public function RAddSpan($content='', $id='', $class='', $title='', $style='', $indentContents=false){
+		return $this->_contents[] = new HtmlSpanElement($content, $id, $class, $title, $style, $indentContents);
+	}
+	public function RAddStrong($content='', $id='', $class='', $title='', $style='', $indentContents=false){
+		return $this->_contents[] = new HtmlStrongElement($content, $id, $class, $title, $style, $indentContents);
+	}
+	public function RAddSub($content='', $id='', $class='', $title='', $style='', $indentContents=false){
+		return $this->_contents[] = new HtmlSubElement($content, $id, $class, $title, $style, $indentContents);
+	}
+	public function RAddSup($content='', $id='', $class='', $title='', $style='', $indentContents=false){
+		return $this->_contents[] = new HtmlSupElement($content, $id, $class, $title, $style, $indentContents);
+	}
+	public function RAddTime($content='', $id='', $class='', $title='', $style='', $indentContents=false){
+		return $this->_contents[] = new HtmlTimeElement($content, $id, $class, $title, $style, $indentContents);
+	}
+	public function RAddU($content='', $id='', $class='', $title='', $style='', $indentContents=false){
+		return $this->_contents[] = new HtmlUElement($content, $id, $class, $title, $style, $indentContents);
+	}
+	public function RAddVar($content='', $id='', $class='', $title='', $style='', $indentContents=false){
+		return $this->_contents[] = new HtmlVarElement($content, $id, $class, $title, $style, $indentContents);
+	}
+	public function RAddWbr($id='', $class='', $title='', $style=''){
+		return $this->_contents[] = new HtmlWbrElement(null, $id, $class, $title, $style);
+	}
+	###########################################################################
+	# Methods to add heading elements
+	###########################################################################
+	public function RAddH1($content='', $id='', $class='', $title='', $style='', $indentContents=false){
+		return $this->_contents[] = new HtmlH1Element($content, $id, $class, $title, $style, $indentContents);
+	}
+	public function RAddH2($content='', $id='', $class='', $title='', $style='', $indentContents=false){
+		return $this->_contents[] = new HtmlH2Element($content, $id, $class, $title, $style, $indentContents);
+	}
+	public function RAddH3($content='', $id='', $class='', $title='', $style='', $indentContents=false){
+		return $this->_contents[] = new HtmlH3Element($content, $id, $class, $title, $style, $indentContents);
+	}
+	public function RAddH4($content='', $id='', $class='', $title='', $style='', $indentContents=false){
+		return $this->_contents[] = new HtmlH4Element($content, $id, $class, $title, $style, $indentContents);
+	}
+	public function RAddH5($content='', $id='', $class='', $title='', $style='', $indentContents=false){
+		return $this->_contents[] = new HtmlH5Element($content, $id, $class, $title, $style, $indentContents);
+	}
+	public function RAddH6($content='', $id='', $class='', $title='', $style='', $indentContents=false){
+		return $this->_contents[] = new HtmlH6Element($content, $id, $class, $title, $style, $indentContents);
+	}
+	###########################################################################
+	# Methods to add embedded elements
+	###########################################################################
+	public function RAddAudio($src='', $id='', $class='', $title='', $style='', $indentContents=true){
+		return $this->_contents[] = new HtmlAudioElement($src, $id, $class, $title, $style, $indentContents);
+	}
+	public function RAddCanvas($height='', $width='', $id='', $class='', $title='', $style='', $indentContents=true){
+		return $this->_contents[] = new HtmlCanvasElement($height, $width, $id, $class, $title, $style, $indentContents);
+	}
+	public function RAddEmbed($src='', $type='', $width='', $height='', $id='', $class='', $title='', $style=''){
+		return $this->_contents[] = new HtmlEmbedElement($src, $type, $width, $height, $id, $class, $title, $style);
+	}
+	public function RAddIFrame($src='', $id='', $class='', $title='', $style='', $indentContents=false){
+		return $this->_contents[] = new HtmlIFrameElement($src, $id, $class, $title, $style, $indentContents);
+	}
+	public function RAddImg($src='', $alt='', $width='', $height='', array $attributes = null, $id='', $class='', $title='', $style=''){
+		return $this->_contents[] = new HtmlImgElement($src, $alt, $width, $height, $attributes, $id, $class, $title, $style);
+	}
+	public function RAddObject($data='', $type='', $id='', $class='', $title='', $style='', $indentContents=false){
+		return $this->_contents[] = new HtmlObjectElement($data, $type, $id, $class, $title, $style, $indentContents);
+	}
+	public function RAddVideo($src='', $poster='', $id='', $class='', $title='', $style='', $indentContents=true){
+		return $this->_contents[] = new HtmlVideoElement($src, $poster, $id, $class, $title, $style, $indentContents);
+	}
+	###########################################################################
+	# Methods to add lists
+	###########################################################################
+	public function RAddDl($id='', $class='', $title='', $style='', $indentContent=true){
+		return $this->_contents[] = new HtmlDlElement($id, $class, $title, $style, $indentContent);
+	}
+	public function RAddOl($id='', $class='', $title='', $style='', $indentContent=true){
+		return $this->_contents[] = new HtmlOlElement($id, $class, $title, $style, $indentContent);
+	}
+	public function RAddUl($id='', $class='', $title='', $style='', $indentContent=true){
+		return $this->_contents[] = new HtmlUlElement($id, $class, $title, $style, $indentContent);
+	}
+	###########################################################################
+	# Methods to add block elements
+	###########################################################################
+	public function RAddBlockquote($content='', $id='', $class='', $title='', $style='', $indentContents=true){
+		return $this->_contents[] = new HtmlBlockquoteElement($content, $id, $class, $title, $style, $indentContents);
+	}
+	public function RAddBr($id='', $class='', $title='', $style=''){
+		return $this->_contents[] = new HtmlBrElement($id, $class, $title, $style);
+	}
+	public function RAddDetails($content='', $id='', $class='', $title='', $style='', $indentContents=true){
+		return $this->_contents[] = new HtmlDetailsElement($content, $id, $class, $title, $style, $indentContents);
+	}
+	public function RAddDialog($content='', $id='', $class='', $title='', $style='', $indentContents=true){
+		return $this->_contents[] = new HtmlDialogElement($content, $id, $class, $title, $style, $indentContents);
+	}
+	public function RAddDiv($content='', $id='', $class='', $title='', $style='', $indentContents=true){
+		return $this->_contents[] = new HtmlDivElement($content, $id, $class, $title, $style, $indentContents);
+	}
+	public function RAddFigure($content='', $id='', $class='', $title='', $style='', $indentContents=true){
+		return $this->_contents[] = new HtmlFigureElement($content, $id, $class, $title, $style, $indentContents);
+	}
+	public function RAddFooter($content='', $id='', $class='', $title='', $style='', $indentContents=true){
+		return $this->_contents[] = new HtmlFooterElement($content, $id, $class, $title, $style, $indentContents);
+	}
+	public function RAddHeader($content='', $id='', $class='', $title='', $style='', $indentContents=true){
+		return $this->_contents[] = new HtmlHeaderElement($content, $id, $class, $title, $style, $indentContents);
+	}
+	public function RAddHr($id='', $class='', $title='', $style=''){
+		return $this->_contents[] = new HtmlHrElement($id, $class, $title, $style);
+	}
+	public function RAddMain($content='', $id='', $class='', $title='', $style='', $indentContents=true){
+		return $this->_contents[] = new HtmlMainElement($content, $id, $class, $title, $style, $indentContents);
+	}
+	public function RAddP($content='', $id='', $class='', $title='', $style='', $indentContents=true){
+		return $this->_contents[] = new HtmlPElement($content, $id, $class, $title, $style, $indentContents);
+	}
+	public function RAddPre($content='', $id='', $class='', $title='', $style='', $indentContents=false){
+		return $this->_contents[] = new HtmlPreElement($content, $id, $class, $title, $style, $indentContents);
+	}
+	###########################################################################
+	# Methods to add sectioning elements
+	###########################################################################
+	public function RAddArticle($content='', $id='', $class='', $title='', $style='', $indentContents=true){
+		return $this->_contents[] = new HtmlArticleElement($content, $id, $class, $title, $style, $indentContents);
+	}
+	public function RAddAside($content='', $id='', $class='', $title='', $style='', $indentContents=true){
+		return $this->_contents[] = new HtmlAsideElement($content, $id, $class, $title, $style, $indentContents);
+	}
+	public function RAddNav($content='', $id='', $class='', $title='', $style='', $indentContents=true){
+		return $this->_contents[] = new HtmlNavElement($content, $id, $class, $title, $style, $indentContents);
+	}
+	public function RAddSection($content='', $id='', $class='', $title='', $style='', $indentContents=true){
+		return $this->_contents[] = new HtmlSectionElement($content, $id, $class, $title, $style, $indentContents);
+	}
+	###########################################################################
+	# Methods to add sectioning elements
+	###########################################################################
+	public function RAddButton($content='', $id='', $class='', $title='', $style='', $indentContents=false){
+		return $this->_contents[] = new HtmlButtonElement($content, $id, $class, $title, $style, $indentContents);
+	}
+	public function RAddFieldset($content='', $id='', $class='', $title='', $style='', $indentContents=true){
+		return $this->_contents[] = new HtmlFieldsetElement($content, $id, $class, $title, $style, $indentContents);
+	}
+	public function RAddForm($action='', $method='', $id='', $class='', $title='', $style='', $indentContent=true){
+		return $this->_contents[] = new HtmlFormElement($action, $method, $id, $class, $title, $style, $indentContents);
+	}
+	public function RAddInput($type='', $name='', array $attributes = null, $id='', $class='', $title='', $style=''){
+		return $this->_contents[] = new HtmlInputElement($type, $name, $attributes, $id, $class, $title, $style);
+	}
+	public function RAddKeygen($name='', HtmlKeyTypes $keytype=null, array $attributes = null){
+		return $this->_contents[] = new HtmlKeygenElement($name, $keytype, $attributes);
+	}
+	public function RAddLabel($content='', $id='', $class='', $title='', $style='', $indentContents=false){
+		return $this->_contents[] = new HtmlLabelElement($content, $id, $class, $title, $style, $indentContents);
+	}
+	public function RAddLegend($content='', $id='', $class='', $title='', $style='', $indentContents=false){
+		return $this->_contents[] = new HtmlLegendElement($content, $id, $class, $title, $style, $indentContents);
+	}
+	public function RAddOptGroup($content='', $id='', $class='', $title='', $style='', $indentContents=true){
+		return $this->_contents[] = new HtmlOptGroupElement($content, $id, $class, $title, $style, $indentContents);
+	}
+	public function RAddOption($content, $value='', $id='', $class='', $title='', $style='', $indentContent=false){
+		return $this->_contents[] = new HtmlOptionElement($content, $value, $id, $class, $title, $style, $indentContents);
+	}
+	public function RAddSelect($content='', $id='', $class='', $title='', $style='', $indentContents=true){
+		return $this->_contents[] = new HtmlSelectElement($content, $id, $class, $title, $style, $indentContents);
+	}
+	public function RAddTextArea($content='', $id='', $class='', $title='', $style='', $indentContents=true){
+		return $this->_contents[] = new HtmlTextAreaElement($content, $id, $class, $title, $style, $indentContents);
+	}
+	###########################################################################
+	# Methods to add table element
+	###########################################################################
+	public function RAddTable($id='', $class='', $title='', $style='', $indentContent=true){
+		return $this->_contents[] = new HtmlTableElement($id, $class, $title, $style, $indentContents);
 	}
 };
 ?>
