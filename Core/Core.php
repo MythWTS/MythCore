@@ -174,7 +174,7 @@ class CoreConfig extends Object{
 	}
 };
 ###############################################################################
-interface IClassLoader{
+interface IClassLoader extends IObject{
 	public function Register();
 	public function LoadClass($class);
 };
