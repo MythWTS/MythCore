@@ -21,6 +21,7 @@ $Loader = new CoreLoader(
 			'ISerializable'
 		),
 		'Core/Lookups' => array(
+			'CountryCodesISO3166_1_Alpha2',
 			'IANAMediaTypes',
 			'LanguageCodesISO639_1',
 			'LanguageCodesISO639_2',
