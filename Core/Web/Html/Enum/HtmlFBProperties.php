@@ -1,4 +1,5 @@
 <?php
+/** Facebook Open Graph protocol properties. @see http://ogp.me/*/
 final class HtmlFBProperties extends Enum{
 	public static $Title, $Type, $Image, $Url, $Audio, $Description, $Determiner, $Locale, $AlternateLocale, $SiteName, $Video;
 	public static $ImageUrl, $ImageType, $ImageWidth, $ImageHeight,
