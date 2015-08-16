@@ -31,8 +31,8 @@ class LanguageCodesISO639_2 extends Enum{
 		$Limburger,$Limburgish,$Lingala,$Lithuanian,$Mongo,$Lozi,$Luxembourgish,$Letzeburgesch,$LubaLulua,$LubaKatanga,
 		$Ganda,$Luiseno,$Lunda,$Luo,$Lushai,$Macedonian,$Madurese,$Magahi,$Marshallese,$Maithili,$Makasar,$Malayalam,
 		$Mandingo,$Maori,$AustronesianLanguages,$Marathi,$Masai,$Malay,$Moksha,$Mandar,$Mende,$MiddleIrish,$Mikmaq,$Micmac,
-		$Minangkabau,$UncodedLanguages,$Macedonian,$MonKhmerLanguages,$Malagasy,$Maltese,$Manchu,$Manipuri,$ManoboLanguages,
-		$Mohawk,$Mongolian,$Mossi,$Maori,$MultipleLanguages,$MundaLanguages,$Creek,$Mirandese,$Marwari,$Burmese,
+		$Minangkabau,$UncodedLanguages,$MonKhmerLanguages,$Malagasy,$Maltese,$Manchu,$Manipuri,$ManoboLanguages,
+		$Mohawk,$Mongolian,$Mossi,$MultipleLanguages,$MundaLanguages,$Creek,$Mirandese,$Marwari,
 		$MayanLanguages,$Erzya,$NahuatlLanguages,$NorthAmericanIndianLanguages,$Neapolitan,$Nauru,$Navajo,$Navaho,
 		$SouthNdebele,$NorthNdebele,$Ndonga,$LowGerman,$LowSaxon,$Nepali,$NepalBhasa,$Newari,$Nias,
 		$NigerKordofanianLanguages,$Niuean,$Dutch,$Flemish,$NynorskNorwegian,$NorwegianNynorsk,$BokmalNorwegian,
@@ -51,7 +51,7 @@ class LanguageCodesISO639_2 extends Enum{
 		$TaiLanguages,$Tamil,$Tatar,$Telugu,$Timne,$Tereno,$Tetum,$Tajik,$Tagalog,$Thai,$Tibetan,$Tigre,$Tigrinya,$Tiv,$Tokelau,
 		$Klingon,$TlhinganHol,$Tlingit,$Tamashek,$TongaNyasa,$TongaTongaIslands,$TokPisin,$Tsimshian,$Tswana,$Tsonga,$Turkmen,
 		$Tumbuka,$TupiLanguages,$Turkish,$AltaicLanguages,$Tuvalu,$Twi,$Tuvinian,$Udmurt,$Ugaritic,$Uighur,$Uyghur,$Ukrainian,
-		$Umbundu,$Undetermined,$Urdu,$Uzbek,$Vai,$Venda,$Vietnamese,$Volapük,$Votic,$WakashanLanguages,$Wolaitta,$Wolaytta,
+		$Umbundu,$Undetermined,$Urdu,$Uzbek,$Vai,$Venda,$Vietnamese,$Volapuk,$Votic,$WakashanLanguages,$Wolaitta,$Wolaytta,
 		$Waray,$Washo,$Welsh,$SorbianLanguages,$Walloon,$Wolof,$Kalmyk,$Oirat,$Xhosa,$Yao,$Yapese,$Yiddish,$Yoruba,$YupikLanguages,
 		$Zapotec,$Blissymbols,$Blissymbolics,$Bliss,$Zenaga,$StandardMoroccanTamazight,$Zhuang,$Chuang,$ZandeLanguages,
 		$Zulu,$Zuni,$NotApplicable,$Zaza,$Dimili,$Dimli,$Kirdki,$Kirmanjki,$Zazaki;
@@ -378,7 +378,6 @@ class LanguageCodesISO639_2 extends Enum{
 		self::$Micmac = new LanguageCodesISO639_2('Micmac', 'mic');
 		self::$Minangkabau = new LanguageCodesISO639_2('Minangkabau', 'min');
 		self::$UncodedLanguages = new LanguageCodesISO639_2('Uncoded languages', 'mis');
-		self::$Macedonian = new LanguageCodesISO639_2('Macedonian', 'mac');
 		self::$MonKhmerLanguages = new LanguageCodesISO639_2('Mon Khmer languages', 'mkh');
 		self::$Malagasy = new LanguageCodesISO639_2('Malagasy', 'mlg');
 		self::$Maltese = new LanguageCodesISO639_2('Maltese', 'mlt');
@@ -388,13 +387,11 @@ class LanguageCodesISO639_2 extends Enum{
 		self::$Mohawk = new LanguageCodesISO639_2('Mohawk', 'moh');
 		self::$Mongolian = new LanguageCodesISO639_2('Mongolian', 'mon');
 		self::$Mossi = new LanguageCodesISO639_2('Mossi', 'mos');
-		self::$Maori = new LanguageCodesISO639_2('Maori', 'mao');
 		self::$MultipleLanguages = new LanguageCodesISO639_2('Multiple languages', 'mul');
 		self::$MundaLanguages = new LanguageCodesISO639_2('Munda languages', 'mun');
 		self::$Creek = new LanguageCodesISO639_2('Creek', 'mus');
 		self::$Mirandese = new LanguageCodesISO639_2('Mirandese', 'mwl');
 		self::$Marwari = new LanguageCodesISO639_2('Marwari', 'mwr');
-		self::$Burmese = new LanguageCodesISO639_2('Burmese', 'bur');
 		self::$MayanLanguages = new LanguageCodesISO639_2('Mayan languages', 'myn');
 		self::$Erzya = new LanguageCodesISO639_2('Erzya', 'myv');
 		self::$NahuatlLanguages = new LanguageCodesISO639_2('Nahuatl languages', 'nah');
@@ -587,7 +584,7 @@ class LanguageCodesISO639_2 extends Enum{
 		self::$Vai = new LanguageCodesISO639_2('Vai', 'vai');
 		self::$Venda = new LanguageCodesISO639_2('Venda', 'ven');
 		self::$Vietnamese = new LanguageCodesISO639_2('Vietnamese', 'vie');
-		self::$Volapük = new LanguageCodesISO639_2('Volapük', 'vol');
+		self::$Volapuk = new LanguageCodesISO639_2('Volapük', 'vol');
 		self::$Votic = new LanguageCodesISO639_2('Votic', 'vot');
 		self::$WakashanLanguages = new LanguageCodesISO639_2('Wakashan languages', 'wak');
 		self::$Wolaitta = new LanguageCodesISO639_2('Wolaitta', 'wal');
