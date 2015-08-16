@@ -11,6 +11,7 @@ final class HtmlFBProperties extends Enum{
 	public static $BookAuthor, $BookIsbn, $BookReleaseDate, $BookTag;
 	public static $ProfileFirstName, $ProfileLastName, $ProfileUserName, $ProfileGender;
 	public static $Website;
+	public static $Admins, $AppId;
 	
 	protected function __construct($name, $value){parent::__construct($name, $value);}
 	public static function Initialize(){
@@ -77,6 +78,9 @@ final class HtmlFBProperties extends Enum{
 		self::$ProfileGender = new HtmlFBProperties('ProfileGender', 'og:profile:gender');
 
 		self::$Website = new HtmlFBProperties('Website', 'og:website');
+		
+		self::$Admins = new HtmlFBProperties('Admins', 'fb:admins');
+		self::$AppId = new HtmlFBProperties('AppId', 'fb:app_id');
 	}
 };
 HtmlFBProperties::Initialize();
