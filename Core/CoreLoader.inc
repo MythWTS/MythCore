@@ -21,7 +21,8 @@ $Loader = new CoreLoader(
 			'ISerializable'
 		),
 		'Core/Lookups' => array(
-			'IANAMediaTypes'
+			'IANAMediaTypes',
+			'LanguageCodesISO639_2',
 		),
 		'Core/Web/Html' => array(
 			'Html',
@@ -69,6 +70,7 @@ $Loader = new CoreLoader(
 			'Html5Tags',
 			'HtmlAreaShapes',
 			'HtmlDocTypes',
+			'HtmlFBObjectTypes',
 			'HtmlFBProperties',
 			'HtmlInputTypes',
 			'HtmlKeyTypes',
