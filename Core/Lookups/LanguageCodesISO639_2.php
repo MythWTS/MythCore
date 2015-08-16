@@ -1,5 +1,5 @@
 <?php
-class LanguageCodesISO639_2 extends Enum{
+final class LanguageCodesISO639_2 extends Enum{
 	public static 
 		$Afar,$Abkhazian,$Achinese,$Acoli,$Adangme,$Adyghe,$Adygei,$AfroAsiaticLanguages,$Afrihili,$Afrikaans,$Ainu,$Akan,
 		$Akkadian,$Albanian,$Aleut,$AlgonquianLanguages,$SouthernAltai,$Amharic,$OldEnglish,$Angika,$ApacheLanguages,$Arabic,

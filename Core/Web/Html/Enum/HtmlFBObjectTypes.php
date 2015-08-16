@@ -1,5 +1,5 @@
 <?php
-class HtmlFBObjectTypes extends Enum{
+final class HtmlFBObjectTypes extends Enum{
 	public static $Article,$BooksAuthor,$BooksBook,$BooksGenre,$BusinessBusiness,$FitnessCourse,$GameAchievement,$MusicAlbum,
 	$MusicPlaylist,$MusicRadioStation,$MusicSong,$Place,$Product,$ProductGroup,$ProductItem,$Profile,$RestaurantMenu,
 	$RestaurantMenuItem,$RestaurantMenuSection,$RestaurantRestaurant,$VideoEpisode,$VideoMovie,$VideoOther,$VideoTvShow;
