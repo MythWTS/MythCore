@@ -12,7 +12,7 @@ class LanguageCodesISO639_2 extends Enum{
 		$Czech,$Chamorro,$Chibcha,$Chechen,$Chagatai,$Chinese,$Chuukese,$Mari,$ChinookJargon,$Choctaw,$Chipewyan,$DeneSuline,
 		$Cherokee,$ChurchSlavic,$OldSlavonic,$ChurchSlavonic,$OldBulgarian,$OldChurchSlavonic,$Chuvash,$Cheyenne,$ChamicLanguages,
 		$Coptic,$Cornish,$Corsican,$CreolesAndPidginsEnglishBased,$CreolesAndPidginsFrenchBased,$CreolesAndPidginsPortugueseBased,
-		$Cree,$CrimeanTatar,$CrimeanTurkish,$CreolesAndPidgins,$Kashubian,$CushiticLanguages,$Welsh,$Czech,$Dakota,$Danish,
+		$Cree,$CrimeanTatar,$CrimeanTurkish,$CreolesAndPidgins,$Kashubian,$CushiticLanguages,$Welsh,$Dakota,$Danish,
 		$Dargwa,$LandDayakLanguages,$Delaware,$Athapascan,$German,$Dogrib,$Dinka,$Divehi,$Dhivehi,$Maldivian,$Dogri,$DravidianLanguages,
 		$LowerSorbian,$Duala,$DutchMiddle,$DutchFlemish,$Dyula,$Dzongkha,$Efik,$AncientEgyptian,$Ekajuk,$Elamite,$English,
 		$MiddleEnglish,$Esperanto,$Estonian,$Ewe,$Ewondo,$Fang,$Faroese,$Persian,$Fanti,$Fijian,$Pilipino,$Filipino,
@@ -39,7 +39,7 @@ class LanguageCodesISO639_2 extends Enum{
 		$NorwegianBokmal,$Nogai,$OldNorse,$Norwegian,$Nko,$Pedi,$Sepedi,$NorthernSotho,$NubianLanguages,$ClassicalNewari,
 		$OldNewari,$ClassicalNepalBhasa,$Chichewa,$Chewa,$Nyanja,$Nyamwezi,$Nyankole,$Nyoro,$Nzima,$OccitanPost1500,$Ojibwa,
 		$Oriya,$Oromo,$Osage,$Ossetian,$Ossetic,$TurkishOttoman,$OtomianLanguages,$PapuanLanguages,$Pangasinan,$Pahlavi,
-		$Pampanga,$Kapampangan,$Panjabi,$Punjabi,$Papiamento,$Palauan,$OldPersian,$Persian,$PhilippineLanguages,$Phoenician,
+		$Pampanga,$Kapampangan,$Panjabi,$Punjabi,$Papiamento,$Palauan,$OldPersian,$PhilippineLanguages,$Phoenician,
 		$Pali,$Polish,$Pohnpeian,$Portuguese,$PrakritLanguages,$OldProvencal,$OldOccitan,$Pushto,$Pashto,$Reserved,$Quechua,
 		$Rajasthani,$Rapanui,$Rarotongan,$CookIslandsMaori,$RomanceLanguages,$Romansh,$Romany,$Romanian,$Moldavian,$Moldovan,
 		$Rundi,$Aromanian,$Arumanian,$MacedoRomanian,$Russian,$Sandawe,$Sango,$Yakut,$SouthAmericanIndianLanguages,
@@ -48,11 +48,11 @@ class LanguageCodesISO639_2 extends Enum{
 		$Slovenian,$SouthernSami,$NorthernSami,$SamiLanguages,$LuleSami,$InariSami,$Samoan,$SkoltSami,$Shona,$Sindhi,$Soninke,
 		$Sogdian,$Somali,$SonghaiLanguages,$Sotho,$Southern,$Spanish,$Castilian,$Sardinian,$SrananTongo,$Serbian,$Serer,
 		$NiloSaharanLanguages,$Swati,$Sukuma,$Sundanese,$Susu,$Sumerian,$Swahili,$Swedish,$ClassicalSyriac,$Syriac,$Tahitian,
-		$TaiLanguages,$Tamil,$Tatar,$Telugu,$Timne,$Tereno,$Tetum,$Tajik,$Tagalog,$Thai,$Tibetan,$Tigre,$Tigrinya,$Tiv,$Tokelau,
+		$TaiLanguages,$Tamil,$Tatar,$Telugu,$Timne,$Tereno,$Tetum,$Tajik,$Tagalog,$Thai,$Tigre,$Tigrinya,$Tiv,$Tokelau,
 		$Klingon,$TlhinganHol,$Tlingit,$Tamashek,$TongaNyasa,$TongaTongaIslands,$TokPisin,$Tsimshian,$Tswana,$Tsonga,$Turkmen,
 		$Tumbuka,$TupiLanguages,$Turkish,$AltaicLanguages,$Tuvalu,$Twi,$Tuvinian,$Udmurt,$Ugaritic,$Uighur,$Uyghur,$Ukrainian,
 		$Umbundu,$Undetermined,$Urdu,$Uzbek,$Vai,$Venda,$Vietnamese,$Volapuk,$Votic,$WakashanLanguages,$Wolaitta,$Wolaytta,
-		$Waray,$Washo,$Welsh,$SorbianLanguages,$Walloon,$Wolof,$Kalmyk,$Oirat,$Xhosa,$Yao,$Yapese,$Yiddish,$Yoruba,$YupikLanguages,
+		$Waray,$Washo,$SorbianLanguages,$Walloon,$Wolof,$Kalmyk,$Oirat,$Xhosa,$Yao,$Yapese,$Yiddish,$Yoruba,$YupikLanguages,
 		$Zapotec,$Blissymbols,$Blissymbolics,$Bliss,$Zenaga,$StandardMoroccanTamazight,$Zhuang,$Chuang,$ZandeLanguages,
 		$Zulu,$Zuni,$NotApplicable,$Zaza,$Dimili,$Dimli,$Kirdki,$Kirmanjki,$Zazaki;
 	protected function __construct($name, $value){parent::__construct($name, $value);}
@@ -175,7 +175,6 @@ class LanguageCodesISO639_2 extends Enum{
 		self::$Kashubian = new LanguageCodesISO639_2('Kashubian', 'csb');
 		self::$CushiticLanguages = new LanguageCodesISO639_2('Cushitic languages', 'cus');
 		self::$Welsh = new LanguageCodesISO639_2('Welsh', 'wel');
-		self::$Czech = new LanguageCodesISO639_2('Czech', 'cze');
 		self::$Dakota = new LanguageCodesISO639_2('Dakota', 'dak');
 		self::$Danish = new LanguageCodesISO639_2('Danish', 'dan');
 		self::$Dargwa = new LanguageCodesISO639_2('Dargwa', 'dar');
@@ -454,7 +453,6 @@ class LanguageCodesISO639_2 extends Enum{
 		self::$Papiamento = new LanguageCodesISO639_2('Papiamento', 'pap');
 		self::$Palauan = new LanguageCodesISO639_2('Palauan', 'pau');
 		self::$OldPersian = new LanguageCodesISO639_2('Old Persian', 'peo');
-		self::$Persian = new LanguageCodesISO639_2('Persian', 'fas');
 		self::$PhilippineLanguages = new LanguageCodesISO639_2('Philippine languages', 'phi');
 		self::$Phoenician = new LanguageCodesISO639_2('Phoenician', 'phn');
 		self::$Pali = new LanguageCodesISO639_2('Pali', 'pli');
@@ -549,7 +547,6 @@ class LanguageCodesISO639_2 extends Enum{
 		self::$Tajik = new LanguageCodesISO639_2('Tajik', 'tgk');
 		self::$Tagalog = new LanguageCodesISO639_2('Tagalog', 'tgl');
 		self::$Thai = new LanguageCodesISO639_2('Thai', 'tha');
-		self::$Tibetan = new LanguageCodesISO639_2('Tibetan', 'tib');
 		self::$Tigre = new LanguageCodesISO639_2('Tigre', 'tig');
 		self::$Tigrinya = new LanguageCodesISO639_2('Tigrinya', 'tir');
 		self::$Tiv = new LanguageCodesISO639_2('Tiv', 'tiv');
@@ -591,7 +588,6 @@ class LanguageCodesISO639_2 extends Enum{
 		self::$Wolaytta = new LanguageCodesISO639_2('Wolaytta', 'wal');
 		self::$Waray = new LanguageCodesISO639_2('Waray', 'war');
 		self::$Washo = new LanguageCodesISO639_2('Washo', 'was');
-		self::$Welsh = new LanguageCodesISO639_2('Welsh', 'wel');
 		self::$SorbianLanguages = new LanguageCodesISO639_2('Sorbian languages', 'wen');
 		self::$Walloon = new LanguageCodesISO639_2('Walloon', 'wln');
 		self::$Wolof = new LanguageCodesISO639_2('Wolof', 'wol');
