@@ -51,6 +51,7 @@ final class Html extends Object{
 	public static function Meta($name, $content){return new HtmlMetaElement($name, $content);}
 	public static function CharsetMeta($charset='UTF-8'){$res = new HtmlMetaElement('', '', ''); $res->Charset($charset); return $res;}
 	public static function HttpEquivMeta($httpEquiv, $value, $id=''){$res = new HtmlMetaElement('', $value, $id); $res->HttpEquiv($httpEquiv); return $res;}
+	public static function PropertyMeta($property, $content){$res = new HtmlMetaElement('', '', ''); $res->Property($property); $res->Content($content); return $res;}
 
 	public static function XUACompatibleMeta(){$res = new HtmlMetaElement('', 'IE=edge,chrome=1'); $res->HttpEquiv('X-UA-Compatible'); return $res;}
 	public static function ContentTypeMeta($contentType, $id=''){$res = new HtmlMetaElement('', $contentType, $id); $res->HttpEquiv('content-type'); return $res;}

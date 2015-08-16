@@ -31,6 +31,7 @@ class HtmlMetaElement extends HtmlEmptyElement implements IDOMMetaData{
 	//Factory methods
 	public static function NewCharset($charset='UTF-8'){$res = new HtmlMetaElement('', '', ''); $res->Charset($charset); return $res;}
 	public static function NewHttpEquiv($httpEquiv, $value, $id=''){$res = new HtmlMetaElement('', $value, $id); $res->HttpEquiv($httpEquiv); return $res;}
+	public static function NewProperty($property, $content){$res = new HtmlMetaElement('', '', ''); $res->Property($property); $res->Content($content); return $res;}
 	public static function NewContentType($contentType, $id=''){$res = new HtmlMetaElement('', $contentType, $id); $res->HttpEquiv('content-type'); return $res;}
 	public static function NewDefaultStyle($defaultStyle, $id=''){$res = new HtmlMetaElement('', $defaultStyle, $id); $res->HttpEquiv('default-style'); return $res;}
 	public static function NewRefresh($refresh, $id=''){$res = new HtmlMetaElement('', $refresh, $id);$res->HttpEquiv('refresh');return $res;}
