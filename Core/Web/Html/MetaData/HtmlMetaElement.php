@@ -12,6 +12,10 @@ class HtmlMetaElement extends HtmlEmptyElement implements IDOMMetaData{
 		if($value === null){return $this->_attributes['name'];}
 		else{$this->_attributes['name'] = U::ES($value);}
 	}
+	public function Property($value=null){
+		if($value === null){return $this->_attributes['property'];}
+		else{$this->_attributes['property'] = U::ES($value);}
+	}
 	public function Content($value=null){
 		if($value === null){return $this->_attributes['content'];}
 		else{$this->_attributes['content'] = U::ES($value);}
