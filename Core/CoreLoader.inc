@@ -22,6 +22,7 @@ $Loader = new CoreLoader(
 		),
 		'Core/Lookups' => array(
 			'IANAMediaTypes',
+			'LanguageCodesISO639_1',
 			'LanguageCodesISO639_2',
 		),
 		'Core/Web/Html' => array(
