@@ -59,8 +59,8 @@ class HtmlFBArticleData extends HtmlFBMetaData{
 	###########################################################################
 	# Html generation Methods (Base override)
 	###########################################################################
-	public function GenerateElements(){
-		$res = parent::GenerateElements();
+	public function GenerateHtmlNodes(){
+		$res = parent::GenerateHtmlNodes();
 		foreach($this->_authors as $author){$res[] = Html::PropertyMeta('og:article:author', $author);}
 		foreach($this->_tags as $tag){$res[] = Html::PropertyMeta('og:article:tag', $tag);}
 		if(!U::NA($this->_publisher)){$res[] = Html::PropertyMeta('og:article:publisher', $this->_publisher);}

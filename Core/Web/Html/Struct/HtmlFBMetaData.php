@@ -79,7 +79,7 @@ class HtmlFBMetaData extends Object implements IMetaDataProvider{
 	###########################################################################
 	# Html generation Methods
 	###########################################################################
-	public function GenerateElements(){
+	public function GenerateHtmlNodes(){
 		$res = array();
 		if(!U::NA($this->_admins)){
 			foreach ($this->_admins as $admin) {$res[] = Html::PropertyMeta('fb:admins', $admin);}

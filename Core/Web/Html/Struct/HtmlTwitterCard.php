@@ -22,7 +22,7 @@ class HtmlTwitterCard extends Object implements IMetaDataProvider{
 	###########################################################################
 	# Html generation Methods
 	###########################################################################
-	public function GenerateElements(){
+	public function GenerateHtmlNodes(){
 		$res = array();
 		if(!U::NA($this->_type)){$res[] = Html::Meta('twitter:card', $this->_type);}
 		if(!U::NA($this->_site)){$res[] = Html::Meta('twitter:site', $this->_site);}

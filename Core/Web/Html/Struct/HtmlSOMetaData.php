@@ -26,7 +26,7 @@ class HtmlSOMetaData extends Object implements IMetaDataProvider{
 	###########################################################################
 	# Html generation Methods
 	###########################################################################
-	public function GenerateElements(){
+	public function GenerateHtmlNodes(){
 		$res = array();
 		if(!U::NA($this->_name)){$res[] = Html::ItemPropMeta(HtmlSOItemProperties::$Name, $this->_name);}
 		if(!U::NA($this->_description)){$res[] = Html::ItemPropMeta(HtmlSOItemProperties::$Description, $this->_description);}
