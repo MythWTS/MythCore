@@ -24,7 +24,7 @@ class HtmlTwitterCard extends Object{
 	###########################################################################
 	public function GenerateElements(){
 		$res = array();
-		$res[] = Html::Meta('twitter:card', $this->_type);
+		if(!U::NA($this->_type)){$res[] = Html::Meta('twitter:card', $this->_type);}
 		if(!U::NA($this->_site)){$res[] = Html::Meta('twitter:site', $this->_site);}
 		if(!U::NA($this->_description)){$res[] = Html::Meta('twitter:description', $this->_description);}
 		return $res;
