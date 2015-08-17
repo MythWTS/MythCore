@@ -19,5 +19,13 @@ class HtmlPage extends HtmlNode{
 	############################################################################
 	# Properties Accessors
 	############################################################################
+	public function Data(HtmlPageMetaData $value=null){
+		if($value===null){return $this->_metaData;}
+		else{$this->_metaData = $value;}
+	}
+	public function Contents($value=null){
+		if($value===null){return $this->_contents;}
+		else{$this->_contents = $value;}
+	}
 };
 ?>
