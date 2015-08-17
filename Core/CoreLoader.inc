@@ -208,6 +208,7 @@ $Loader = new CoreLoader(
 			'HtmlFBSongData',
 			'HtmlFBTvShowData',
 			'HtmlFBVideoData',
+			'HtmlPageMetaData',
 			'HtmlSOMetaData',
 			'HtmlTwitterAppCard',
 			'HtmlTwitterCard',
