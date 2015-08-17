@@ -38,7 +38,7 @@ namespace Core\Data\Db{
 		abstract public function Close();
 		abstract public function IsOpen();
 		abstract public function IsClosed();
-		abstract public function ExecuteSql();
+		abstract public function ExecuteSql($sql);
 	};
 }
 ?>
