@@ -22,7 +22,7 @@ class HtmlFBMetaData extends Object{
 		$admins='', $appId='',
 		HtmlFBObjectTypes $type=null, $title='', $image='', $sitename='', $url='', $description='',
 		$determiner='', $locale=''){
-		if(!U::NA($admins)){$this->_admins = U::ES($admins);}
+		$this->_admins = $this->extractArray($admins);
 		if(!U::NA($appId)){$this->_appId = U::ES($appId);}
 		if(!U::NA($description)){$this->_description = U::ES($description);}
 		if(!U::NA($determiner)){$this->_determiner = U::ES($determiner);}
@@ -36,9 +36,9 @@ class HtmlFBMetaData extends Object{
 	###########################################################################
 	# Properties Accessors
 	###########################################################################
-	public function Admins($value=null){
+	public function Admins(array $value=null){
 		if($value === null){return $this->_admins;}
-		else{$this->_admins = U::ES($value);}
+		else{$this->_admins = $this->extractArray($value);}
 	}
 	public function AppId($value=null){
 		if($value === null){return $this->_appId;}
@@ -81,7 +81,9 @@ class HtmlFBMetaData extends Object{
 	###########################################################################
 	public function GenerateElements(){
 		$res = array();
-		if(!U::NA($this->_admins)){$res[] = Html::PropertyMeta('fb:admins', $this->_admins);}
+		if(!U::NA($this->_admins)){
+			foreach ($this->_admins as $admin) {$res[] = Html::PropertyMeta('fb:admins', $admin);}
+		}
 		if(!U::NA($this->_appId)){$res[] = Html::PropertyMeta('fb:app_id', $this->_appId);}
 
 		if(!U::NA($this->_type)){$res[] = Html::PropertyMeta('og:type', $this->_type);}
