@@ -5,7 +5,8 @@ namespace Core\Data\Db{
 		function Close();
 		function IsOpen();
 		function IsClosed();
-		function ExecuteSql($sql);
+		function Execute($sql);
+		function ExecuteMultiQuery($sql);
 	};
 }
 ?>

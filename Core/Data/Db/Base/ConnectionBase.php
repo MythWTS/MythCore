@@ -38,7 +38,8 @@ namespace Core\Data\Db{
 		abstract public function Close();
 		abstract public function IsOpen();
 		abstract public function IsClosed();
-		abstract public function ExecuteSql($sql);
+		abstract public function Execute($sql);
+		abstract public function ExecuteMultiQuery($sql);
 	};
 }
 ?>
