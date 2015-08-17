@@ -183,6 +183,7 @@ $Loader = new CoreLoader(
 			'HtmlTrackElement',
 		),
 		'Core/Web/Html/Struct' => array(
+			'HtmlFBArticleData',
 			'HtmlFBMetaData',
 		),
 		'Core/Web/Html/Table' => array(
