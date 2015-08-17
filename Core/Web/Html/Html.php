@@ -1,6 +1,7 @@
 <?php
 final class Html extends Object{
 	private function __constructor(){}
+	public static function Document(HtmlHeadElement $head=null, HtmlBodyElement $body=null, HtmlDocTypes $docType=null, $indentContents=true){return new HtmlDocument($head, $body, $docType, $indentContents);}
 	public static function DocType(HtmlDocTypes $type){return new HtmlDocTypeNode($type);}
 	###########################################################################
 	# Raw Text Nodes
