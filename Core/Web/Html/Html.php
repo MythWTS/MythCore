@@ -63,7 +63,7 @@ final class Html extends Object {
 		return new HtmlLinkElement($href, 'apple-touch-icon', '', null, $id);
 	}
 	public static function AlternateLink($href, $type = 'text/html') {
-		return new HtmlLinkElement($href, 'index', $type);
+		return new HtmlLinkElement($href, 'alternate', $type);
 	}
 	public static function IndexLink($href, $type = 'text/html') {
 		return new HtmlLinkElement($href, 'index', $type);
@@ -77,8 +77,17 @@ final class Html extends Object {
 	public static function PrevLink($href, $type = 'text/html') {
 		return new HtmlLinkElement($href, 'prev', $type);
 	}
+	public static function HomeLink($href, $type = 'text/html') {
+		return new HtmlLinkElement($href, 'home', $type);
+	}
 	public static function StartLink($href, $type = 'text/html') {
 		return new HtmlLinkElement($href, 'start', $type);
+	}
+	public static function FirstLink($href, $type = 'text/html') {
+		return new HtmlLinkElement($href, 'first', $type);
+	}
+	public static function LastLink($href, $type = 'text/html') {
+		return new HtmlLinkElement($href, 'last', $type);
 	}
 	public static function ChapterLink($href, $type = 'text/html') {
 		return new HtmlLinkElement($href, 'chapter', $type);
@@ -92,8 +101,14 @@ final class Html extends Object {
 	public static function SearchLink($href, $type = 'text/html') {
 		return new HtmlLinkElement($href, 'search', $type);
 	}
+	public static function EditUriLink($href, $type = 'application/rsd+xml') {
+		return new HtmlLinkElement($href, 'edituri', $type);
+	}
 	public static function ContentsLink($href, $type = 'text/html') {
 		return new HtmlLinkElement($href, 'contents', $type);
+	}
+	public static function IndexLink($href, $type = 'text/html') {
+		return new HtmlLinkElement($href, 'index', $type);
 	}
 	public static function GlossaryLink($href, $type = 'text/html') {
 		return new HtmlLinkElement($href, 'glossary', $type);
@@ -106,6 +121,17 @@ final class Html extends Object {
 	}
 	public static function CopyrightLink($href, $type = 'text/html') {
 		return new HtmlLinkElement($href, 'copyright', $type);
+	}
+	public static function RssFeedLink($href, $title='') {
+		return new HtmlLinkElement($href, 'alternate', 'application/rss+xml', null, '','', $title);
+	}
+	public static function AtomFeedLink($href, $title='') {
+		return new HtmlLinkElement($href, 'alternate', 'application/atom+xml', null, '','', $title);
+	}
+	public static function AltLangLink($href, $altlang='', $type = 'text/html') {
+		$res = new HtmlLinkElement($href, 'alternate', $type);
+		if(!U::NA($altlang)){$res->SetAttribute('hreflang', $altlang);}
+		return $res;
 	}
 	###########################################################################
 	# Meta Elements
@@ -165,6 +191,9 @@ final class Html extends Object {
 	}
 	public static function GeneratorMeta($generator, $id = '') {
 		return new HtmlMetaElement('generator', $generator, $id);
+	}
+	public static function PublisherMeta($publisher, $id = '') {
+		return new HtmlMetaElement('publisher', $publisher, $id);
 	}
 	public static function KeywordsMeta($keywords, $id = '') {
 		return new HtmlMetaElement('keywords', $keywords, $id);
