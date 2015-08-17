@@ -94,5 +94,13 @@ class HtmlFBMetaData extends Object{
 		if(!U::NA($this->_locale)){$res[] = Html::PropertyMeta('og:locale', $this->_locale);}
 		return $res;
 	}
+	###########################################################################
+	# Utility Methods
+	###########################################################################
+	protected function extractArray($var){
+		if(is_array($var)){return $var;}
+		else if(is_string($var)){return explode(',', $var);}
+		else {return array();}
+	}
 };
 ?>
