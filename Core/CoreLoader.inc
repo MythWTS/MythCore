@@ -16,6 +16,7 @@ $Loader = new CoreLoader(
 		),
 		'Core/Data/Db/MySql' => array(
 			'Core\Data\Db\MySql\Connection',
+			'Core\Data\Db\MySql\DBResults',
 		),
 		'Core/IO' => array(
 			'FileOpenMode',

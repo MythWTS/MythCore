@@ -26,12 +26,17 @@ namespace Core\Data\Db\MySql{
 		}
 		public function IsOpen(){return $this->_isOpen;}
 		public function IsClosed(){return $this->_isClosed;}
-		public function ExecuteSql($sql){
-			return new _DBReults($this->_conn->query($sql));
+		public function Execute($query){
+			return new DBReults($this->_conn->query($query));
+		}
+		public function ExecuteMultiQuery($query){
+			return $this->_conn->multi_query($query);
 		}
 		############################################################################
 		# Public Methods
 		############################################################################
+		# Get Accessors
+		######################################
 		public function HasConnectErrors(){
 			return $this->_conn->connect_errno?true:false;
 		}
@@ -55,12 +60,58 @@ namespace Core\Data\Db\MySql{
 		public function ErrorsList(){
 			return $this->_conn->error_list;
 		}
+		public function SqlStateErrorCode(){
+			return $this->_conn->sqlstate;
+		}
+		public function WarningCount(){
+			return $this->_conn->warning_count;
+		}
+		
+		public function HostInfo(){
+			return $this->_conn->host_info;
+		}
 		
 		public function AffectedRows(){
 			return $this->_conn->affected_rows;
 		}
 		public function FieldCount(){
 			return $this->_conn->field_count;
+		}
+		public function LastInsertId(){
+			return $this->_conn->insert_id;
+		}
+		///TODO: change the return by creating a connection stats class and returning an object of it
+		public function Stats(){
+			return $this->_conn->get_connection_stats();
+		}
+		///TODO: change the return type as it currently returns a mysqli_warning object
+		public function Warnings(){
+			return $this->_conn->get_warnings();
+		}
+		# Methods
+		######################################
+		public function ChangeUser($user, $password, $db=null){
+			return $this->_conn->change_user($user, $password, $db);
+		}
+		public function ChangeDb($newDb){
+			return $this->_conn->select_db($newDb);
+		}
+		######################################
+		public function Escape($string){
+			return $this->_conn->escape_string($string);
+		}
+		######################################
+		public function HasMoreResults(){
+			return $this->_conn->more_results();
+		}
+		public function NextResult(){
+			return $this->_conn->next_result();
+		}
+		public function CurrentResult(){
+			return new DBReults($this->_conn->use_result());
+		}
+		public function CurrentResultBufffered(){
+			return new DBReults($this->_conn->store_result());
 		}
 	};
 }
