@@ -6,6 +6,7 @@ class HtmlPageMetaData extends Object{
 	protected $_docType, $_charset;
 	protected $_fbData, $_twitterData, $_soData;
 	protected $_title, $_description, $_keywords, $_author, $_generator, $_publisher;
+	protected $_shortcutIcon, $_appleTouchIcon;
 	protected $_rssFeeds, $_atomFeeds, $_altLangs;
 	protected $_searchUrl, $_editUrl, $_copyrightUrl;
 	protected $_nextUrl, $_prevUrl, $_homeUrl, $_firstUrl, $_lastUrl, $_upUrl, $_appendixUrl, $_tocUrl;
@@ -33,7 +34,8 @@ class HtmlPageMetaData extends Object{
 		$this->_author = $this->_generator = $this->_publisher =
 			$this->_searchUrl = $this->_editUrl = $this->_copyrightUrl =
 			$this->_nextUrl = $this->_prevUrl = $this->_homeUrl = $this->_firstUrl = $this->_lastUrl= $this->_upUrl =
-			$this->_appendixUrl = $this->_tocUrl = $this->_applicationName = '';
+			$this->_appendixUrl = $this->_tocUrl = $this->_applicationName = 
+			$this->_appleTouchIcon = $this->_shortcutIcon = '';
 		$this->_viewport = ''; $this->_mediaType = 'text/html';
 		$this->_rssFeeds = array(); $this->_atomFeeds = array(); $this->_altLangs = array();
 	}
@@ -144,6 +146,15 @@ class HtmlPageMetaData extends Object{
 	public function Viewport($value=null){
 		if($value === null){return $this->_viewport;}
 		else{$this->_viewport = U::ES($value);}
+	}
+	############################################################################
+	public function ShortcutIcon($value=null){
+		if($value === null){return $this->_shortcutIcon;}
+		else{$this->_shortcutIcon = U::ES($value);}
+	}
+	public function AppleTouchIcon($value=null){
+		if($value === null){return $this->_appleTouchIcon;}
+		else{$this->_appleTouchIcon = U::ES($value);}
 	}
 	############################################################################
 	public function RSSFeeds(array $value=null){
