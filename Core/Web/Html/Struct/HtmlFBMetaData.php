@@ -22,16 +22,16 @@ class HtmlFBMetaData extends Object{
 		$admins='', $appId='',
 		HtmlFBObjectTypes $type=null, $title='', $image='', $sitename='', $url='', $description='',
 		$determiner='', $locale=''){
-		$this->_admins = U::ES($admins);
-		$this->_appId = U::ES($appId);
-		$this->_description = U::ES($description);
-		$this->_determiner = U::ES($determiner);
-		$this->_image = U::ES($image);
-		$this->_locale = U::ES($locale);
-		$this->_sitename = U::ES($sitename);
-		$this->_title = U::ES($title);
-		$this->_type = U::ES($type);
-		$this->_url = U::ES($url);
+		if(!U::NA($admins)){$this->_admins = U::ES($admins);}
+		if(!U::NA($appId)){$this->_appId = U::ES($appId);}
+		if(!U::NA($description)){$this->_description = U::ES($description);}
+		if(!U::NA($determiner)){$this->_determiner = U::ES($determiner);}
+		if(!U::NA($image)){$this->_image = U::ES($image);}
+		if(!U::NA($locale)){$this->_locale = U::ES($locale);}
+		if(!U::NA($sitename)){$this->_sitename = U::ES($sitename);}
+		if(!U::NA($title)){$this->_title = U::ES($title);}
+		if(!U::NA($type)){$this->_type = U::ES($type);}
+		if(!U::NA($url)){$this->_url = U::ES($url);}
 	}
 	###########################################################################
 	# Properties Accessors
