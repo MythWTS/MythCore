@@ -199,7 +199,7 @@ class HtmlPageMetaData extends Object{
 
 		if(!U::NA($this->_fbData)){$nodes = $this->_fbData->GenerateHtmlNodes(); foreach ($nodes as $node) {$res[] = $node;}}
 		if(!U::NA($this->_twitterData)){$nodes = $this->_twitterData->GenerateHtmlNodes(); foreach ($nodes as $node) {$res[] = $node;}}
-		if(!U::NA($this->_soData)){$nodes = $this->_fbData->_soData(); foreach ($nodes as $node) {$res[] = $node;}}
+		if(!U::NA($this->_soData)){$nodes = $this->_soData->GenerateHtmlNodes(); foreach ($nodes as $node) {$res[] = $node;}}
 
 		if(!U::NA($this->_description)){$res[] = Html::DescriptionMeta($this->_description);}
 		if(!U::NA($this->_keywords)){$res[] = Html::KeywordsMeta($this->_keywords);}
@@ -239,6 +239,9 @@ class HtmlPageMetaData extends Object{
 			$res->AddNode($node);
 		}
 		return $res;
+	}
+	public function GenerateDocTypeNode(){
+		return new HtmlDocTypeNode($this->_docType);
 	}
 };
 ?>
