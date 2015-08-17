@@ -15,7 +15,7 @@ namespace Core\Data\Db\MySql{
 		############################################################################
 		public function Open(){
 			$this->_conn = @new \mysqli($this->_host, $this->_user, $this->_pass, $this->_db);
-			if($this->_conn->connect_errno){$this->_isOpen = true; $this->IsClosed() = true; return false;}
+			if($this->_conn->connect_errno){$this->_isOpen = true; $this->_isClosed = true; return false;}
 			else{$this->_isOpen = true; $this->_isClosed = false; return true;}
 		}
 		public function Close(){
