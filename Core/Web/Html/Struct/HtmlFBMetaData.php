@@ -6,7 +6,7 @@
  * describe the page to facebook share and like actions. For more specific types of pages, use the corresponding child class
  * instead as this class is generic. For example, if the page is a video, use the HtmlFBVideoData class instead.
  */
-class HtmlFBMetaData extends Object{
+class HtmlFBMetaData extends Object implements IMetaDataProvider{
 	###########################################################################
 	# Protected Fields
 	###########################################################################

@@ -1,5 +1,5 @@
 <?php
-class HtmlSOMetaData extends Object{
+class HtmlSOMetaData extends Object implements IMetaDataProvider{
 	protected $_name, $_description, $_image;
 	protected $_type;
 	/** Constructor(HtmlSOTypes $type=null, $name='', $description='', $imageUrl='') */

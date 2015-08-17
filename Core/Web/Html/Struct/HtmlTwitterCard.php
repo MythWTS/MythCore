@@ -1,5 +1,5 @@
 <?php
-class HtmlTwitterCard extends Object{
+class HtmlTwitterCard extends Object implements IMetaDataProvider{
 	protected $_type, $_site, $_description;
 	public function __construct(HtmlTwitterCardTypes $type=null, $site='', $description=''){
 		if(U::NA($type)){$this->_type = HtmlTwitterCardTypes::$Summary;}else{$this->_type = $type;}
