@@ -205,6 +205,7 @@ $Loader = new CoreLoader(
 			'HtmlFBSongData',
 			'HtmlFBTvShowData',
 			'HtmlFBVideoData',
+			'HtmlSOMetaData',
 			'HtmlTwitterAppCard',
 			'HtmlTwitterCard',
 			'HtmlTwitterGalleryCard',
@@ -213,6 +214,7 @@ $Loader = new CoreLoader(
 			'HtmlTwitterProductCard',
 			'HtmlTwitterSummaryBigImageCard',
 			'HtmlTwitterSummaryCard',
+			'IMetaDataProvider',
 		),
 		'Core/Web/Html/Table' => array(
 			'HtmlTableElement',
