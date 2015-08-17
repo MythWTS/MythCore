@@ -87,6 +87,7 @@ $Loader = new CoreLoader(
 			'HtmlSOTypes',
 			'HtmlTags',
 			'HtmlTargetCommonValues',
+			'HtmlTwitterCardTypes',
 			'HtmlTwitterMetaNames',
 		),
 		'Core/Web/Html/Form' => array(
