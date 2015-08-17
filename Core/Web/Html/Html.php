@@ -65,9 +65,6 @@ final class Html extends Object {
 	public static function AlternateLink($href, $type = 'text/html') {
 		return new HtmlLinkElement($href, 'alternate', $type);
 	}
-	public static function IndexLink($href, $type = 'text/html') {
-		return new HtmlLinkElement($href, 'index', $type);
-	}
 	public static function UpLink($href, $type = 'text/html') {
 		return new HtmlLinkElement($href, 'up', $type);
 	}
