@@ -26,6 +26,9 @@ $Loader = new CoreLoader(
 			'LanguageCodesISO639_1',
 			'LanguageCodesISO639_2',
 		),
+		'Core/Web/Docs' => array(
+			'HtmlPage',
+		),
 		'Core/Web/Html' => array(
 			'Html',
 		),
