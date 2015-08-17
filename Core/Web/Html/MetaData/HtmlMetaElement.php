@@ -3,56 +3,34 @@ class HtmlMetaElement extends HtmlEmptyElement implements IDOMMetaData {
 	/** Constructor($name='', $content='', $id='') */
 	public function __construct($name = '', $content = '', $id = '') {
 		parent::__construct(Html5Tags::$META);
-		if (!U::NA($id)) {$this -> _attributes['id'] = $id;
-		}
-		if (!U::NA($name)) {$this -> _attributes['name'] = $name;
-		}
-		if (!U::NA($content)) {$this -> _attributes['content'] = $content;
-		}
+		if (!U::NA($id)) {$this -> _attributes['id'] = $id;}
+		if (!U::NA($name)) {$this -> _attributes['name'] = $name;}
+		if (!U::NA($content)) {$this -> _attributes['content'] = $content;}
 	}
-
 	public function Name($value = null) {
-		if ($value === null) {
-			return $this -> _attributes['name'];
-		} else {$this -> _attributes['name'] = U::ES($value);
-		}
+		if ($value === null) {return $this -> _attributes['name'];}
+		else {$this -> _attributes['name'] = U::ES($value);}
 	}
-
 	public function Property($value = null) {
-		if ($value === null) {
-			return $this -> _attributes['property'];
-		} else {$this -> _attributes['property'] = U::ES($value);
-		}
+		if ($value === null) {return $this -> _attributes['property'];}
+		else {$this -> _attributes['property'] = U::ES($value);}
 	}
-
 	public function Content($value = null) {
-		if ($value === null) {
-			return $this -> _attributes['content'];
-		} else {$this -> _attributes['content'] = U::ES($value);
-		}
+		if ($value === null) {return $this -> _attributes['content'];}
+		else {$this -> _attributes['content'] = U::ES($value);}
 	}
-
 	public function HttpEquiv($value = null) {
-		if ($value === null) {
-			return $this -> _attributes['http-equiv'];
-		} else {$this -> _attributes['http-equiv'] = U::ES($value);
-		}
+		if ($value === null) {return $this -> _attributes['http-equiv'];}
+		else {$this -> _attributes['http-equiv'] = U::ES($value);}
 	}
-
 	public function Charset($value = null) {
-		if ($value === null) {
-			return $this -> _attributes['charset'];
-		} else {$this -> _attributes['charset'] = U::ES($value);
-		}
+		if ($value === null) {return $this -> _attributes['charset'];}
+		else {$this -> _attributes['charset'] = U::ES($value);}
 	}
-
 	public function ItemProp(HtmlSOItemProperties $value = null) {
-		if ($value === null) {
-			return $this -> _attributes['itemprop'];
-		} else {$this -> _attributes['itemprop'] = $value -> __toString();
-		}
+		if ($value === null) {return $this -> _attributes['itemprop'];}
+		else {$this -> _attributes['itemprop'] = $value -> __toString();}
 	}
-
 	###########################################################################
 	# Factory Methods
 	###########################################################################
