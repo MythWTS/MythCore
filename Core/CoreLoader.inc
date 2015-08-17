@@ -31,6 +31,8 @@ $Loader = new CoreLoader(
 		),
 		'Core/Web/Html/Base' => array(
 			'HtmlContainerElement',
+			'HtmlDocument',
+			'HtmlDocumentBase',
 			'HtmlElement',
 			'HtmlEmptyElement',
 			'HtmlGenericContainerElement',
