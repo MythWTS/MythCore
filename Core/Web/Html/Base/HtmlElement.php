@@ -111,6 +111,32 @@ class HtmlElement extends HtmlNode{
 	}
 	/** Removes the attribute with the supplied name if it exists, nothing if it does not */
 	public function RemoveAttribute($name){if(array_key_exists(strtolower($name), $this->_attributes)){unset($this->_attributes[$name]);}}
+	/** Adds the class name supplied to the class attribute string of this element. If class is not set, it sets it, otherwise it just adds the new class, it does not check if the class exists or not. @see AddClassOnce if that's what you're looking for */
+	public function AddClass($class){
+		if(isset($this->_attributes['class'])){
+			$this->_attributes['class'] = trim("{$this->_attributes['class']} {$class}");
+		}
+		else{
+			$this->_attributes['class'] = $class;
+		}
+	}
+	/** Adds the class name suppied to the class attribute string of this element only if it is not already added or if the class attribute is not set. If you want to add the class even if it exists before, @see AddClass*/
+	public function AddClass($class){
+		if(isset($this->_attributes['class'])){
+			if(strpos($this->_attributes['class'], $class) === false){
+				$this->_attributes['class'] = trim("{$this->_attributes['class']} {$class}");
+			}
+		}
+		else{
+			$this->_attributes['class'] = $class;
+		}
+	}
+	/** Removes all occurences of the supplied class from the class attribute of this element.  */
+	public function RemoveClass($class){
+		if(isset($this->_attributes['class'])){
+			str_replace($class, '', $this->_attributes['class']);
+		}
+	}
 	###########################################################################
 	# Protected Virtual Utility Methods
 	###########################################################################
