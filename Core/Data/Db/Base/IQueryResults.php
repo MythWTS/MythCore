@@ -7,6 +7,14 @@ namespace Core\Data\Db{
 		function FieldsCount();
 		function RowsCount();
 		function FieldsInfo();
+		function Free();
+		
+		function FieldsCount();
+		function RowsCount();
+		
+		function Read();
+		function ReadArray();
+		function ReadObject($className);
 	};
 }
 ?>
