@@ -2,8 +2,8 @@
 namespace Core\Web\Bs;
 class ClassEnforcedContainerElement extends \HtmlContainerElement{
 	protected $_classes;
-	/** Constructor(array $classesToEnforce, $tag, $contents='', $id='', $classes='', $title='', $style='', $indentContents=true) */
-	protected function __construct(array $classesToEnforce, $tag, $contents='', $id='', $classes='', $title='', $style='', $indentContents=true){
+	/** Constructor(array $classesToEnforce, $tag, $contents='', $id='', $class='', $title='', $style='', $indentContents=true) */
+	protected function __construct(array $classesToEnforce, $tag, $contents='', $id='', $class='', $title='', $style='', $indentContents=true){
 		parent::__construct($tag, null, $contents, $id, $class, $title, $style, $indentContents);
 		foreach($classesToEnforce as $class){$this->AddClassOnce($class);}
 		$this->_classes = $classesToEnforce;
