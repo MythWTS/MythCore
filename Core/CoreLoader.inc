@@ -36,6 +36,10 @@ $Loader = new CoreLoader(
 			'LanguageCodesISO639_1',
 			'LanguageCodesISO639_2',
 		),
+		'Core/Web/Bs/' => array(
+			'Core\Web\Bs\Context',
+			'Core\Web\Bs\Sizes',
+		),
 		'Core/Web/Html' => array(
 			'Html',
 		),
