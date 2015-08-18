@@ -7,6 +7,9 @@ namespace Core\Data\Db{
 		function IsClosed();
 		function Execute($sql);
 		function ExecuteMultiQuery($sql);
+		function HasMoreResults();
+		function NextResult();
+		function CurrentResult();
 	};
 }
 ?>
