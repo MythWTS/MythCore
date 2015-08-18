@@ -26,11 +26,43 @@ namespace Core\Data\Db\MySql{
 		}
 		public function IsOpen(){return $this->_isOpen;}
 		public function IsClosed(){return $this->_isClosed;}
+		######################################
 		public function Execute($query){
 			return new DBReults($this->_conn->query($query));
 		}
+		######################################
 		public function ExecuteMultiQuery($query){
 			return $this->_conn->multi_query($query);
+		}
+		public function HasMoreResults(){
+			return $this->_conn->more_results();
+		}
+		public function NextResult(){
+			return $this->_conn->next_result();
+		}
+		public function CurrentResult(){
+			return new DBReults($this->_conn->use_result());
+		}
+		public function CurrentResultBufffered(){
+			return new DBReults($this->_conn->store_result());
+		}
+		######################################
+		public function Escape($string){
+			return $this->_conn->escape_string($string);
+		}
+		######################################
+		public function LastErrorNumber(){
+			return $this->_conn->errno;
+		}
+		public function LastErrorMsg(){
+			return $this->_conn->error;
+		}
+		######################################
+		public function AffectedRows(){
+			return $this->_conn->affected_rows;
+		}
+		public function LastInsertId(){
+			return $this->_conn->insert_id;
 		}
 		############################################################################
 		# Public Methods
@@ -51,12 +83,6 @@ namespace Core\Data\Db\MySql{
 			return $this->_conn->connect_error;
 		}
 		
-		public function LastErrorNumber(){
-			return $this->_conn->errno;
-		}
-		public function LastErrorMsg(){
-			return $this->_conn->error;
-		}
 		public function ErrorsList(){
 			return $this->_conn->error_list;
 		}
@@ -71,14 +97,8 @@ namespace Core\Data\Db\MySql{
 			return $this->_conn->host_info;
 		}
 		
-		public function AffectedRows(){
-			return $this->_conn->affected_rows;
-		}
 		public function FieldCount(){
 			return $this->_conn->field_count;
-		}
-		public function LastInsertId(){
-			return $this->_conn->insert_id;
 		}
 		///TODO: change the return by creating a connection stats class and returning an object of it
 		public function Stats(){
@@ -95,23 +115,6 @@ namespace Core\Data\Db\MySql{
 		}
 		public function ChangeDb($newDb){
 			return $this->_conn->select_db($newDb);
-		}
-		######################################
-		public function Escape($string){
-			return $this->_conn->escape_string($string);
-		}
-		######################################
-		public function HasMoreResults(){
-			return $this->_conn->more_results();
-		}
-		public function NextResult(){
-			return $this->_conn->next_result();
-		}
-		public function CurrentResult(){
-			return new DBReults($this->_conn->use_result());
-		}
-		public function CurrentResultBufffered(){
-			return new DBReults($this->_conn->store_result());
 		}
 	};
 }
