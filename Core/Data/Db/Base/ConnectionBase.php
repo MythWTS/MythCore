@@ -43,6 +43,12 @@ namespace Core\Data\Db{
 		abstract public function HasMoreResults();
 		abstract public function NextResult();
 		abstract public function CurrentResult();
+		abstract public function CurrentResultBufffered();
+		abstract public function Escape($string);
+		abstract public function LastErrorNumber();
+		abstract public function LastErrorMsg();
+		abstract public function AffectedRows();
+		abstract public function LastInsertId();
 	};
 }
 ?>

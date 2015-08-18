@@ -10,6 +10,12 @@ namespace Core\Data\Db{
 		function HasMoreResults();
 		function NextResult();
 		function CurrentResult();
+		function CurrentResultBufffered();
+		function Escape($string);
+		function LastErrorNumber();
+		function LastErrorMsg();
+		function AffectedRows();
+		function LastInsertId();
 	};
 }
 ?>
