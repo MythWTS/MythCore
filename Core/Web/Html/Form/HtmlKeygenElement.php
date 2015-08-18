@@ -1,5 +1,5 @@
 <?php
-class HtmlKeygenElement extends HtmlEmptyElement implements IDOMFlow, IDOMPhrasing, IDOMInteractive{
+class HtmlKeygenElement extends HtmlEmptyElement{
 	/** Constructor($name='', HtmlKeyTypes $keytype=null, array $attributes = null) */
 	public function __construct($name='', HtmlKeyTypes $keytype=null, array $attributes = null){
 		parent::__construct(Html5Tags::$KEYGEN, $attributes);

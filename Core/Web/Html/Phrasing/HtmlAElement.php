@@ -1,7 +1,7 @@
 <?php
 class HtmlAElement extends HtmlContainerElement{
-	/** Constructor($content, $href='', $id='', $class='', $title='', $style='', $indentContent=false) */
-	public function __construct($content, $href='', $id='', $class='', $title='', $style='', $indentContent=false){
+	/** Constructor($content='', $href='', $id='', $class='', $title='', $style='', $indentContent=false) */
+	public function __construct($content='', $href='', $id='', $class='', $title='', $style='', $indentContent=false){
 		parent::__construct(Html5Tags::$A, null, $content, $id, $class, $title, $style, $indentContent);
 		if(!U::NA($href)){$this->_attributes['href'] = $href;}
 	}
