@@ -37,7 +37,14 @@ $Loader = new CoreLoader(
 			'LanguageCodesISO639_2',
 		),
 		'Core/Web/Bs/' => array(
+			'Core\Web\Bs\ClassEnforcedContainerElement',
+			'Core\Web\Bs\ClearFix',
+			'Core\Web\Bs\Col',
+			'Core\Web\Bs\Container',
 			'Core\Web\Bs\Context',
+			'Core\Web\Bs\FluidContainer',
+			'Core\Web\Bs\Lead',
+			'Core\Web\Bs\Row',
 			'Core\Web\Bs\Sizes',
 		),
 		'Core/Web/Html' => array(
