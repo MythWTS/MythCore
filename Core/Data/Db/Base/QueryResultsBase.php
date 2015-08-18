@@ -11,7 +11,7 @@ namespace Core\Data\Db{
 		/** Constructor($isSuccess=true, $isRowset=false, $fieldsCount=0, $rowsCount=0, array $fieldsInfo=null) */
 		protected function __construct($isSuccess=true, $isRowset=false, $fieldsCount=0, $rowsCount=0, array $fieldsInfo=null){
 			$this->_fieldsCount = $fieldsCount; $this->_rowsCount = $rowsCount;
-			$this->_isRowset = $isRowset; $this->_isScalar = $isScalar;
+			$this->_isRowset = $isRowset; $this->_isSuccess = $isSuccess;
 			$this->_fieldsInfo = $this->extractFieldsInfo($fieldsInfo);
 		}
 		############################################################################
@@ -39,8 +39,6 @@ namespace Core\Data\Db{
 		# Abstract Methods
 		############################################################################
 		abstract public function Free();
-		abstract public function FieldsCount();
-		abstract public function RowsCount();
 		abstract public function Read();
 		abstract public function ReadArray();
 		abstract public function ReadObject($className);

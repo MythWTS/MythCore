@@ -9,9 +9,6 @@ namespace Core\Data\Db{
 		function FieldsInfo();
 		function Free();
 		
-		function FieldsCount();
-		function RowsCount();
-		
 		function Read();
 		function ReadArray();
 		function ReadObject($className);
