@@ -28,7 +28,7 @@ namespace Core\Data\Db\MySql{
 		public function IsClosed(){return $this->_isClosed;}
 		######################################
 		public function Execute($query){
-			return new DBReults($this->_conn->query($query));
+			return new DBResults($this->_conn->query($query));
 		}
 		######################################
 		public function ExecuteMultiQuery($query){
