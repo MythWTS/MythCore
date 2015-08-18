@@ -1,5 +1,5 @@
 <?php
-namespace \Core\Web\Bs;
+namespace Core\Web\Bs;
 class ClassEnforcedContainerElement extends \HtmlContainerElement{
 	protected $_classes;
 	/** Constructor(array $classesToEnforce, $tag, $contents='', $id='', $classes='', $title='', $style='', $indentContents=true) */

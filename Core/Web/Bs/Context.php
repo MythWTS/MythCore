@@ -1,5 +1,5 @@
 <?php
-namespace \Core\Web\Bs;
+namespace Core\Web\Bs;
 class Context extends \Enum{
 	public static $Success, $Danger, $Warning, $Info, $Active, $Default;
 	protected function __construct($name, $value){parent::__construct($name, $value);}

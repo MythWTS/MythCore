@@ -1,5 +1,5 @@
 <?php
-namespace \Core\Web\Bs;
+namespace Core\Web\Bs;
 class Col extends \Enum{
 	public static $XS1, $XS2, $XS3, $XS4, $XS5, $XS6, $XS7, $XS8, $XS9, $XS10, $XS11, $XS12,
 					$SM1, $SM2, $SM3, $SM4, $SM5, $SM6, $SM7, $SM8, $SM9, $SM10, $SM11, $SM12,

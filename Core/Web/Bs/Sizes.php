@@ -1,5 +1,5 @@
 <?php
-namespace \Core\Web\Bs;
+namespace Core\Web\Bs;
 class Sizes extends \Enum{
 	public static $XS, $SM, $MD, $LG, $XSmall, $Small, $Medium, $Large;
 	protected function __construct($name, $value){parent::__construct($name, $value);}
