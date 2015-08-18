@@ -121,7 +121,7 @@ class HtmlElement extends HtmlNode{
 		}
 	}
 	/** Adds the class name suppied to the class attribute string of this element only if it is not already added or if the class attribute is not set. If you want to add the class even if it exists before, @see AddClass*/
-	public function AddClass($class){
+	public function AddClassOnce($class){
 		if(isset($this->_attributes['class'])){
 			if(strpos($this->_attributes['class'], $class) === false){
 				$this->_attributes['class'] = trim("{$this->_attributes['class']} {$class}");
