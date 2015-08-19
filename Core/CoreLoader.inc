@@ -37,7 +37,7 @@ $Loader = new CoreLoader(
 			'LanguageCodesISO639_2',
 		),
 		'Core/Web/Bs/' => array(
-			'Core\Web\Bs\Bs',
+			'Bs',
 			'Core\Web\Bs\Capitalized',
 			'Core\Web\Bs\CenterAligned',
 			'Core\Web\Bs\ClassEnforcedContainerElement',
