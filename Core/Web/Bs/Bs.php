@@ -216,14 +216,217 @@ final class Bs extends Object{
 	###########################################################################
 	# Form Elements
 	###########################################################################
+	public static function InlineForm($contents='', $action='', $method='', $id='', $class='', $title='', $style='', $indentContents=true){
+		return new B\InlineForm($contents, $action, $method, $id, $class, $title, $style, $indentContents);
+	}
+	public static function HorizontalForm($contents='', $action='', $method='', $id='', $class='', $title='', $style='', $indentContents=true){
+		return new B\HorizontalForm($contents, $action, $method, $id, $class, $title, $style, $indentContents);
+	}
+	######################################
+	public static function FormGroup($contents='', FormState $state=null, $id='', $class='', $title='', $style='', $indentContents=true){
+		return new B\FormGroup($contents, $state, $id, $class, $title, $style, $indentContents);
+	}
+	public static function InputGroup($contents='', $id='', $class='', $title='', $style='', $indentContents=true){
+		return new B\InputGroup($contents, $id, $class, $title, $style, $indentContents);
+	}
+	public static function InputGroupAddon($contents='', $id='', $class='', $title='', $style='', $indentContents=false){
+		return new B\InputGroupAddon($contents, $id, $class, $title, $style, $indentContents);
+	}
+	######################################
 	public static function TextField($id, B\TextFieldTypes $type=null, $label='', $initialValue='', $placeholderText='', $rows='', $cols=''){
 		return new B\TextField($id, $type, $label, $initialValue, $placeholderText, $rows, $cols);
 	}
+	######################################
 	public static function CheckBox($id, $label='', $value='', $checked=false, $disabled=false, $class='', $title='', $style='', $indentContents=true){
 		return new B\CheckBox($id, $label, $value, $checked, $disabled, $class, $title, $style, $indentContents);
 	}
+	public static function CheckBoxInline($id, $label='', $value='', $checked=false, $disabled=false, $class='', $title='', $style='', $indentContents=true){
+		return new B\CheckBoxInline($id, $label, $value, $checked, $disabled, $class, $title, $style, $indentContents);
+	}
 	public static function RadioBox($id, $label='', $value='', $checked=false, $disabled=false, $class='', $title='', $style='', $indentContents=true){
 		return new B\RadioBox($id, $label, $value, $checked, $disabled, $class, $title, $style, $indentContents);
+	}
+	public static function RadioBoxInline($id, $label='', $value='', $checked=false, $disabled=false, $class='', $title='', $style='', $indentContents=true){
+		return new B\RadioBoxInline($id, $label, $value, $checked, $disabled, $class, $title, $style, $indentContents);
+	}
+	######################################
+	public static function StaticFormControl($contents='', $id='', $class='', $title='', $style='', $indentContents=true){
+		return new B\StaticFormControl($contents, $id, $class, $title, $style, $indentContents);
+	}
+	######################################
+	public static function Icon(B\Icons $icon, $id='', $title=''){
+		return new HtmlSpanElement('', $id, $icon->__toString(), $title);
+	}
+	###########################################################################
+	# Various non-classed Form Elements
+	###########################################################################
+	public static function InputWithFeedback($id, $label='', $type='text', $feedbackIcon='glyphicon glyphicon-ok', $state='', $srStatus=''){
+		return new HtmlDivElement(array(
+			new HtmlLabelElement($label, $id, '', 'control-label'),
+			new HtmlInputElement($type, $id, array('describedby'=>"{$id}Status"), $id, 'form-control'),
+			new HtmlSpanElement('', '', trim("{$feedbackIcon} form-control-feedback")),
+			new HtmlSpanElement($srStatus, "{$id}Status", 'sr-only')
+		), '', "form-group {$state} has-feedback" );
+	}
+	public static function TextWithFeedback($id, $label='', $feedbackIcon='glyphicon glyphicon-ok', $state='', $srStatus=''){
+		return new HtmlDivElement(array(
+			new HtmlLabelElement($label, $id, '', 'control-label'),
+			new HtmlInputElement('text', $id, array('describedby'=>"{$id}Status"), $id, 'form-control'),
+			new HtmlSpanElement('', '', trim("{$feedbackIcon} form-control-feedback")),
+			new HtmlSpanElement($srStatus, "{$id}Status", 'sr-only')
+		), '', "form-group {$state} has-feedback" );
+	}
+	public static function TextSuccessWithFeedback($id, $label='', $feedbackIcon='glyphicon glyphicon-ok', $srStatus=''){
+		return new HtmlDivElement(array(
+			new HtmlLabelElement($label, $id, '', 'control-label'),
+			new HtmlInputElement('text', $id, array('describedby'=>"{$id}Status"), $id, 'form-control'),
+			new HtmlSpanElement('', '', trim("{$feedbackIcon} form-control-feedback")),
+			new HtmlSpanElement($srStatus, "{$id}Status", 'sr-only')
+		), '', "form-group has-success has-feedback" );
+	}
+	public static function TextWarningWithFeedback($id, $label='', $feedbackIcon='glyphicon glyphicon-warning-sign', $srStatus=''){
+		return new HtmlDivElement(array(
+			new HtmlLabelElement($label, $id, '', 'control-label'),
+			new HtmlInputElement('text', $id, array('describedby'=>"{$id}Status"), $id, 'form-control'),
+			new HtmlSpanElement('', '', trim("{$feedbackIcon} form-control-feedback")),
+			new HtmlSpanElement($srStatus, "{$id}Status", 'sr-only')
+		), '', "form-group has-warning has-feedback" );
+	}
+	public static function TextErrorWithFeedback($id, $label='', $feedbackIcon='glyphicon glyphicon-remove', $srStatus=''){
+		return new HtmlDivElement(array(
+			new HtmlLabelElement($label, $id, '', 'control-label'),
+			new HtmlInputElement('text', $id, array('describedby'=>"{$id}Status"), $id, 'form-control'),
+			new HtmlSpanElement('', '', trim("{$feedbackIcon} form-control-feedback")),
+			new HtmlSpanElement($srStatus, "{$id}Status", 'sr-only')
+		), '', "form-group has-error has-feedback" );
+	}
+	###########################################################################
+	# Buttons
+	###########################################################################
+	public static function InputButtonDefaultXs($txt='', $id='', $isBlock=false, $title=''){
+		$res =  HtmlInputElement('button', $id, null, $id, 'btn btn-default btn-xs' . $isBlock?' btn-block':'', $title);
+		$res->Value($txt);
+		return $res;
+	}
+	public static function InputButtonDefaultSm($txt='', $id='', $isBlock=false, $title=''){
+		$res =  HtmlInputElement('button', $id, null, $id, 'btn btn-default btn-sm' . $isBlock?' btn-block':'', $title);
+		$res->Value($txt);
+		return $res;
+	}
+	public static function InputButtonDefaultMd($txt='', $id='', $isBlock=false, $title=''){
+		$res =  HtmlInputElement('button', $id, null, $id, 'btn btn-default btn-md' . $isBlock?' btn-block':'', $title);
+		$res->Value($txt);
+		return $res;
+	}
+	public static function InputButtonDefaultLg($txt='', $id='', $isBlock=false, $title=''){
+		$res =  HtmlInputElement('button', $id, null, $id, 'btn btn-default btn-lg' . $isBlock?' btn-block':'', $title);
+		$res->Value($txt);
+		return $res;
+	}
+	######################################
+	public static function InputSubmitDefaultXs($txt='', $id='', $isBlock=false, $title=''){
+		$res =  HtmlInputElement('submit', $id, null, $id, 'btn btn-default btn-xs' . $isBlock?' btn-block':'', $title);
+		$res->Value($txt);
+		return $res;
+	}
+	public static function InputSubmitDefaultSm($txt='', $id='', $isBlock=false, $title=''){
+		$res =  HtmlInputElement('submit', $id, null, $id, 'btn btn-default btn-sm' . $isBlock?' btn-block':'', $title);
+		$res->Value($txt);
+		return $res;
+	}
+	public static function InputSubmitDefaultMd($txt='', $id='', $isBlock=false, $title=''){
+		$res =  HtmlInputElement('submit', $id, null, $id, 'btn btn-default btn-md' . $isBlock?' btn-block':'', $title);
+		$res->Value($txt);
+		return $res;
+	}
+	public static function InputSubmitDefaultLg($txt='', $id='', $isBlock=false, $title=''){
+		$res =  HtmlInputElement('submit', $id, null, $id, 'btn btn-default btn-lg' . $isBlock?' btn-block':'', $title);
+		$res->Value($txt);
+		return $res;
+	}
+	######################################
+	public static function InputResetDefaultXs($txt='', $id='', $isBlock=false, $title=''){
+		$res =  HtmlInputElement('reset', $id, null, $id, 'btn btn-default btn-xs' . $isBlock?' btn-block':'', $title);
+		$res->Value($txt);
+		return $res;
+	}
+	public static function InputResetDefaultSm($txt='', $id='', $isBlock=false, $title=''){
+		$res =  HtmlInputElement('reset', $id, null, $id, 'btn btn-default btn-sm' . $isBlock?' btn-block':'', $title);
+		$res->Value($txt);
+		return $res;
+	}
+	public static function InputResetDefaultMd($txt='', $id='', $isBlock=false, $title=''){
+		$res =  HtmlInputElement('reset', $id, null, $id, 'btn btn-default btn-md' . $isBlock?' btn-block':'', $title);
+		$res->Value($txt);
+		return $res;
+	}
+	public static function InputResetDefaultLg($txt='', $id='', $isBlock=false, $title=''){
+		$res =  HtmlInputElement('reset', $id, null, $id, 'btn btn-default btn-lg' . $isBlock?' btn-block':'', $title);
+		$res->Value($txt);
+		return $res;
+	}
+	###########################################################################
+	public static function ButtonDefaultXs($txt='', $id='', $isBlock=false, $title=''){
+		$res = new HtmlButtonElement($txt, $id, 'btn btn-default btn-xs' . $isBlock?' btn-block':'', $title);
+		$res->Type('button');
+		return $res;
+	}
+	public static function ButtonDefaultSm($txt='', $id='', $isBlock=false, $title=''){
+		$res = new HtmlInputElement($txt, $id, null, $id, 'btn btn-default btn-sm' . $isBlock?' btn-block':'', $title);
+		$res->Type('button');
+		return $res;
+	}
+	public static function ButtonDefaultMd($txt='', $id='', $isBlock=false, $title=''){
+		$res = new HtmlInputElement($txt, $id, 'btn btn-default btn-md' . $isBlock?' btn-block':'', $title);
+		$res->Type('button');
+		return $res;
+	}
+	public static function ButtonDefaultLg($txt='', $id='', $isBlock=false, $title=''){
+		$res = new HtmlInputElement($txt, $id, 'btn btn-default btn-lg' . $isBlock?' btn-block':'', $title);
+		$res->Type('button');
+		return $res;
+	}
+	######################################
+	public static function ButtonSubmitDefaultXs($txt='', $id='', $isBlock=false, $title=''){
+		$res = new HtmlButtonElement($txt, $id, 'btn btn-default btn-xs' . $isBlock?' btn-block':'', $title);
+		$res->Type('submit');
+		return $res;
+	}
+	public static function ButtonSubmitDefaultSm($txt='', $id='', $isBlock=false, $title=''){
+		$res = new HtmlButtonElement($txt, $id, 'btn btn-default btn-sm' . $isBlock?' btn-block':'', $title);
+		$res->Type('submit');
+		return $res;
+	}
+	public static function ButtonSubmitDefaultMd($txt='', $id='', $isBlock=false, $title=''){
+		$res = new HtmlButtonElement($txt, $id, 'btn btn-default btn-md' . $isBlock?' btn-block':'', $title);
+		$res->Type('submit');
+		return $res;
+	}
+	public static function ButtonSubmitDefaultLg($txt='', $id='', $isBlock=false, $title=''){
+		$res = new HtmlButtonElement($txt, $id, 'btn btn-default btn-lg' . $isBlock?' btn-block':'', $title);
+		$res->Type('submit');
+		return $res;
+	}
+	######################################
+	public static function ButtonResetDefaultXs($txt='', $id='', $isBlock=false, $title=''){
+		$res = new HtmlButtonElement($txt, $id, 'btn btn-default btn-xs' . $isBlock?' btn-block':'', $title);
+		$res->Type('reset');
+		return $res;
+	}
+	public static function ButtonResetDefaultSm($txt='', $id='', $isBlock=false, $title=''){
+		$res = new HtmlButtonElement($txt, $id, 'btn btn-default btn-sm' . $isBlock?' btn-block':'', $title);
+		$res->Type('reset');
+		return $res;
+	}
+	public static function ButtonResetDefaultMd($txt='', $id='', $isBlock=false, $title=''){
+		$res = new HtmlButtonElement($txt, $id, 'btn btn-default btn-md' . $isBlock?' btn-block':'', $title);
+		$res->Type('reset');
+		return $res;
+	}
+	public static function ButtonResetDefaultLg($txt='', $id='', $isBlock=false, $title=''){
+		$res = new HtmlButtonElement($txt, $id, 'btn btn-default btn-lg' . $isBlock?' btn-block':'', $title);
+		$res->Type('reset');
+		return $res;
 	}
 };
 ?>
