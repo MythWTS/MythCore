@@ -9,5 +9,9 @@ class HtmlButtonElement extends HtmlContainerElement{
 		if($value===null){return $this->_attributes['name'];}
 		else{$this->_attributes['name'] = U::ES($value);}
 	}
+	public function Type($value=null){
+		if($value===null){return $this->_attributes['type'];}
+		else{$this->_attributes['type'] = U::ES($value);}
+	}
 };
 ?>
