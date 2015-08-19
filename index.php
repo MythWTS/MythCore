@@ -6,7 +6,7 @@ require_once "Core.inc";
 # OTHER USES FOR IT :)
 ################################################################################################################
 $p = new HtmlPage(new HtmlPageMetaData('Testing - [Test Subject]'), array(
-	//test code here
+	//Components here
 ));
 $p->Render();
 ?>
