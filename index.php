@@ -1,9 +1,12 @@
 <?php
 require_once "Core.inc";
-/**
- * CURRENTLY THIS FILE IS USED MAINLY FOR TESTING IN THE LOCAL DEVELOPMENT ENVIRONMENT.
- * MOST OF THE TIME THE CONTENTS OF THIS FILE WILL NOT MAKE ANY SENSE, THIS SHOULD CHANGE AT THE ALPHA RELEASE
- */
 ################################################################################################################
-
+# THIS FILEIS USED AS A TEST LOCALLY. ANY CONTENTS IN IT ARE CURRENTLY NOT IMPORTANT TO THE FRAMEWORK ITSELF
+# FROM NOW ON, IT WILL CONTAIN THIS CONTENT ON THE REMOTE REPO UNTIL THE FRAMEWORK IS MATURE ENOUGH TO HAVE 
+# OTHER USES FOR IT :)
+################################################################################################################
+$p = new HtmlPage(new HtmlPageMetaData('Testing - [Test Subject]'), array(
+	//test code here
+));
+$p->Render();
 ?>
