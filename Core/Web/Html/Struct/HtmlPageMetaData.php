@@ -21,7 +21,7 @@ class HtmlPageMetaData extends Object{
 	 * 		)
 	 */
 	public function __construct(
-			$title='New Page', $desc='New Page', $keywords='', HtmlDocTypes $docType=null, $charset='UTF-8',
+			$title='', $desc='', $keywords='', HtmlDocTypes $docType=null, $charset='UTF-8',
 			HtmlFBMetaData $fbData = null, HtmlTwitterCard $twitterCard = null, HtmlSOMetaData $soData = null){
 		$this->_docType = $docType?:HtmlDocTypes::$Html5;
 		$this->_charset = $charset;

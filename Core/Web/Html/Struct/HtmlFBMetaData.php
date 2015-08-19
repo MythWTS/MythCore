@@ -101,7 +101,7 @@ class HtmlFBMetaData extends Object implements IMetaDataProvider{
 	###########################################################################
 	protected function extractArray($var){
 		if(is_array($var)){return $var;}
-		else if(is_string($var)){return explode(',', $var);}
+		else if(is_string($var) && !U::NAW($var)){return explode(',', $var);}
 		else {return array();}
 	}
 };
