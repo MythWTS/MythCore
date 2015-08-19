@@ -87,5 +87,9 @@ class ClassEnforcedContainerElement extends \HtmlContainerElement{
 			foreach($this->_classes as $class){$this->AddClassOnce($class);}
 		}
 	}
+	
+	public function EnforceedClasses(array $value=null){
+		return $this->_classes;
+	}
 };
 ?>
