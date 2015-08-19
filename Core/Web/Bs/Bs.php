@@ -1,5 +1,5 @@
 <?php
-use B as B;
+use Core\Web\Bs as B;
 final class Bs extends Object{
 	private function __construct(){}
 	###########################################################################
