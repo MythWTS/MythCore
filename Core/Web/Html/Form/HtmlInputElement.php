@@ -35,6 +35,13 @@ class HtmlInputElement extends HtmlEmptyElement{
 			else if(isset($this->_attributes['disabled'])){unset($this->_attributes['disabled']);}
 		}
 	}
+	public function Checked($value=null){
+		if($value === null){return $this->_attributes['checked'];}
+		else{
+			if($value){$this->_attributes['checked'] = 'disabled';}
+			else if(isset($this->_attributes['checked'])){unset($this->_attributes['checked']);}
+		}
+	}
 	public function ReadOnly($value=null){
 		if($value === null){return $this->_attributes['readonly'];}
 		else{
