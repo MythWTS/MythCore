@@ -98,19 +98,53 @@ class HtmlElement extends HtmlNode{
 	# Public Methods
 	###########################################################################
 	/** Returns whether the supplied attribute exists (whether it is assigned or not) */
-	public function HasAttribute($name){return array_key_exists(strtolower($name), $this->_attributes);}
+	public function HasAttribute($name){return array_key_exists(trim(strtolower(U::ES($name))), $this->_attributes);}
 	/** Returns whether the supplied attribute exists and has a value */
-	public function HasAssignedAttribute($name){return array_key_exists(strtolower($name), $this->_attributes) && !U::NA($this->_attributes[$name]);}
+	public function HasAssignedAttribute($name){
+		$name = trim(strtolower(U::ES($name)));
+		return array_key_exists($name, $this->_attributes) && !U::NA($this->_attributes[$name]);
+	}
 	/** Returns the value of the attribute with the supplied name or null if the attribute does not exist. A null value does not always mean the attribute does not exist though */
-	public function GetAttribute($name){return array_key_exists(strtolower($name), $this->_attributes)?$this->_attributes[$name]:null;}
+	public function GetAttribute($name){
+		$name = trim(strtolower(U::ES($name)));
+		return array_key_exists($name, $this->_attributes)?$this->_attributes[$name]:null;
+	}
 	/** Set the attribute to the supplied value, add it if it does not exist */
 	public function SetAttribute($name, $value){
-		if((is_string($name) && !U::NAW($name))||(is_a($name, "IObject") && !U::NAW($name->__toString()))){
-			$this->_attributes[strtolower($name)] = U::ES($value);
+		$name = trim(strtolower(U::ES($name)));
+		if(!U::NAW($name)){
+			$this->_attributes[$name] = U::ES($value);
 		}
+		return $this;
+	}
+	/** Set attributes from an associative array. Other items in the array will be ignored. Keys will be converted to strings if possible so will values */
+	public function SetAttributes(array $attributes){
+		foreach($attributes as $name=>$value){
+			$name = trim(strtolower(U::ES($name)));
+			if(!U::NAW($name)){
+				$this->_attributes[$name] = U::ES($value);
+			}
+		}
+		return $this;
 	}
 	/** Removes the attribute with the supplied name if it exists, nothing if it does not */
-	public function RemoveAttribute($name){if(array_key_exists(strtolower($name), $this->_attributes)){unset($this->_attributes[$name]);}}
+	public function RemoveAttribute($name){
+		$name = trim(strtolower(U::ES($name)));
+		if(array_key_exists($name, $this->_attributes)){
+			unset($this->_attributes[$name]);
+		}
+		return $this;
+	}
+	/** Removes the attributes with the supplied names. Supplied array keys will be ignored and values will be treated as class names, converted to string if possible or no action if not */
+	public function RemoveAttributes(array $names){
+		foreach($names as $name){
+			$name = trim(strtolower(U::ES($name)));
+			if(array_key_exists($name, $this->_attributes)){
+				unset($this->_attributes[$name]);
+			}
+		}
+		return $this;
+	}
 	/** Adds the class name supplied to the class attribute string of this element. If class is not set, it sets it, otherwise it just adds the new class, it does not check if the class exists or not. @see AddClassOnce if that's what you're looking for */
 	public function AddClass($class){
 		if(isset($this->_attributes['class'])){
@@ -119,6 +153,18 @@ class HtmlElement extends HtmlNode{
 		else{
 			$this->_attributes['class'] = $class;
 		}
+		return $this;
+	}
+	/** Adds the class names supplied to the class attribute string of this element. If class is not set, it sets it, otherwise it just adds the new classes, it does not check if the class exists or not. @see AddClassesOnce if that's what you're looking for */
+	public function AddClasses(array $classes){
+		$class = implode(' ', $classes);
+		if(isset($this->_attributes['class'])){
+			$this->_attributes['class'] = trim("{$this->_attributes['class']} {$class}");
+		}
+		else{
+			$this->_attributes['class'] = $class;
+		}
+		return $this;
 	}
 	/** Adds the class name suppied to the class attribute string of this element only if it is not already added or if the class attribute is not set. If you want to add the class even if it exists before, @see AddClass*/
 	public function AddClassOnce($class){
@@ -130,12 +176,37 @@ class HtmlElement extends HtmlNode{
 		else{
 			$this->_attributes['class'] = $class;
 		}
+		return $this;
+	}
+	/** Adds the class names suppied to the class attribute string of this element only if it is not already added or if the class attribute is not set. If you want to add the classes even if it exists before, @see AddClasses*/
+	public function AddClassesOnce($classes){
+		if(isset($this->_attributes['class'])){
+			foreach($classes as $class){
+				if(strpos($this->_attributes['class'], $class) === false){
+					$this->_attributes['class'] = trim("{$this->_attributes['class']} {$class}");
+				}
+			}
+		}
+		else{
+			$this->_attributes['class'] = implode(' ', $classes);
+		}
+		return $this;
 	}
 	/** Removes all occurences of the supplied class from the class attribute of this element.  */
 	public function RemoveClass($class){
 		if(isset($this->_attributes['class'])){
 			str_replace($class, '', $this->_attributes['class']);
 		}
+		return $this;
+	}
+	/** Removes all occurences of the supplied classes from the class attribute of this element.  */
+	public function RemoveClasses($classes){
+		if(isset($this->_attributes['class'])){
+			foreach($classes as $class){
+				str_replace($class, '', $this->_attributes['class']);
+			}
+		}
+		return $this;
 	}
 	###########################################################################
 	# Protected Virtual Utility Methods
