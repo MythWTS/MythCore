@@ -2,7 +2,7 @@
 namespace Core\Web\Bs;
 ///TODO: Set up accessors for the main propserties label, type, placeholder
 ///TODO: Decide a strategy of whether every element should be id'd and what to use for auto-ids
-class TextField extends ClassEnforcedContainerElement{
+class TextField extends FormGroup{
 	///TODO:Clean up any unnecessary properties
 	protected $_label, $_type, $_rows, $_columns, $_placeholder;
 	protected $_lbl, $_input;
@@ -27,7 +27,7 @@ class TextField extends ClassEnforcedContainerElement{
 			$this->_input = new \HtmlInputElement($type, $id, $attr, $id, 'form-control');
 		}
 
-		parent::__construct(array('form-group'), 'div', array($this->_lbl, $this->_input));
+		parent::__construct(array($this->_lbl, $this->_input));
 	}
 	
 	public function Id($value=null){
