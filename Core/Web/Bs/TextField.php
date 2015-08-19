@@ -5,28 +5,39 @@ namespace Core\Web\Bs;
 class TextField extends ClassEnforcedContainerElement{
 	///TODO:Clean up any unnecessary properties
 	protected $_label, $_type, $_rows, $_columns, $_placeholder;
+	protected $_lbl, $_input;
 	public function __construct($id, TextFieldTypes $type=null, $label='', $initialValue='', $placeholderText='', $rows='', $cols=''){
 		if(\U::NA($id)){$id = uniqid('NPID');}
 		//array $classesToEnforce, $tag, $contents='', $id='', $class='', $title='', $style='', $indentContents=true
 		$type = $type?: TextFieldTypes::$Text;
 		$this->_type = $type; $this->_label = $label; $this->_placeholder = $placeholderText; $this->_rows = $rows; $this->_columns = $cols;
 
-		$lbl = new \HtmlLabelElement($label, $id);
+		$this->_lbl = new \HtmlLabelElement($label, $id);
 
 		$attr = array();
-		$txt = null; 
+		$this->_input = null; 
 		if(!\U::NA($placeholderText)){$attr['placeholder'] = $placeholderText;}
 		if($type == TextFieldTypes::$Multiline){
 			if(!\U::NA($rows)){$attr['rows'] = "{$rows}";}
 			if(!\U::NA($cols)){$attr['cols'] = "{$cols}";}
-			$txt = new \HtmlTextAreaElement($initialValue, $id, 'form-control');
-			$txt->SetAttributes($attr);
+			$this->_input = new \HtmlTextAreaElement($initialValue, $id, 'form-control');
+			$this->_input->SetAttributes($attr);
 		}
 		else{
-			$txt = new \HtmlInputElement($type, $id, $attr, $id, 'form-control');
+			$this->_input = new \HtmlInputElement($type, $id, $attr, $id, 'form-control');
 		}
 
-		parent::__construct(array('form-group'), 'div', array($lbl, $txt), $id);
+		parent::__construct(array('form-group'), 'div', array($this->_lbl, $this->_input));
+	}
+	
+	public function Id($value=null){
+		if($value === null){return $this->_input->Id();}
+		else{$this->_input->Id($value); $this->_input->Name($value);}
+	}
+	
+	public function LabelContents($value=null){
+		if($value===null){return $this->_lbl->ChildNodes();}
+		else{$this->_lbl = new \HtmlLabelElement($value, $this->_input->Id());}
 	}
 };
 ?>
