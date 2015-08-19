@@ -18,14 +18,60 @@ class ClassEnforcedContainerElement extends \HtmlContainerElement{
 	}
 	/** Set the attribute to the supplied value, add it if it does not exist. Overriden from base(HtmlElement) to also make sure the element always have the set of enforced classes in case the user is setting the class attribute */
 	public function SetAttribute($name, $value){
-		parent::SetAttribute($name, $value);
-		$name = strtolower(\U::ES($name));
+		$name = trim(strtolower(\U::ES($name)));
+		if(!\U::NAW($name)){
+			$this->_attributes[$name] = \U::ES($value);
+		}
 		if($name=='class'){foreach($this->_classes as $class){$this->AddClassOnce($class);}}
+		return $this;
+	}
+	/** Set attributes from an associative array. Other items in the array will be ignored. Keys will be converted to strings if possible so will values */
+	public function SetAttributes(array $attributes){
+		foreach($attributes as $name=>$value){
+			$name = trim(strtolower(\U::ES($name)));
+			if(!\U::NAW($name)){
+				$this->_attributes[$name] = \U::ES($value);
+				if($name=='class'){foreach($this->_classes as $class){$this->AddClassOnce($class);}}
+			}
+		}
+		return $this;
 	}
 	/** Removes the attribute with the supplied name if it exists, nothing if it does not. Overriden from base(HtmlElement) to also make sure the element always have the set of enforced classes in case the user is removing the class attribute */
 	public function RemoveAttribute($name){
-		parent::RemoveAttribute($name);
+		$name = trim(strtolower(\U::ES($name)));
+		if(array_key_exists($name, $this->_attributes)){
+			unset($this->_attributes[$name]);
+		}
 		if($name=='class'){foreach($this->_classes as $class){$this->AddClassOnce($class);}}
+		return $this;
+	}
+	/** Removes the attributes with the supplied names. Overriden from base(HtmlElement) to also make sure the element always have the set of enforced classes in case the user is removing the class attribute*/
+	public function RemoveAttributes(array $names){
+		foreach($names as $name){
+			$name = trim(strtolower(\U::ES($name)));
+			if(array_key_exists($name, $this->_attributes)){
+				unset($this->_attributes[$name]);
+			}
+			if($name=='class'){foreach($this->_classes as $class){$this->AddClassOnce($class);}}
+		}
+		return $this;
+	}
+	/** Removes all occurences of the supplied class from the class attribute of this element. Overriden to ensure enforced classes do not get deleted  */
+	public function RemoveClass($class){
+		if(array_search($class, $this->_classes) !== false){return $this;}
+		if(isset($this->_attributes['class'])){
+			str_replace($class, '', $this->_attributes['class']);
+		}
+		return $this;
+	}
+	/** Removes all occurences of the supplied classes from the class attribute of this element.  */
+	public function RemoveClasses($classes){
+		if(isset($this->_attributes['class'])){
+			foreach($classes as $class){
+				if(array_search($class, $this->_classes) === false){str_replace($class, '', $this->_attributes['class']);}
+			}
+		}
+		return $this;
 	}
 	/** 
 	 * Accessor for the Attributes property
