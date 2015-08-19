@@ -24,9 +24,9 @@ class Column extends \HtmlContainerElement{
 		}
 		else{
 			$this->_lg = $largeOptions?:new ColumnDeviceOptions(Devices::$LG);
-			$this->_md = $largeOptions?:new ColumnDeviceOptions(Devices::$MD);
-			$this->_sm = $largeOptions?:new ColumnDeviceOptions(Devices::$SM);
-			$this->_xs = $largeOptions?:new ColumnDeviceOptions(Devices::$XS);
+			$this->_md = $mediumOptions?:new ColumnDeviceOptions(Devices::$MD);
+			$this->_sm = $smallOptions?:new ColumnDeviceOptions(Devices::$SM);
+			$this->_xs = $xsmallOptions?:new ColumnDeviceOptions(Devices::$XS);
 		}
 		parent::__construct($tag, null, $contents, $id, '', '', '', $indentContents);
 		$this->addDeviceOptionsClasses();
