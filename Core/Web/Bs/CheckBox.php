@@ -2,6 +2,7 @@
 namespace Core\Web\Bs;
 class CheckBox extends ClassEnforcedContainerElement{
 	protected $_input, $_label, $_txt;
+	/** Constructor($id, $label='', $value='', $checked=false, $disabled=false, $class='', $title='', $style='', $indentContents=true) */
 	public function __construct($id, $label='', $value='', $checked=false, $disabled=false, $class='', $title='', $style='', $indentContents=true){
 		//Ensuring there's an ID
 		if(\U::NA($id)){$id = uniqid('NPID');}

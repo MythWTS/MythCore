@@ -219,5 +219,11 @@ final class Bs extends Object{
 	public static function TextField($id, B\TextFieldTypes $type=null, $label='', $initialValue='', $placeholderText='', $rows='', $cols=''){
 		return new B\TextField($id, $type, $label, $initialValue, $placeholderText, $rows, $cols);
 	}
+	public static function CheckBox($id, $label='', $value='', $checked=false, $disabled=false, $class='', $title='', $style='', $indentContents=true){
+		return new B\CheckBox($id, $label, $value, $checked, $disabled, $class, $title, $style, $indentContents);
+	}
+	public static function RadioBox($id, $label='', $value='', $checked=false, $disabled=false, $class='', $title='', $style='', $indentContents=true){
+		return new B\RadioBox($id, $label, $value, $checked, $disabled, $class, $title, $style, $indentContents);
+	}
 };
 ?>
