@@ -37,12 +37,21 @@ class HtmlPage extends HtmlNode{
 	# Protected Virtual Methods
 	############################################################################
 	protected function generateHtmlDocument(){
-		$this->_doc = new HtmlDocument(
-			$this->_metaData->GenerateHeadElement(),
-			new HtmlBodyElement($this->_contents),
-			$this->_metaData->DocType(),
-			$this->_indentContents
-		);
+		$head = $this->_metaData->GenerateHeadElement();
+		foreach($this->_headScripts as $id=>$script){
+			if(is_a($script, 'HtmlScriptElement')||is_a($script, 'HtmlInlineScriptElement')){$head->AddNode($script);}
+			else{$head->AddScript($script, is_string($id) && !U::NA($id)?$id:'');}
+		}
+		foreach ($this->_stylesheets as $id => $stylesheet) {
+			if(is_a($stylesheet, 'HtmlLinkElement')){$head->AddNode($stylesheet);}
+			else{$head->AddStylesheet($stylesheet, is_string($id) && !U::NA($id)?$id:'');}
+		}
+		$body = new HtmlBodyElement($this->_contents);
+		foreach ($this->_bottomScripts as $id => $script) {
+			if(is_a($script, 'HtmlScriptElement')||is_a($script, 'HtmlInlineScriptElement')){$body->AddNode($script);}
+			else{$body->AddScript($script, is_string($id) && !U::NA($id)?$id:'');}
+		}
+		$this->_doc = new HtmlDocument($head, $body, $this->_metaData->DocType(), $this->_indentContents);
 	}
 	############################################################################
 	# Properties Accessors
