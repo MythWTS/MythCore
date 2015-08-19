@@ -3,7 +3,7 @@ namespace Core\Web\Bs;
 ///TODO: Add support for visible-block, visible-inline-block, visible-inline
 class ColumnDeviceOptions extends \Object{
 	protected $_device, $_width, $_offset, $_push, $_pull, $_only, $_hidden, $_srOnly;
-	public function __construct(Devices $device, $width=12, $offset=0, $push=0, $pull=0, $only=false, $hidden=false, $srOnly=false){
+	public function __construct(Devices $device, $width=0, $offset=0, $push=0, $pull=0, $only=false, $hidden=false, $srOnly=false){
 		$this->_device = $device?:Devices::$Mobile; $this->_width = $width; $this->_offset = $offset; $this->_push = $push;
 		$this->_pull = $pull; $this->_only = $only; $this->_hidden = $hidden; $this->_srOnly = $srOnly;
 	}
