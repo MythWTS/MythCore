@@ -59,6 +59,8 @@ $Loader = new CoreLoader(
 			'Core\Web\Bs\Row',
 			'Core\Web\Bs\TextAlign',
 			'Core\Web\Bs\TextCase',
+			'Core\Web\Bs\TextField',
+			'Core\Web\Bs\TextFieldTypes',
 			'Core\Web\Bs\UpperCased',
 		),
 		'Core/Web/Html' => array(
