@@ -12,9 +12,10 @@ We like to think that a lot is different than other frameworks.
 No procedural traces at all (if you decide to use the framework). More importantly, it's consistent.
 * One of the problems we face is using different components developed by different people using different conventions and structures.
 The purpose of MythCore is to solve this by providing one framework to rule them all and in the .... Ok, we go too far sometimes!
-The idea is, whether you're writing the data access layer or the interface of the application, you'll be using the same conventions.
+The idea is, whether you are writing the data access layer or the interface of the application, you'll be using the same conventions.
 * The framework is developed with a focus on modern web requirements. Social media integration at the framework level and responsiveness are our top priorities, right after ease of use.
-##Design Goals
+
+###Design Goals
 * Social Media features integration at all levels
 * Responsiveness and delivering mobile friendly applications
 * Modernity (is that a word?)
@@ -35,5 +36,5 @@ The **MythCore** library is supposed to consist mainly of 6 major packages (so f
 * Route - Hanldes the infrastructure underneath the MVC-like model. Basically it simplifies routing everything so that you will not have a require_once hell!
 * API - Enables the abstraction of creating APIs for web applications
 * Net - Networking and transport protocol components live here!
-##Collaborators Needed!
+###Collaborators Needed!
 If you feel the project is interesting, and you are welling to help, please contact me via any means. I'll soon write something on "How you can help" .. when I have time and I'm not writing code! :)
