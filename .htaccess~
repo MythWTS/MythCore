@@ -1,0 +1,2 @@
+RewriteEngine On
+RewriteRule ^Test/([^/]*)/([^/]*)/([^/]*)$ /index.php?cmd=Test&package=$1&module=$2&test=$3 [L]

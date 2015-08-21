@@ -1,22 +1,66 @@
 <?php
+namespace Core;
+/**
+ * interface IObject - root interface in the framework.
+ * Every class and interface within the framework implement this interface either directly or through one of its ancestors
+ */
 interface IObject{
+	/**
+	 * Magic __toString() method - returns a string representation of the IObject
+	 * @return string
+	 */
 	public function __toString();
+	/**
+	 * string ToString() - alias of __toString()
+	 * @return string
+	 */
 	public function ToString();
-	public function GetType();
+	/**
+	 * string GetClassName() - returns the name of the class for the actual object at hand
+	 * @return string
+	 */
 	public function GetClassName();
+	/**
+	 * bool Is($className) - returns whether the object is a descendant of the class named $className
+	 * @return bool
+	 */
 	public function Is($className);
 };
 ###############################################################################
+/**
+ * class Object - base class of all classes in the framework
+ */
 class Object implements IObject{
+	/**
+	 * Magic __toString() method - returns a string representation of the Object
+	 * @return string
+	 */
 	public function __toString(){return get_class($this);}
+	/**
+	 * string ToString() - alias of __toString()
+	 * @return string
+	 */
 	public function ToString(){return $this->__toString();}
-	public function GetType(){return Type::FromClassName(get_class($this));}
+	/**
+	 * string GetClassName() - returns the name of the class for the actual object at hand
+	 * @return string
+	 */
 	public function GetClassName(){return get_class($this);}
+	/**
+	 * bool Is($className) - returns whether the object is a descendant of the class named $className
+	 * @return bool
+	 */
 	public function Is($className){return is_a($this, $className);}
 	/**
 	 * Magic getter.
-	 * This is to enable developers to either create properties the usual way, or create the property then create a [PropertyName] method that will
-	 * be called instead when retrieving the property value. These methods will usually contain both the set and get of the property.
+	 * This is the framework's way of  implementing properties. Whenever a property is called in a get context this method
+	 * gets called and it searches for a method with the same name as the property. If one exists, it calls it.
+	 * This enables the use of method names as properties. So if you have a method Xyz() that can be called with no
+	 * parameters you can call it by using its name as a property, so if $a is of class XYZ which declares a method Abc(a=0)
+	 * you can write something like $x = $a->Abc; which is equivalen to $x = $a->Abc();
+	 * Properties in the framework will usually be declared as methods with one parameter that defaults to null and within the 
+	 * body of the method, the parameter is checked for equality with null using === and in the if section
+	 * the getter of the property will be implmented and in the else section, will be the setter.
 	 */
 	public function __get($propertyName){
 		if(method_exists($this, $propertyName)){return call_user_func(array($this, $propertyName));}
@@ -24,9 +68,17 @@ class Object implements IObject{
 		else{return null;}
 	}
 	/**
-	 * Magic Setter.
-	 * This is to enable developers to either create properties the usual way, or create the property then create a [PropertyName] method that will
-	 * be called instead when assigning the property value.  These methods will usually contain both the set and get of the property.
+	 * Magic setter.
+	 * This is the framework's way of  implementing properties. Whenever a property is called in a set context this method
+	 * gets called and it searches for a method with the same name as the property. If one exists, it calls it, supplying it
+	 * with the value assigned to the property. This enables the use of method names as properties. So if you have a method
+	 * Xyz() that can be called with one parameter you can call it by using its name as a property, so if $a is of class XYZ
+	 * which declares a method Abc($a, $x=10), you can use Abc as the name of a property in any assignment
+	 * So, you can write something like $a->Abc = 20 which is the same as $a->Abc(20)
+	 * If no method is found, it defaults to the original behavior of adding the property dynamically.
+	 * Properties in the framework will usually be declared as methods with one parameter that defaults to null and within the 
+	 * body of the method, the parameter is checked for equality with null using === and in the if section
+	 * the getter of the property will be implmented and in the else section, will be the setter.
 	 */
 	public function __set($propertyName, $value){
 		if(method_exists($this, $propertyName)){return call_user_func(array($this, $propertyName), $value);}
@@ -35,24 +87,26 @@ class Object implements IObject{
 };
 ###############################################################################
 /**
- * class Type is the main class in the Reflection namespace. Currently it is a prototype implementation with the 
- * bare minimum required implementation just for the framework to function (as long as you don't expect to be using GetType for real)
- * TODO: Remove dummy implementation and replace with a real one (or remove the whole class alltogether if necessary)
+ * class U - the framework's utility class
+ * This class is used mainly to group PHP functions that are often used and some common tasks to the framework classes
+ * It's meant to be the only class that uses short names and users of the framework do not need to use it as most of the 
+ * names of the methods are really short. However, some of the methods are really useful, like U::NA() - not available, 
+ * used to check if a parameter was passed or not usually in the framework for default behaviors that can not be expressed 
+ * in the parameter list for example, or to give the user the option to skip one parameter by supplying null or an empty string
+ * It also includes the setting for tabs, newlines, directory separators, quotes used in outputing results
  */
-class Type extends Object{
-	private $_className, $_moduleName, $_namespace, $_methods, $_properties;
-	private function __construct($className='Object'){
-		
-	}
-	public static function FromClassName($className){
-		return new Type($className);
-	}
-};
-###############################################################################
 final class U extends Object{
-	public static $TAB = "\t", $NL = "\n", $DS = DIRECTORY_SEPARATOR, $Q = '"';
+	public static
+		/** the tab chaaracter used for indentation across the framework. Changing it will affect any outputing from that point onward */ 
+		$TAB = "\t",
+		/** New line character used in the framework output */
+		$NL = "\n",
+		/** The string used to identify directory separators */
+		$DS = DIRECTORY_SEPARATOR, 
+		/** Quote character to be used for html output */
+		$Q = '"';
+	/** private constructor to forbid initializing objects */
 	private function __construct(){}
-	///TODO: Test the ES Method
 	/**
 	 * Extract String from mixed variable. Depending on the variable, tries to return a string representation (mostly suitable for use in the framework)
 	 * - if a scalar, return the scalar enclosed in a string
@@ -146,83 +200,178 @@ final class U extends Object{
 	public static function DocRoot(){return rtrim($_SERVER['DOCUMENT_ROOT'], self::$DS) . self::$DS;}
 };
 ###############################################################################
+/**
+ * CoreConfig - basic configuration utility for the framework. It's a singelton class so there's always only one instance
+ * of the class, and all susequent constructions basically returns that object.
+ */
 class CoreConfig extends Object{
-	protected $_basePath, $_streamDefaultChunkSize;
-	public function __construct(){
+	private static
+		/** CoreConfig::$_instance is the sole instance of the class and it can only be returned using the factory method Instance */ 
+		$_instance = null;
+	protected
+		/** _basePath is the installation path of the MythCore framework  */
+		$_basePath,
+		/** The default chunk size to be read/written if a default is needed */
+		$_streamDefaultChunkSize,
+		/** The file extension used for php include files on this installation*/
+		$_phpFilesExt = '.php',
+		/** Internal storage of the debug mode. True activates debugging, false deactivatesit */
+		$_debug=false,
+		/** Internal storage of the debug log file location */
+		$_debugFile = 'log.txt';
+	/**
+	 * CoreConfig::Instance() - factory method for the config class, returns the singelton instance of the class or creates 
+	 * it and returns it if it hasn't been created yet.
+	 */
+	public static function Instance(){
+		if(self::$_instance === null){
+			self::$_instance = new CoreConfig();
+		}
+		return self::$_instance;
+	}
+	/** Private constructor */
+	private function __construct(){
 		$this->_streamDefaultChunkSize = 1024;
 	}
-
+	/** 
+	 * Accessor to the BasePath Property [get, set]-[default U::DocRoot()]
+	 * @return string
+	 */
 	public function BasePath($value=null){
 		if($value === null){return $this->_basePath;}
 		else{$this->_basePath = $value;}
 	}
+	/** 
+	 * Accessor to the IndentString Property [get, set]-[default \t]. This actually modifies the value in the U utility class and
+	 * affects outputting / indenting all over the framework.
+	 * @return string
+	 */
 	public function IndentString($value=null){
 		if($value === null){return U::$TAB;}
 		else{U::$TAB = $value;}
 	}
+	/** 
+	 * Accessor to the NewLineString Property [get, set]-[default \n]. This actually modifies the value in the U utility class and
+	 * affects outputting / indenting all over the framework.
+	 * @return string
+	 */
 	public function NewLineString($value=null){
 		if($value === null){return U::$NL;}
 		else{U::$NL = $value;}
 	}
+	/** 
+	 * Accessor to the StreamDefaultChunkSize Property [get, set]-[default 1024]
+	 * @return int
+	 */
 	public function StreamDefaultChunkSize($value=null){
 		if($value === null){return $this->_streamDefaultChunkSize;}
 		else if(is_int($value)){$this->_streamDefaultChunkSize = $value;}
 	}
+	/** 
+	 * Accessor to the HtmlAttributesQuote Property [get, set]-[default "]. This actually modifies the value in the U utility class and
+	 * affects outputting / indenting all over the framework.
+	 * @return string
+	 */
 	public function HtmlAttributesQuote($value=null){
 		if($value === null){return U::$Q;}
 		else{U::$Q = $value;}
 	}
+	/**
+	 * Accessor to the ClassFilesExtension Config Property [get, set]-[default '.php']. 
+	 * the framework, otherwise it defaults to false (usual for production environments)
+	 * @return string
+	 */
+	public function ClassFilesExtension($value=null){
+		if($value === null){return $this->_phpFilesExt;}
+		else{$this->_phpFilesExt = U::ES($value);}
+	}
+	/**
+	 * Accessor to the DebugMode Config Setting [get, set]-[default false]. This is the file extension used by the class 
+	 * loaderIf set to true, debugging will be enabled throughout the framework, otherwise it defaults to false 
+	 * (usual for production environments)
+	 * @return bool
+	 */
+	public function DebugMode($value=null){
+		if($value === null){return $this->_debug;}
+		else{$this->_debug = U::EB($value);}
+	}
+	/**
+	 * Accessor to the DebugLogFile Config Setting [get, set]-[default log.txt]. This is used by debug classes to output
+	 * log information. It returns a file path that will be used as is by those classes.
+	 * @return string
+	 */
+	public function DebugLogFile($value=null){
+		if($value === null){return $this->_debugFile;}
+		else{$this->_debugFile = U::EB($value);}
+	}
 };
 ###############################################################################
+/**
+ * IClassLoader - Base interface for all class loader.
+ */
 interface IClassLoader extends IObject{
+	/**
+	 * Registers the class loader instance with the spl load services
+	 */
 	public function Register();
-	public function LoadClass($class);
+	/**
+	 * Given a class $className, implementations of this method should be able to load the class file if the class
+	 * is handled by this instance of the class loader. Returns true if the class was loaded, false otherwise.
+	 * @return bool
+	 */
+	public function LoadClass($className);
 };
 ###############################################################################
+/**
+ * Abstract class ClassLoaderBase is an optional base class for class loaders
+ */
 abstract class ClassLoaderBase extends Object implements IClassLoader{
 	protected $_basePath;
 	protected function __construct($basePath=''){
 		$this->_basePath = U::NAW($basePath)?U::DocRoot():U::CP($basePath);
 	}
+	/** Proposed implementation of the Register method, registering LoadClass with spl autoload */
 	public function Register(){spl_autoload_register(array($this, "LoadClass")); return $this;}
-	public function LoadClass($class){
-		if($this->canLoad($class)){
-			require_once $this->getRequiredFileForClass($class);
-		}
-	}
-	abstract protected function getRequiredFileForClass($className);
-	abstract protected function canLoad($className);
+	/** Must be implemented in child classes to do the necessary to load classes */
+	abstract public function LoadClass($className);
 };
 ###############################################################################
 class CoreLoader extends ClassLoaderBase{
-	private $_groups, $_classes, $_fext;
-	public function __construct(array $groupedClasses, $basePath='', $filesExtension='.php'){
-		parent::__construct($basePath);
-		$this->_fext = $filesExtension;
-		$this->_groups = array(); $this->_classes = array(); $groupKey = 0;
-		foreach ($groupedClasses as $group => $classes) {
-			$this->_groups[$groupKey] = $group;
-			foreach ($classes as $class) {$this->_classes[$class] = $groupKey;}
-			$groupKey++;
+	private static $_registered = false;
+	protected $_ext;
+	/** Constructor($basePath='', $fileExtension = '.php') */
+	public function __construct($basePath='', $fileExtension = '.php'){
+		parent::__construct($basePath); $this->_ext = $fileExtension;
+	}
+	/** 
+	 * Loads the given class by looking for a file with the class's name in a directory identical to the namespacing of 
+	 * the class starting at the base path. If one exists, loads it and returns true. Otherwise returns false.
+	 * @return bool
+	 */
+	public function LoadClass($className){
+		$fileName = $this->_basePath . str_replace("\\", U::$DS, $className) . $this->_ext;
+		if(file_exists($fileName)){
+			return require_once $fileName;
+		}
+		else{return false;}
+	}
+	/**
+	 * Registers the class loader instance with the spl load services
+	 * Overriden to make sure only one instnace is registered of this type of class loaders
+	 */
+	public function Register(){
+		if(!self::$_registered){
+			spl_autoload_register(array($this, "LoadClass"));
+			self::$_registered = true;
 		}
 	}
-	protected function canLoad($className){return array_key_exists($className, $this->_classes);}
-	protected function getRequiredFileForClass($className){
-		$group = U::CP($this->_groups[$this->_classes[$className]]);
-		if(strpos($className, "\\") !== false){$className = substr($className, strrpos($className, "\\") + 1); }
-		return "{$this->_basePath}{$group}{$className}{$this->_fext}";
-	}
-	public function AddClass($className, $classGroupName){
-		$group = array_search($classGroupName, $this->_groups);
-		if($group === false){$group = count($this->_groups); $this->_groups[$group] = $classGroupName;}
-		$this->_classes[$className] = $group;
-		return $this;
-	}
-	public function AddGroup($classGroupName){
-		$group = array_search($classGroupName, $this->_groups);
-		if($group === false){$group = count($this->_groups); $this->_groups[$group] = $classGroupName;}
-		return $this;
+	/**
+	 * Registers the class loader instance with the spl load services
+	 * In the config file, set the configurations using CoreConfig::Instance->Setting_Name then call this!
+	 */
+	public static function RegisterInstance(){
+		$i = new CoreLoader(CoreConfig::Instance()->BasePath, CoreConfig::Instance()->ClassFilesExtension());
+		$i->Register();
 	}
 };
-
 ?>

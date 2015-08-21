@@ -1,4 +1,6 @@
 <?php
-$Config = new CoreConfig();
-$Config->BasePath = U::DocRoot();
+namespace Core;
+CoreConfig::Instance()->BasePath(U::DocRoot());
+CoreConfig::Instance()->DebugMode(true);
+CoreLoader::RegisterInstance();
 ?>

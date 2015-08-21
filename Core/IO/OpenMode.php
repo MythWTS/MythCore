@@ -1,9 +1,15 @@
 <?php
-final class FileOpenMode extends Enum{
+namespace Core\IO;
+use Core\Enum;
+/**
+ * enum OpenMode
+ * An enumeration with members representing the different file open modes available.
+ */
+final class OpenMode extends Enum{
 	public static
 		/** Open for reading only; place the file pointer at the beginning of the file (r) */
 		$ReadOnly,
-		/** Open for reading and writing; place the file pointer at the beginning of the file. (r+) */
+		/** Open for reading and writing; place the file pointer at the beginning of the file. File must exist (r+) */
 		$ReadWrite,
 		/** Open for writing only; place the file pointer at the beginning of the file and truncate the file to zero length. If the file does not exist, attempt to create it. (w) */
 		$WriteTruncate,
@@ -21,19 +27,21 @@ final class FileOpenMode extends Enum{
 		$WriteToStart,
 		/** Open the file for reading and writing; otherwise it has the same behavior as WriteToStart (c+) */
 		$ReadWriteToStart;
+	/** Protected Constructor - instantiates an instance of the enumeration. Used internally only */
 	protected function __construct($name, $value){parent::__construct($name, $value);}
+	/** Static Constructor */
 	public static function Initialize(){
-		self::$ReadOnly = new FileOpenMode("ReadOnly", "r");
-		self::$ReadWrite = new FileOpenMode("ReadWrite", "r+");
-		self::$WriteTruncate = new FileOpenMode("WriteTruncate", "w");
-		self::$ReadWriteTruncate = new FileOpenMode("ReadWriteTruncate", "w+");
-		self::$WriteAppend = new FileOpenMode("WriteAppend", "a");
-		self::$ReadWriteAppend = new FileOpenMode("ReadWriteAppend", "a+");
-		self::$WriteCreateOnly = new FileOpenMode("WriteCreateOnly", "x");
-		self::$ReadWriteCreateOnly = new FileOpenMode("ReadWriteCreateOnly", "x+");
-		self::$WriteToStart = new FileOpenMode("WriteToStart", "c");
-		self::$ReadWriteToStart = new FileOpenMode("ReadWriteToStart", "c+");
+		self::$ReadOnly = new OpenMode("ReadOnly", "r");
+		self::$ReadWrite = new OpenMode("ReadWrite", "r+");
+		self::$WriteTruncate = new OpenMode("WriteTruncate", "w");
+		self::$ReadWriteTruncate = new OpenMode("ReadWriteTruncate", "w+");
+		self::$WriteAppend = new OpenMode("WriteAppend", "a");
+		self::$ReadWriteAppend = new OpenMode("ReadWriteAppend", "a+");
+		self::$WriteCreateOnly = new OpenMode("WriteCreateOnly", "x");
+		self::$ReadWriteCreateOnly = new OpenMode("ReadWriteCreateOnly", "x+");
+		self::$WriteToStart = new OpenMode("WriteToStart", "c");
+		self::$ReadWriteToStart = new OpenMode("ReadWriteToStart", "c+");
 	}
 };
-FileOpenMode::Initialize();
+OpenMode::Initialize();
 ?>

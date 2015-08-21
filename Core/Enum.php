@@ -1,4 +1,5 @@
 <?php
+namespace Core;
 class Enum extends Object{
 	protected $_name, $_value;
 	public function __toString(){return $this->_value;}
