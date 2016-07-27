@@ -6,23 +6,23 @@ namespace Core;
  */
 interface IObject{
 	/**
-	 * Magic __toString() method - returns a string representation of the IObject
+	 * Magic __toString() method. Returns a string representation of the IObject
 	 * @return string - a string representation of the IObject
 	 */
 	public function __toString();
 	/**
-	 * string ToString() - alias of __toString()
+	 * Alias of __toString()
 	 * @return string - a string representation of the IObject
 	 */
 	public function ToString();
 	/**
-	 * string GetClassName() - returns the name of the class for the actual object at hand
-	 * @return string
+	 * Returns the name of the class for the actual object at hand
+	 * @return string - the name of the class for the actual object at hand
 	 */
 	public function GetClassName();
 	/**
-	 * bool Is($className) - returns whether the object is a descendant of the class named $className
-	 * @param $className string - The name of the class to check whether this object is a descendant of.
+	 * Returns whether the object is a descendant of the class named $className
+	 * @param string $className - The name of the class to check whether this object is a descendant of
 	 * @return bool - whether the object is a descendant of the class named $className
 	 */
 	public function Is($className);
