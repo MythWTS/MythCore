@@ -5,14 +5,14 @@ namespace Core;
  */
 trait TSingleton{
 	use TObject;
+	protected static $_instance;
 	/**
 	 * Property method to return the only instance of the singleton
 	 * @return unknown - depends on the using class
 	 */
 	public static function Instance(){
-		static $_instance = null;
 		$class = __CLASS__;
-		return $_instance ?: $_instance = new $class;
+		return self::$_instance?: self::$_instance = new $class;
 	}
 	/**
 	 * Magic clone method to disallow clonning of the singleton class instance
