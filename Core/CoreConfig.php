@@ -1,6 +1,18 @@
 <?php
 namespace Core;
-
+/**
+ * CoreConfig is a singleton class that holds basic essential configuration settings for the whole of the MythCore framework. The settings stored
+ * here affects the whole of the framework and are hardcoded into code files and can only be changed using code denoting their importance.
+ * @property string $BasePath - the base path to the installation root (usually the document root of the server)
+ * @property string $CoreDirectory - the name of the Core directory (without the path)
+ * @property boolean $DebugMode - whether the debugging mode is enabled or not 
+ * @property string $DebugLogFile - the path to the debug log file
+ * @property string $IndentString - the currently used tab character by the framework
+ * @property string $NewLineString - the currently used newline character by the framework
+ * @property string $HtmlAttributesQuote - the currently used quoting character throughout the framework
+ * @property integer $StreamDefaultChunkSize - the currently used chunk size for streams in the framework
+ * @property string $ClassFilesExtension - the currently used file extension for code files for the class loader
+ */
 final class CoreConfig extends Object{
 	use TSingleton;
 	###########################################################################
@@ -69,7 +81,7 @@ final class CoreConfig extends Object{
 	 * Accessor to the DebugMode Config Setting [get, set]-[default false].
 	 * If set to true, debugging will be enabled throughout the framework, otherwise it defaults to false (usual for production environments)
 	 * @param boolean $value - the value to assign to this property (true enables the debugging mode)
-	 * @return boolean - whether the debugging mode is enabled or not 
+	 * @return boolean - whether the debugging mode is enabled or not
 	 */
 	public function DebugMode($value=null){
 		if($value === null){return $this->_debug;}
@@ -79,7 +91,7 @@ final class CoreConfig extends Object{
 	 * Accessor to the DebugLogFile Config Setting [get, set]-[default log.txt]. This is used by debug classes to output
 	 * log information. It returns a file path that will be used as is by those classes.
 	 * @param string $value - the log file path to assign to this property
-	 * @return string - the path to the log file
+	 * @return string - the path to the debug log file
 	 */
 	public function DebugLogFile($value=null){
 		if($value === null){return $this->_debugFile;}
