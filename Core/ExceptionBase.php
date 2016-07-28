@@ -1,7 +1,5 @@
 <?php
-namespace Core\Error;
-use Core\IObject;
-use Core\TObject;
+namespace Core;
 /**
  * ExceptionBase is to serve as the base class for all exceptions in the MythCore framework. Since it's necessary to extend the Exception class for
  * any class to be used with PHP throw statement, this class extends \Exception and implements IObject instead of extending Object like most classes
