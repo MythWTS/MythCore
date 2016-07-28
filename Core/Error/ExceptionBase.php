@@ -7,13 +7,13 @@ use Core\TObject;
  * any class to be used with PHP throw statement, this class extends \Exception and implements IObject instead of extending Object like most classes
  * in the framework. This way, it is still integrated with the framework's class heirarchy and it can be used for exception handling as well.
  * Since most of the Object class functionality is in the TObject trait, it is also used in this class
- * @property string Message
- * @property int Code
- * @property string File
- * @property int Line
- * @property array Trace
- * @property Exception Previous
- * @property string TraceAsString
+ * @property string Message - the exception message
+ * @property int Code - the error code associated with this exception
+ * @property string File - the filename of the file where the exception occured
+ * @property int Line - the line number of the code line where the exception was thrown
+ * @property array Trace - an array representing the stack trace
+ * @property Exception Previous - the previous exception
+ * @property string TraceAsString - a string representation of the stack trace
  */
 class ExceptionBase extends \Exception implements IObject{
 	use TObject;
