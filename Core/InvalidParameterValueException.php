@@ -11,6 +11,7 @@ namespace Core;
  * @property string TraceAsString A string representation of the stack trace
  * @property string ParameterName The name of the parameter that caused the exception to be thrown
  * @property string FunctionName The name of the function/method that was passed the invalid parameter
+ * @property string ExpectedValues A string describing the valid expected value/values
  */
 class InvalidParameterValueException extends InvalidParameterException{
 	/**
@@ -28,5 +29,12 @@ class InvalidParameterValueException extends InvalidParameterException{
 		parent::__construct($parameterName, $functionName);
 		$this->_expectedValues = $expectedValues;
 		$this->message = "The parameter [{$this->_parameterName}] passed to function/method [{$this->_functionName}] was an invalid value. [{$this->_expectedValues}] expected.";
+	}
+	/**
+	 * Gets a string describing the valid expected value/values
+	 * @return string
+	 */
+	public function ExpectedValues(){
+		return $this->_expectedValues;
 	}
 }
