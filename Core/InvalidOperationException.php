@@ -23,7 +23,7 @@ class InvalidOperationException extends ExceptionBase{
 	 */
 	public function __construct($operation){
 		$this->_operation = $operation;
-		parent::__construct("An invalid operation [{$this->_operation}] was carried out.", 1);
+		parent::__construct("An illegal operation was attempted: [{$this->_operation}]", 5);
 	}
 	/**
 	 * Gets the name of the parameter that caused the exception to be thrown
