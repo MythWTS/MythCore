@@ -2,8 +2,8 @@
 namespace Core;
 /**
  * IReader interface is the base interface for all readers in the framework. It enables a unified framework for creating and designing reader classes
- * @property integer Position - sets or gets the current position of the reader in relation to the underlying resource
- * @property boolean IsAtEnd - gets whether the current reader is at the end of the underlying resource
+ * @property integer Position Sets or gets the current position of the reader in relation to the underlying resource
+ * @property boolean IsAtEnd Gets whether the current reader is at the end of the underlying resource
  */
 interface IReader extends IObject{
 	/**
@@ -18,7 +18,7 @@ interface IReader extends IObject{
 	public function ReadBlock($count=1);
 	/**
 	 * Resets the internal current position offset to the beginning of the resource. Equivalent to Position(0)
-	 * @return IReader - the current IReader object for method chaining
+	 * @return \Core\IReader - the current IReader object for method chaining
 	 */
 	public function Reset();
 	/**
@@ -29,7 +29,7 @@ interface IReader extends IObject{
 	/**
 	 * Sets the internal current position offset
 	 * @param integer $offset - the offset to set the current position to
-	 * @return IReader - the current IReader object for method chaining
+	 * @return \Core\IReader - the current IReader object for method chaining
 	 */
 	public function Seek($offset=0);
 	/**

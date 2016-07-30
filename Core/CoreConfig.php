@@ -3,15 +3,15 @@ namespace Core;
 /**
  * CoreConfig is a singleton class that holds basic essential configuration settings for the whole of the MythCore framework. The settings stored
  * here affects the whole of the framework and are hardcoded into code files and can only be changed using code denoting their importance.
- * @property string $BasePath - the base path to the installation root (usually the document root of the server)
- * @property string $CoreDirectory - the name of the Core directory (without the path)
- * @property boolean $DebugMode - whether the debugging mode is enabled or not 
- * @property string $DebugLogFile - the path to the debug log file
- * @property string $IndentString - the currently used tab character by the framework
- * @property string $NewLineString - the currently used newline character by the framework
- * @property string $HtmlAttributesQuote - the currently used quoting character throughout the framework
- * @property integer $StreamDefaultChunkSize - the currently used chunk size for streams in the framework
- * @property string $ClassFilesExtension - the currently used file extension for code files for the class loader
+ * @property string $BasePath The base path to the installation root (usually the document root of the server)
+ * @property string $CoreDirectory The name of the Core directory (without the path)
+ * @property boolean $DebugMode Whether the debugging mode is enabled or not 
+ * @property string $DebugLogFile The path to the debug log file
+ * @property string $IndentString The currently used tab character by the framework
+ * @property string $NewLineString The currently used newline character by the framework
+ * @property string $HtmlAttributesQuote The currently used quoting character throughout the framework
+ * @property integer $StreamDefaultChunkSize The currently used chunk size for streams in the framework
+ * @property string $ClassFilesExtension The currently used file extension for code files for the class loader
  */
 final class CoreConfig extends Object{
 	use TSingleton;
@@ -39,19 +39,36 @@ final class CoreConfig extends Object{
 	###########################################################################
 	# Private fields
 	###########################################################################
-	private
-		/** @var string - name of the core directory/folder where all the code resides (normally Core) */
-		$_coreDir,
-		/** @var string - the installation path of the MythCore framework (root folder, without the Core folder itself)  */
-		$_basePath,
-		/** @var int - the default chunk size to be read/written if a default is needed */
-		$_streamDefaultChunkSize,
-		/** @var string - the file extension used for php include files on this installation*/
-		$_phpFilesExt,
-		/** @var boolean - internal storage of the debug mode. True activates debugging, false deactivates it */
-		$_debug,
-		/** @var string  - internal storage of the debug log file location */
-		$_debugFile;
+	/**
+	 * Name of the core directory/folder where all the code resides (normally Core)
+	 * @var string
+	 */
+	private $_coreDir;
+	/**
+	 * The installation path of the MythCore framework (root folder, without the Core folder itself)
+	 * @var string
+	 */
+	private $_basePath;
+	/**
+	 * The default chunk size to be read/written if a default is needed
+	 * @var integer
+	 */
+	private $_streamDefaultChunkSize;
+	/**
+	 * The file extension used for php include files on this installation
+	 * @var string
+	 */
+	private $_phpFilesExt;
+	/**
+	 * Internal storage of the debug mode. True activates debugging, false deactivates it
+	 * @var boolean
+	 */
+	private $_debug;
+	/**
+	 * Internal storage of the debug log file location
+	 * @var string
+	 */
+	private $_debugFile;
 	###########################################################################
 	# Public Config Properties
 	###########################################################################

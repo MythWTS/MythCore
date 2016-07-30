@@ -8,13 +8,21 @@ namespace Core;
  * be changed (usually in the config.inc file)
  */
 class CoreLoader extends Object implements IClassLoader{
-	/** @var bool $_registered - whether an instance has been registered or not */
+	/**
+	 * Whether an instance has been registered or not
+	 * @var boolean
+	 */
 	private static $_registered = false;
-	protected
-		/** @var string $_basePath - the base path to the installation directory of the MythCore framework files (without the Core directory) */
-		$_basePath,
-		/** @var string $_ext - the file extension of code files */
-		$_ext;
+	/**
+	 * The base path to the installation directory of the MythCore framework files (without the Core directory)
+	 * @var string
+	 */
+	protected $_basePath;
+	/**
+	 * The file extension of code files
+	 * @var string
+	 */
+	protected $_ext;
 	/**
 	 * constructor of the CoreLoader class. Instantiates a new object of the class
 	 * @param string $basePath - the base path to the installation directory of the MythCore framework files (without the Core directory) [default docroot]

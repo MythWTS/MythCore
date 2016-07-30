@@ -8,7 +8,7 @@ trait TSingleton{
 	protected static $_instance;
 	/**
 	 * Property method to return the only instance of the singleton
-	 * @return unknown - depends on the using class
+	 * @return \Core\TSingleton - the only object of the using class
 	 */
 	public static function Instance(){
 		$class = __CLASS__;

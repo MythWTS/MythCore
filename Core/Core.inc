@@ -1,5 +1,7 @@
 <?php
 /**
+ * @version 2.0
+ * @package MythCore
  * This file is the main entry point for the framework. It should be included in pages that need to use the framework.
  */
 require_once 'IObject.php';
