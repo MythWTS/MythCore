@@ -2,6 +2,8 @@
 namespace Core;
 /**
  * Enumeration to be used with Hashing methods such as String::Hash()
+ * @property string Name The name asscoiated with the enumeration member
+ * @property integer Value The value associated with the enumeration member
  * @see \Core\String::Hash()
  */
 final class HashAlgorithm extends Enum{
