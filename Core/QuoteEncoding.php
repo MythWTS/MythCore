@@ -6,20 +6,20 @@ namespace Core;
  * @property integer Value The value associated with the enumeration member
  * @see String::HtmlSpecialCharacters()
  */
-final class QuoteEnding extends Enum{
+final class QuoteEncoding extends Enum{
 	/**
 	 * Will convert double-quotes and leave single-quotes alone.
-	 * @var \Core\QuoteEnding
+	 * @var \Core\QuoteEncoding
 	 */
 	public static $Double;
 	/**
 	 * Will convert both double and single quotes.
-	 * @var \Core\QuoteEnding
+	 * @var \Core\QuoteEncoding
 	 */
 	public static $Both;
 	/**
 	 * Will leave both double and single quotes unconverted.
-	 * @var \Core\QuoteEnding
+	 * @var \Core\QuoteEncoding
 	 */
 	public static $None;
 	/**
@@ -32,9 +32,9 @@ final class QuoteEnding extends Enum{
 	 * Static constructor/Initializer
 	 */
 	public static function Initialize(){
-		self::$Both = new QuoteEnding("Both", ENT_QUOTES);
-		self::$Double = new QuoteEnding("Double", ENT_COMPAT);
-		self::$None = new QuoteEnding("None", ENT_NOQUOTES);
+		self::$Both = new QuoteEncoding("Both", ENT_QUOTES);
+		self::$Double = new QuoteEncoding("Double", ENT_COMPAT);
+		self::$None = new QuoteEncoding("None", ENT_NOQUOTES);
 	}
 }
-QuoteEnding::Initialize();
+QuoteEncoding::Initialize();
