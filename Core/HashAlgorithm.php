@@ -4,7 +4,7 @@ namespace Core;
  * Enumeration to be used with Hashing methods such as String::Hash()
  * @see \Core\String::Hash()
  */
-class HashAlgorithm extends Enum{
+final class HashAlgorithm extends Enum{
 	/**
 	 * The hashing algorithm MD2
 	 * @var \Core\HashAlgorithm
