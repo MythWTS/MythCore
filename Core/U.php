@@ -40,12 +40,14 @@ final class U extends Object{
 	###########################################################################
 	/**
 	 * Extract String from mixed variable. Depending on the variable, tries to return a string representation, mostly suitable for use in the framework.
-	 * If a scalar, return the scalar enclosed in a string.
-	 * If IObject, calls the __toString method.
-	 * If object that has __toString() or ToString() method, calls one of them (__toString first).
-	 * If array, goes through the elements one by one and.
-	 * Tries to obtain a string from it (any array elements will be recursively expanded with an indent string suitable to the level of depth).
-	 * Adds the string to the result as a new line.
+	 * <ul>
+	 * 	<li>If a scalar, return the scalar enclosed in a string.</li>
+	 * 	<li>If IObject, calls the __toString method.</li>
+	 * 	<li>If object that has __toString() or ToString() method, calls one of them (__toString first).</li>
+	 * 	<li>If array, goes through the elements one by one and.</li>
+	 * 	<li>Tries to obtain a string from it (any array elements will be recursively expanded with an indent string suitable to the level of depth).</li>
+	 * 	<li>Adds the string to the result as a new line.</li>
+	 * </ul>
 	 * @param mixed $var The variable to extract a string out of
 	 * @return string
 	 */
