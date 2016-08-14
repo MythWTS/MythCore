@@ -17,37 +17,37 @@ interface IResource extends IObject{
 	###########################################################################
 	/**
 	 * CanRead Property, whether the resource can be read from or not
-	 * @return boolean - whether the resource can be read from or not
+	 * @return boolean
 	 */
 	public function CanRead();
 	/**
 	 * CanWrite Property, whether the resource can be written to or not
-	 * @return boolean - whether the resource can be written to or not
+	 * @return boolean
 	 */
 	public function CanWrite();
 	/**
 	 * CanSeek Property, whether the resource can seek randomly or not
-	 * @return boolean - whether the resource can seek randomly or not
+	 * @return boolean
 	 */
 	public function CanSeek();
 	/**
 	 * IsBinary Property, whether the resource represents binary data
-	 * @return boolean - whether the resource represents binary data
+	 * @return boolean
 	 */
 	public function IsBinary();
 	/**
 	 * IsOpen Property, whether the resource is open
-	 * @return boolean - whether the resource is open
+	 * @return boolean
 	 */
 	public function IsOpen();
 	/**
 	 * IsClosed Property, whether the resource is closed
-	 * @return boolean - whether the resource is closed
+	 * @return boolean
 	 */
 	public function IsClosed();
 	/**
 	 * IsAtEnd Property, whether the resource is at the end position
-	 * @return boolean - whether the resource is at the end position
+	 * @return boolean
 	 */
 	public function IsAtEnd();
 	###########################################################################
@@ -55,12 +55,12 @@ interface IResource extends IObject{
 	###########################################################################
 	/**
 	 * Opens the current resource
-	 * @return boolean - whether the resource was successfully opened
+	 * @return boolean
 	 */
 	public function Open();
 	/**
 	 * Closes the current resource
-	 * @return boolean - whether the resource was successfully closed
+	 * @return boolean
 	 */
 	public function Close();
 }

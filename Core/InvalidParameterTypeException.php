@@ -21,9 +21,9 @@ class InvalidParameterTypeException extends InvalidParameterException{
 	protected $_expectedType;
 	/**
 	 * Creates a new instance of the exception
-	 * @param string $parameterName - the name of the parameter that was invalid
-	 * @param string $functionName - the name of the function/method that was passed the invalid parameter
-	 * @param string $expectedType - the name of the type expected for the parameter
+	 * @param string $parameterName The name of the parameter that was invalid
+	 * @param string $functionName The name of the function/method that was passed the invalid parameter
+	 * @param string $expectedType The name of the type expected for the parameter
 	 */
 	public function __construct($parameterName, $functionName, $expectedType){
 		parent::__construct($parameterName, $functionName);

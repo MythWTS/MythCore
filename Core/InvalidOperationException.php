@@ -19,7 +19,7 @@ class InvalidOperationException extends ExceptionBase{
 	protected $_operation;
 	/**
 	 * Creates a new instance of the InvalidOperationException exception
-	 * @param string $operation - string explaining the operation that caused this exception
+	 * @param string $operation String explaining the operation that caused this exception
 	 */
 	public function __construct($operation){
 		$this->_operation = $operation;

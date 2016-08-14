@@ -29,18 +29,18 @@ class Enum extends Object{
 	public function __toString(){return $this->_value;}
 	/**
 	 * Protected constructor. Initializes the values for the name and value attributes.
-	 * @param string $name - the name asscoiated with the enumeration member
-	 * @param mixed $value - The value associated with the enumeration member. For internal uses mostly.
+	 * @param string $name The name asscoiated with the enumeration member
+	 * @param mixed $value The value associated with the enumeration member. For internal uses mostly.
 	 */
 	protected function __construct($name, $value){$this->_name = $name; $this->_value = $value;}
 	/**
 	 * Getter for the Name property.
-	 * @return string - the name asscoiated with the enumeration member
+	 * @return string The name asscoiated with the enumeration member
 	 */
 	public function Name(){return $this->_name;}
 	/**
 	 * Getter for the Value property
-	 * @return mixed - The value associated with the enumeration member
+	 * @return mixed The value associated with the enumeration member
 	 */
 	public function Value(){return $this->_value;}
 }

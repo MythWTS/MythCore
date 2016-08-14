@@ -76,8 +76,8 @@ final class CoreConfig extends Object{
 	###################################
 	/**
 	 * Accessor to the BasePath Property [get, set]-[default U::DocRoot()]
-	 * @param string $value - the base path to assign to this property
-	 * @return string - the base path to the installation root (usually the document root of the server)
+	 * @param string $value The base path to assign to this property
+	 * @return string
 	 */
 	public function BasePath($value=null){
 		if($value === null){return $this->_basePath;}
@@ -85,8 +85,8 @@ final class CoreConfig extends Object{
 	}
 	/**
 	 * Accessor to the CoreDirectory Property [get, set]-[default 'Core']
-	 * @param string $value - the name of the Core directory (without the path) to be assigned to the property
-	 * @return string - the name of the Core directory (without the path)
+	 * @param string $value The name of the Core directory (without the path) to be assigned to the property
+	 * @return string
 	 */
 	public function CoreDirectory($value=null){
 		if($value === null){return $this->_coreDir;}
@@ -97,8 +97,8 @@ final class CoreConfig extends Object{
 	/**
 	 * Accessor to the DebugMode Config Setting [get, set]-[default false].
 	 * If set to true, debugging will be enabled throughout the framework, otherwise it defaults to false (usual for production environments)
-	 * @param boolean $value - the value to assign to this property (true enables the debugging mode)
-	 * @return boolean - whether the debugging mode is enabled or not
+	 * @param boolean $value The value to assign to this property (true enables the debugging mode)
+	 * @return boolean
 	 */
 	public function DebugMode($value=null){
 		if($value === null){return $this->_debug;}
@@ -107,8 +107,8 @@ final class CoreConfig extends Object{
 	/**
 	 * Accessor to the DebugLogFile Config Setting [get, set]-[default log.txt]. This is used by debug classes to output
 	 * log information. It returns a file path that will be used as is by those classes.
-	 * @param string $value - the log file path to assign to this property
-	 * @return string - the path to the debug log file
+	 * @param string $value The log file path to assign to this property
+	 * @return string
 	 */
 	public function DebugLogFile($value=null){
 		if($value === null){return $this->_debugFile;}
@@ -119,8 +119,8 @@ final class CoreConfig extends Object{
 	/**
 	 * Accessor to the IndentString Property [get, set]-[default \t]. This actually modifies the value in the U utility class and affects
 	 * outputting / indenting all over the framework.
-	 * @param string $value - the tab character to use across the framework
-	 * @return string - the currently used tab character by the framework
+	 * @param string $value The tab character to use across the framework
+	 * @return string
 	 */
 	public function IndentString($value=null){
 		if($value === null){return U::$TAB;}
@@ -129,8 +129,8 @@ final class CoreConfig extends Object{
 	/**
 	 * Accessor to the NewLineString Property [get, set]-[default \n]. This actually modifies the value in the U utility class and
 	 * affects outputting / indenting all over the framework.
-	 * @param string $value - the newline character to use across the framework
-	 * @return string - the currently used newline character by the framework
+	 * @param string $value The newline character to use across the framework
+	 * @return string
 	 */
 	public function NewLineString($value=null){
 		if($value === null){return U::$NL;}
@@ -139,8 +139,8 @@ final class CoreConfig extends Object{
 	/**
 	 * Accessor to the HtmlAttributesQuote Property [get, set]-[default "]. This actually modifies the value in the U utility class and
 	 * affects outputting / indenting all over the framework.
-	 * @param string $value - the quoting character to use across the framework
-	 * @return string - the currently used quoting character throughout the framework
+	 * @param string $value The quoting character to use across the framework
+	 * @return string
 	 */
 	public function HtmlAttributesQuote($value=null){
 		if($value === null){return U::$Q;}
@@ -150,8 +150,8 @@ final class CoreConfig extends Object{
 	###################################
 	/**
 	 * Accessor to the StreamDefaultChunkSize Property [get, set]-[default 1024]
-	 * @param integer $value - the value to be assigned to this property
-	 * @return integer - the currently used chunk size for streams in the framework
+	 * @param integer $value The value to be assigned to this property
+	 * @return integer
 	 */
 	public function StreamDefaultChunkSize($value=null){
 		if($value === null){return $this->_streamDefaultChunkSize;}
@@ -160,8 +160,8 @@ final class CoreConfig extends Object{
 	/**
 	 * Accessor to the ClassFilesExtension Config Property [get, set]-[default '.php'].
 	 * The extension should include the dot if it uses it
-	 * @param string $value - the file extension to be used for code files in the class loader, including the dot
-	 * @return string - the currently used file extension for code files for the class loader
+	 * @param string $value The file extension to be used for code files in the class loader, including the dot
+	 * @return string
 	 */
 	public function ClassFilesExtension($value=null){
 		if($value === null){return $this->_phpFilesExt;}

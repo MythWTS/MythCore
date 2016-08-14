@@ -18,9 +18,9 @@ class ExceptionBase extends Exception implements IObject{
 	use TObject;
 	/**
 	 * Creates a new instance of the ExceptionBase class.
-	 * @param string $message - The message of the exception
-	 * @param int $code - the error code associated with the exception
-	 * @param \Exception $previous - the previous exception that was thrown before this one
+	 * @param string $message The message of the exception
+	 * @param int $code The error code associated with the exception
+	 * @param \Exception $previous The previous exception that was thrown before this one
 	 */
 	public function __construct($message=null, $code=null, $previous=null){
 		parent::__construct($message, $code, $previous);

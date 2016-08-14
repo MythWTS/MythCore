@@ -15,9 +15,9 @@ namespace Core;
 class NullParameterValueException extends InvalidParameterException{
 	/**
 	 * Creates a new instance of the exception
-	 * @param string $parameterName - the name of the parameter that was invalid
-	 * @param string $functionName - the name of the function/method that was passed the invalid parameter
-	 * @param string $expectedValues - a string explaining the valid expected value/values
+	 * @param string $parameterName The name of the parameter that was invalid
+	 * @param string $functionName The name of the function/method that was passed the invalid parameter
+	 * @param string $expectedValues A string explaining the valid expected value/values
 	 */
 	public function __construct($parameterName, $functionName, $expectedValues){
 		parent::__construct($parameterName, $functionName);

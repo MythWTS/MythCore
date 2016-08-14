@@ -25,8 +25,8 @@ class InvalidParameterException extends ExceptionBase{
 	protected $_functionName;
 	/**
 	 * Creates a new instance of the InvalidParameterException exception
-	 * @param string $parameterName - the name of the parameter that was invalid
-	 * @param string $functionName - the name of the function/method that was passed the invalid parameter
+	 * @param string $parameterName The name of the parameter that was invalid
+	 * @param string $functionName The name of the function/method that was passed the invalid parameter
 	 */
 	public function __construct($parameterName, $functionName){
 		$this->_functionName = $functionName; $this->_parameterName = $parameterName;

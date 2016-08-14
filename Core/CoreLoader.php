@@ -25,8 +25,8 @@ class CoreLoader extends Object implements IClassLoader{
 	protected $_ext;
 	/**
 	 * constructor of the CoreLoader class. Instantiates a new object of the class
-	 * @param string $basePath - the base path to the installation directory of the MythCore framework files (without the Core directory) [default docroot]
-	 * @param string $fileExtension - the file extension of code files [default '.php']
+	 * @param string $basePath The base path to the installation directory of the MythCore framework files (without the Core directory) [default docroot]
+	 * @param string $fileExtension The file extension of code files [default '.php']
 	 */
 	public function __construct($basePath='', $fileExtension = '.php'){
 		$this->_ext = $fileExtension;

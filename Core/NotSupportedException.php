@@ -19,7 +19,7 @@ class NotSupportedException extends ExceptionBase{
 	protected $_featureName;
 	/**
 	 * Creates a new instance of the exception
-	 * @param string $featureName
+	 * @param string $featureName The name of the feature that is not supported to be added to the exception's message
 	 */
 	public function __construct($featureName){
 		$this->_featureName = $featureName;

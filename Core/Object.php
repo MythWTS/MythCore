@@ -9,7 +9,7 @@ class Object implements IObject{
 	/**
 	 * Magic __toString() method. Returns a string representation of the object when the object is used in a context that expects a string. It is implemented in
 	 * the Object class and not the TObject trait so that it will be overriden not overwritten in subclasses.
-	 * @return string - a string representation of the object
+	 * @return string A string representation of the object
 	 */
 	public function __toString(){return get_class($this);}
 }
