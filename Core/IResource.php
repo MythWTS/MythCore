@@ -3,13 +3,13 @@ namespace Core;
 /**
  * IResource is to be the base interface for all resources. Resources are wrappers around data representations or data sources. Examples of resources include
  * streams, datasets and data result sets, arrays and collections, files, data blobs, etc.
- * @property boolean CanRead Whether the resource can be read from or not
- * @property boolean CanWrite Whether the resource can be written to or not
- * @property boolean CanSeek Whether the resource can seek randomly or not
- * @property boolean IsBinary Whether the resource represents binary data
- * @property boolean IsOpen Whether the resource is open
- * @property boolean IsClosed Whether the resource is closed
- * @property boolean IsAtEnd Whether the resource is at the end position
+ * @property boolean $CanRead Whether the resource can be read from or not
+ * @property boolean $CanWrite Whether the resource can be written to or not
+ * @property boolean $CanSeek Whether the resource can seek randomly or not
+ * @property boolean $IsBinary Whether the resource represents binary data
+ * @property boolean $IsOpen Whether the resource is open
+ * @property boolean $IsClosed Whether the resource is closed
+ * @property boolean $IsAtEnd Whether the resource is at the end position
  */
 interface IResource extends IObject{
 	###########################################################################

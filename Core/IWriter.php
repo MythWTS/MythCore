@@ -2,7 +2,7 @@
 namespace Core;
 /**
  * Interface IWriter is the base interface for all writers that write data items to underlying resources
- * @property integer Position Gets or sets the current position of the writer in relation to the underlying resource
+ * @property integer $Position Gets or sets the current position of the writer in relation to the underlying resource
  */
 interface IWriter extends IObject{
 	/**

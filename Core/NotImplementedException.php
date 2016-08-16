@@ -2,14 +2,14 @@
 namespace Core;
 /**
  * Thrown when the implementation of a method or function is not available yet. Mainly used during code development.
- * @property string Message The exception message
- * @property int Code The error code associated with this exception
- * @property string File The filename of the file where the exception occured
- * @property int Line The line number of the code line where the exception was thrown
- * @property array Trace An array representing the stack trace
- * @property Exception Previous The previous exception
- * @property string TraceAsString A string representation of the stack trace
- * @property string FeatureName A string describing the name of the unimplemented feature
+ * @property string $Message The exception message
+ * @property int $Code The error code associated with this exception
+ * @property string $File The filename of the file where the exception occured
+ * @property int $Line The line number of the code line where the exception was thrown
+ * @property array $Trace An array representing the stack trace
+ * @property Exception $Previous The previous exception
+ * @property string $TraceAsString A string representation of the stack trace
+ * @property string $FeatureName A string describing the name of the unimplemented feature
  */
 class NotImplementedException extends ExceptionBase{
 	/**

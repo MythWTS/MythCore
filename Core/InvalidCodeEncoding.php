@@ -3,8 +3,8 @@ namespace Core;
 /**
  * Enumeration to be used with Html & Http Encoding methods to indicate how to handle invalid code units in the string to be encoded
  * @see String::HtmlSpecialCharacters()
- * @property string Name The name asscoiated with the enumeration member
- * @property mixed Value The value associated with the enumeration member
+ * @property string $Name The name asscoiated with the enumeration member
+ * @property mixed $Value The value associated with the enumeration member
  */
 final class InvalidCodeEncoding extends Enum{
 	/**

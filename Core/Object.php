@@ -2,7 +2,7 @@
 namespace Core;
 
 /**
- * class Object - base class of all classes in the framework
+ * Base class of all classes in the framework
  */
 class Object implements IObject{
 	use TObject;

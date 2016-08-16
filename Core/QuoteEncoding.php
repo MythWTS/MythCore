@@ -2,8 +2,8 @@
 namespace Core;
 /**
  * Enumeration used with Html & Http Encoding methods to indicate how to handle quotes
- * @property string Name The name asscoiated with the enumeration member
- * @property integer Value The value associated with the enumeration member
+ * @property string $Name The name asscoiated with the enumeration member
+ * @property integer $Value The value associated with the enumeration member
  * @see String::HtmlSpecialCharacters()
  */
 final class QuoteEncoding extends Enum{

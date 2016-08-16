@@ -2,8 +2,8 @@
 namespace Core;
 /**
  * Enumeration to be used with string padding methods to decide which side is the padding to go
- * @property string Name The name asscoiated with the enumeration member
- * @property integer Value The value associated with the enumeration member
+ * @property string $Name The name asscoiated with the enumeration member
+ * @property integer $Value The value associated with the enumeration member
  */
 final class PaddingSide extends Enum{
 	/**

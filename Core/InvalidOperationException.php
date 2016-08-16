@@ -2,14 +2,14 @@
 namespace Core;
 /**
  * Exception thrown when an invalid operation is attempted
- * @property string Message The exception message
- * @property int Code The error code associated with this exception
- * @property string File The filename of the file where the exception occured
- * @property int Line The line number of the code line where the exception was thrown
- * @property array Trace An array representing the stack trace
- * @property Exception Previous The previous exception
- * @property string TraceAsString A string representation of the stack trace
- * @property string Operation A string explaining the operation that caused this exception
+ * @property string $Message The exception message
+ * @property int $Code The error code associated with this exception
+ * @property string $File The filename of the file where the exception occured
+ * @property int $Line The line number of the code line where the exception was thrown
+ * @property array $Trace An array representing the stack trace
+ * @property Exception $Previous The previous exception
+ * @property string $TraceAsString A string representation of the stack trace
+ * @property string $Operation A string explaining the operation that caused this exception
  */
 class InvalidOperationException extends ExceptionBase{
 	/**

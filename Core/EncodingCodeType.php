@@ -2,8 +2,8 @@
 namespace Core;
 /**
  * Enumeration to be used with Html and Http encoding methods.
- * @property string Name The name asscoiated with the enumeration member
- * @property integer Value The value associated with the enumeration member
+ * @property string $Name The name asscoiated with the enumeration member
+ * @property integer $Value The value associated with the enumeration member
  * @see String::HtmlSpecialCharacters()
  */
 final class EncodingCodeType extends Enum{

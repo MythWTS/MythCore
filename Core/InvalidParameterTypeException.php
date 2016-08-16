@@ -2,16 +2,16 @@
 namespace Core;
 /**
  * Exception thrown when the type of a parameter that is passed to a method is invalid
- * @property string Message The exception message
- * @property int Code The error code associated with this exception
- * @property string File The filename of the file where the exception occured
- * @property int Line The line number of the code line where the exception was thrown
- * @property array Trace An array representing the stack trace
- * @property Exception Previous The previous exception
- * @property string TraceAsString A string representation of the stack trace
- * @property string ParameterName The name of the parameter that caused the exception to be thrown
- * @property string FunctionName The name of the function/method that was passed the invalid parameter
- * @property string ExpectedType The name of the type expected to be passed instead
+ * @property string $Message The exception message
+ * @property int $Code The error code associated with this exception
+ * @property string $File The filename of the file where the exception occured
+ * @property int $Line The line number of the code line where the exception was thrown
+ * @property array $Trace An array representing the stack trace
+ * @property Exception $Previous The previous exception
+ * @property string $TraceAsString A string representation of the stack trace
+ * @property string $ParameterName The name of the parameter that caused the exception to be thrown
+ * @property string $FunctionName The name of the function/method that was passed the invalid parameter
+ * @property string $ExpectedType The name of the type expected to be passed instead
  */
 class InvalidParameterTypeException extends InvalidParameterException{
 	/**

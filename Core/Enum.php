@@ -8,8 +8,8 @@ namespace Core;
  * 3) [Optional] Define a constructor with the same signature as the Enum class constructor that calls the parent constructor.
  * 4) Define the public static Initialize() method which basically instantiates the fields by creating new objects passing the name value pair to the Enum constructor.
  * 5) Call the Initialize method immediately after the end of the class declaration
- * @property string Name The name asscoiated with the enumeration member
- * @property mixed Value The value associated with the enumeration member
+ * @property string $Name The name asscoiated with the enumeration member
+ * @property mixed $Value The value associated with the enumeration member
  */
 class Enum extends Object{
 	/**

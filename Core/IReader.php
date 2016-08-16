@@ -2,8 +2,8 @@
 namespace Core;
 /**
  * IReader interface is the base interface for all readers in the framework. It enables a unified framework for creating and designing reader classes
- * @property integer Position Sets or gets the current position of the reader in relation to the underlying resource
- * @property boolean IsAtEnd Gets whether the current reader is at the end of the underlying resource
+ * @property integer $Position Sets or gets the current position of the reader in relation to the underlying resource
+ * @property boolean $IsAtEnd Gets whether the current reader is at the end of the underlying resource
  */
 interface IReader extends IObject{
 	/**

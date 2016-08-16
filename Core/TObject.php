@@ -1,7 +1,7 @@
 <?php
 namespace Core;
 /**
- * trait TObject - root trait for all traits in the framework and is also used by the Object class.
+ * Root trait for all traits in the framework and is also used by the Object class.
  * It's recommended that any trait use this one as a way of making the framework more tied up together.
  */
 trait TObject{
