@@ -101,10 +101,17 @@ final class U extends Object{
 	 */
 	public static function CP($path){return rtrim($path, self::$DS).self::$DS;}
 	/**
-	 * Returns a $_SERVER['DOCUMENT_ROOT'] with a directory separator at the end
+	 * Returns a $_SERVER['DOCUMENT_ROOT'] with a directory separator at the end if the script is not run in cli mode
 	 * @return string
 	 */
-	public static function DocRoot(){return rtrim($_SERVER['DOCUMENT_ROOT'], self::$DS) . self::$DS;}
+	public static function DocRoot(){
+		if(php_sapi_name() == "cli"){
+			return rtrim(dirname(dirname(__FILE__)), self::$DS) . self::$DS;
+		}
+		else{
+			return rtrim($_SERVER['DOCUMENT_ROOT'], self::$DS) . self::$DS;
+		}
+	}
 	###########################################################################
 	# Content Checks' Methods
 	###########################################################################
