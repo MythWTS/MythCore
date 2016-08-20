@@ -26,7 +26,7 @@ class Enum extends Object{
 	 * {@inheritDoc}
 	 * @see \Core\Object::__toString()
 	 */
-	public function __toString(){return $this->_value;}
+	public function __toString(){return U::ES($this->_value);}
 	/**
 	 * Protected constructor. Initializes the values for the name and value attributes.
 	 * @param string $name The name asscoiated with the enumeration member
