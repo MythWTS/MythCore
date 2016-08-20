@@ -33,4 +33,13 @@ class ExceptionBase extends Exception implements IObject{
 	public function __toString(){
 		return "An error occured with code [{$this->code}] in file [{$this->file}] at line [{$this->line}] with message:\n{$this->message}";
 	}
+	/**
+	 * Implements the GetType() method since this class is not derived from Object
+	 * 
+	 * {@inheritDoc}
+	 * @see \Core\IObject::GetType()
+	 */
+	final public function GetType(){
+		return Type::Of($this);
+	}
 }
