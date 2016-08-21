@@ -153,7 +153,7 @@ class MulticastDelegate extends Delegate{
 	 */
 	public function Invoke(){
 		foreach ($this->_callList as $delegate){
-			$delegate->Parameters = &$this->_params;
+			$delegate->Parameters = $this->_params;
 			$delegate->Invoke();
 		}
 		return $this;

@@ -62,7 +62,6 @@ abstract class Delegate extends Object implements IInvocable, IParameterized{
 		else{
 			$this->_params = $parameters;
 		}
-		$this->_functionName = U::ES($functionName);
 	}
 	/**
 	 * Accessor for the Parameters property
@@ -72,7 +71,7 @@ abstract class Delegate extends Object implements IInvocable, IParameterized{
 	###########################################################################
 	# Implementation of IParameterized
 	###########################################################################
-	public function &Parameters(array $value = null){
+	public function Parameters(array $value = null){
 		if($value !== null){
 			$this->_params = $value;
 		}

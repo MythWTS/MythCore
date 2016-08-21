@@ -10,5 +10,5 @@ interface IParameterized extends IObject{
 	 * @param array $value used when the method is used as the setter of the property. The array to which to set the property to
 	 * @return array The array of parameters for this instance
 	 */
-	public function &Parameters(array $value = null);
+	public function Parameters(array $value = null);
 }
