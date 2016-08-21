@@ -970,6 +970,45 @@ final class Strings extends Object{
 		str_replace(U::ES($searchFor),U::ES($replaceWith), U::ES($within), $firstCount);
 	}
 	###########################################################################
+	# Checks
+	###########################################################################
+	/**
+	 * Checks to see if a value convertable to string ends up as null or empty.
+	 * @param mixed $string The string to check
+	 * @return boolean
+	 */
+	public static function IsNullOrEmpty($string){
+		$s = U::ES($string);
+		return ($s === "");
+	}
+	/**
+	 * Checks to see if the string is not null or empty.
+	 * @param mixed $string The string to check
+	 * @return boolean
+	 */
+	public static function IsNotNullOrEmpty($string){
+		$s = U::ES($string);
+		return $s != "";
+	}
+	/**
+	 * Checks to see if the string is all whitespaces.
+	 * @param mixed $string The string to check
+	 * @return boolean
+	 */
+	public static function IsWhitespaces($string){
+		$s = trim(U::ES($string));
+		return $s == "";
+	}
+	/**
+	 * Checks to see if the string is not all whitespaces.
+	 * @param mixed $string The string to check
+	 * @return boolean
+	 */
+	public static function IsNotWhitespaces($string){
+		$s = trim(U::ES($string));
+		return $s != "";
+	}
+	###########################################################################
 	# Formatting
 	###########################################################################
 	/**
@@ -996,6 +1035,23 @@ final class Strings extends Object{
 			throw new InvalidParameterTypeException("number", "Strings::FormatNumber()", "number");
 		}
 		return number_format($number, $decimals, U::ES($decimalsPoint), U::ES($thousandsSeparator));
+	}
+	/**
+	 * Replaces occurences of {n} with the nth parameter supplied. First parameter after the format is considered to be parameter 0.
+	 * @param mixed $format The format string to use
+	 * @return string
+	 */
+	public static function Format($format){
+		$argsCount = func_num_args();
+		$res = U::ES($format);
+		if($argsCount !== 1){
+			$args = func_get_args();
+			for($i = 0; $i<$argsCount; $i++){
+				$arg = $args[$i + 1];
+				$res = str_replace("\{" . $i . "\}", U::ES($arg), $res);
+			}
+		}
+		return preg_replace("\\{.*?\\}", "", $res);
 	}
 	###########################################################################
 	# Strings Operations
