@@ -22,8 +22,8 @@ final class StaticMethodDelegate extends Delegate{
 	 * @param string $className The name of the class that has the static method to invoke
 	 * @param string $methodName The name of the method to be invoked
 	 * @param array $parameters The parameters to provide to the method when invoking it
-	 * @throws InvalidParameterTypeException If $methodName is not a string or $object is not an object
-	 * @throws InvalidParameterValueException If $methodName is empty, $object is null, the method does not exist or the method is not callable
+	 * @throws InvalidParameterTypeException If $methodName is not a string or $className is not a valid class name
+	 * @throws InvalidParameterValueException If $methodName is empty, $className is empty, the method does not exist or the method is not callable
 	 */
 	public function __construct($className, $methodName, array $parameters = null){
 		Params::InsureCallableStaticMethod($className, $methodName, "className", "methodName");
