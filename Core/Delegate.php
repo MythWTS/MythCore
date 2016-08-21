@@ -74,10 +74,7 @@ abstract class Delegate extends Object implements IInvocable, IParameterized{
 	###########################################################################
 	public function &Parameters(array $value = null){
 		if($value !== null){
-			$this->_params = array();
-			foreach ($value as $member){
-				$this->_params[] = $member;
-			}
+			$this->_params = $value;
 		}
 		return $this->_params;
 	}
