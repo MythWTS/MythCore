@@ -121,7 +121,7 @@ class Params extends Object{
 	 * @throws InvalidParameterValueException If the supplied expression is an empty string or not a valid function name
 	 * @return string
 	 */
-	public static function GetInsuredExistingFunction($expression, $parameterName = "expression", $functionName = null){
+	public static function GetInsuredExistingFunction($expression, $parameterName = "functionName", $functionName = null){
 		if(!is_string($expression)){
 			throw new InvalidParameterTypeException($parameterName, $functionName ?: debug_backtrace(0, 2)[1]["function"], "string");
 		}
@@ -132,6 +132,182 @@ class Params extends Object{
 			throw new InvalidParameterValueException($parameterName, $functionName ?: debug_backtrace(0, 2)[1]["function"], "existing function name");
 		}
 		return $expression;
+	}
+	/**
+	 * Checks to see if the supplied object and function name are valid to identify an existing method.
+	 * If so, returns an array containing the object as the first element and the name of the method as the second, otherwise throws an exception
+	 * @param object $object The object to which the method to be checked belongs
+	 * @param string $methodName The name of the method to insure
+	 * @param string $objectParameterName The name of the parameter that represents the object in the calling method/function
+	 * @param string $methodNameParameterName The name of the parameter of the method name from the calling function/method
+	 * @param string $functionName The name of the function/method that the check occured within. If not provided, the name of the calling function will be used.
+	 * @throws InvalidParameterTypeException If $methodName is not a string or $object is not an object
+	 * @throws InvalidParameterValueException If $methodName is empty, $object is null or the method does not exist
+	 * @return array
+	 */
+	public static function GetInsuredExistingMethod($object, $methodName, $objectParameterName = "object", $methodNameParameterName = "methodName", $functionName = null){
+		if(!is_string($methodName)){
+			throw new InvalidParameterTypeException($methodNameParameterName, $functionName ?: debug_backtrace(0, 2)[1]["function"], "string");
+		}
+		if($methodName === ""){
+			throw new InvalidParameterValueException($methodNameParameterName, $functionName ?: debug_backtrace(0, 2)[1]["function"], "non-null object");
+		}
+		if(!is_object($object)){
+			throw new InvalidParameterTypeException($objectParameterName, $functionName ?: debug_backtrace(0, 2)[1]["function"], "object");
+		}
+		if(is_null($object)){
+			throw new InvalidParameterValueException($objectParameterName, $functionName ?: debug_backtrace(0, 2)[1]["function"], "non-null object");
+		}
+		if(!method_exists($object, $methodName)){
+			throw new InvalidParameterValueException(
+					"{$objectParameterName}->{$methodNameParameterName}", $functionName ?: debug_backtrace(0, 2)[1]["function"], "existing function name"
+			);
+		}
+		return array($object, $methodName);
+	}
+	/**
+	 * Checks to see if the supplied class name and method name constitute a valid existing static method name.
+	 * If so, returns an array containing the class name as the first element and the name of the method as the second, otherwise throws an exception
+	 * @param string $className The name of the class that contains the static method
+	 * @param string $methodName The name of the method to insure
+	 * @param string $calssNameParameterName The name of the class name parameter from the calling function/method
+	 * @param string $methodNameParameterName The name of the method name parameter from the calling function/method
+	 * @param string $functionName The name of the function/method that the check occured within. If not provided, the name of the calling function will be used.
+	 * @throws InvalidParameterTypeException If $methodName or $className is not a string
+	 * @throws InvalidParameterValueException If $className is not the name of an existing class,
+	 * $className or $methodName is an empty string or the combination is not a valid static method name
+	 * @return array
+	 */
+	public static function GetInsuredExistingStaticMethod(
+			$className, $methodName, $calssNameParameterName = "className",
+			$methodNameParameterName = "methodName", $functionName = null){
+		if(!is_string($className)){
+			throw new InvalidParameterTypeException($calssNameParameterName, $functionName ?: debug_backtrace(0, 2)[1]["function"], "string");
+		}
+		if(!is_string($methodName)){
+			throw new InvalidParameterTypeException($methodNameParameterName, $functionName ?: debug_backtrace(0, 2)[1]["function"], "string");
+		}
+		if($className === ""){
+			throw new InvalidParameterValueException($calssNameParameterName, $functionName ?: debug_backtrace(0, 2)[1]["function"], "non-empty string");
+		}
+		if($methodName === ""){
+			throw new InvalidParameterValueException($methodNameParameterName, $functionName ?: debug_backtrace(0, 2)[1]["function"], "non-empty string");
+		}
+		if(!class_exists($className)){
+			throw new InvalidParameterValueException($calssNameParameterName, $functionName ?: debug_backtrace(0, 2)[1]["function"], "existing class name");
+		}
+		if(!method_exists($className, $methodName)){
+			throw new InvalidParameterValueException(
+					"{$calssNameParameterName}::{$methodNameParameterName}", $functionName ?: debug_backtrace(0, 2)[1]["function"], "existing static method name"
+			);
+		}
+		return array($className, $methodName);
+	}
+	/**
+	 * Checks to see if the supplied expression is a non-empty string that is an existing callable function name.
+	 * If so, returns the function name, otherwise throws an exception
+	 * @param mixed $expression The expression/value to be checked
+	 * @param string $parameterName The name of the parameter that is being checked
+	 * @param string $functionName The name of the function/method that the check occured within. If not provided, the name of the calling function will be used.
+	 * @throws InvalidParameterTypeException If the supplied expression is not a string
+	 * @throws InvalidParameterValueException If the supplied expression is an empty string or not a valid callable function name
+	 * @return string
+	 */
+	public static function GetInsuredCallableFunction($expression, $parameterName = "functionName", $functionName = null){
+		if(!is_string($expression)){
+			throw new InvalidParameterTypeException($parameterName, $functionName ?: debug_backtrace(0, 2)[1]["function"], "string");
+		}
+		if($expression === ""){
+			throw new InvalidParameterValueException($parameterName, $functionName ?: debug_backtrace(0, 2)[1]["function"], "non-empty string");
+		}
+		if(!function_exists($expression)){
+			throw new InvalidParameterValueException($parameterName, $functionName ?: debug_backtrace(0, 2)[1]["function"], "existing function name");
+		}
+		if(!is_callable($expression)){
+			throw new InvalidParameterValueException($parameterName, $functionName ?: debug_backtrace(0, 2)[1]["function"], "existing callable function name");
+		}
+		return $expression;
+	}
+	/**
+	 * Checks to see if the supplied object and function name are valid to identify an existing callable method.
+	 * If so, returns an array containing the object as the first element and the name of the method as the second, otherwise throws an exception
+	 * @param object $object The object to which the method to be checked belongs
+	 * @param string $methodName The name of the method to insure
+	 * @param string $objectParameterName The name of the parameter that represents the object in the calling method/function
+	 * @param string $methodNameParameterName The name of the parameter of the method name from the calling function/method
+	 * @param string $functionName The name of the function/method that the check occured within. If not provided, the name of the calling function will be used.
+	 * @throws InvalidParameterTypeException If $methodName is not a string or $object is not an object
+	 * @throws InvalidParameterValueException If $methodName is empty, $object is null, the method does not exist or the method is not callable
+	 * @return array
+	 */
+	public static function GetInsuredCallableMethod($object, $methodName, $objectParameterName = "object", $methodNameParameterName = "methodName", $functionName = null){
+		if(!is_string($methodName)){
+			throw new InvalidParameterTypeException($methodNameParameterName, $functionName ?: debug_backtrace(0, 2)[1]["function"], "string");
+		}
+		if($methodName === ""){
+			throw new InvalidParameterValueException($methodNameParameterName, $functionName ?: debug_backtrace(0, 2)[1]["function"], "non-null object");
+		}
+		if(!is_object($object)){
+			throw new InvalidParameterTypeException($objectParameterName, $functionName ?: debug_backtrace(0, 2)[1]["function"], "object");
+		}
+		if(is_null($object)){
+			throw new InvalidParameterValueException($objectParameterName, $functionName ?: debug_backtrace(0, 2)[1]["function"], "non-null object");
+		}
+		if(!method_exists($object, $methodName)){
+			throw new InvalidParameterValueException(
+					"{$objectParameterName}->{$methodNameParameterName}", $functionName ?: debug_backtrace(0, 2)[1]["function"], "existing object method name"
+			);
+		}
+		if(!is_callable(array($object, $methodName))){
+			throw new InvalidParameterValueException(
+					"{$objectParameterName}->{$methodNameParameterName}", $functionName ?: debug_backtrace(0, 2)[1]["function"], "existing callable object method name"
+			);
+		}
+		return array($object, $methodName);
+	}
+	/**
+	 * Checks to see if the supplied class name and method name constitute a valid existing callable static method name.
+	 * If so, returns an array containing the class name as the first element and the name of the method as the second, otherwise throws an exception
+	 * @param string $className The name of the class that contains the static method
+	 * @param string $methodName The name of the method to insure
+	 * @param string $calssNameParameterName The name of the class name parameter from the calling function/method
+	 * @param string $methodNameParameterName The name of the method name parameter from the calling function/method
+	 * @param string $functionName The name of the function/method that the check occured within. If not provided, the name of the calling function will be used.
+	 * @throws InvalidParameterTypeException If $methodName or $className is not a string
+	 * @throws InvalidParameterValueException If $className is not the name of an existing class,
+	 * $className or $methodName is an empty string, the combination is not a valid static method name or the method is not callable
+	 * @return array
+	 */
+	public static function GetInsuredCallableStaticMethod(
+			$className, $methodName, $calssNameParameterName = "className",
+			$methodNameParameterName = "methodName", $functionName = null){
+		if(!is_string($className)){
+			throw new InvalidParameterTypeException($calssNameParameterName, $functionName ?: debug_backtrace(0, 2)[1]["function"], "string");
+		}
+		if(!is_string($methodName)){
+			throw new InvalidParameterTypeException($methodNameParameterName, $functionName ?: debug_backtrace(0, 2)[1]["function"], "string");
+		}
+		if($className === ""){
+			throw new InvalidParameterValueException($calssNameParameterName, $functionName ?: debug_backtrace(0, 2)[1]["function"], "non-empty string");
+		}
+		if($methodName === ""){
+			throw new InvalidParameterValueException($methodNameParameterName, $functionName ?: debug_backtrace(0, 2)[1]["function"], "non-empty string");
+		}
+		if(!class_exists($className)){
+			throw new InvalidParameterValueException($calssNameParameterName, $functionName ?: debug_backtrace(0, 2)[1]["function"], "existing class name");
+		}
+		if(!method_exists($className, $methodName)){
+			throw new InvalidParameterValueException(
+					"{$calssNameParameterName}::{$methodNameParameterName}", $functionName ?: debug_backtrace(0, 2)[1]["function"], "existing static method name"
+			);
+		}
+		if(!is_callable(array($className, $methodName))){
+			throw new InvalidParameterValueException(
+					"{$calssNameParameterName}::{$methodNameParameterName}", $functionName ?: debug_backtrace(0, 2)[1]["function"],
+					"name of a callable static method"
+			);
+		}
+		return array($className, $methodName);
 	}
 	/**
 	 * Throws an exception if the value supplied is extracted into an empty string. Returns the expression otherwise.
@@ -689,14 +865,15 @@ class Params extends Object{
 		}
 	}
 	/**
-	 * Checks to see if the supplied expression is a non-empty string that is an existing function name. If so, nothing happens, otherwise throws an exception
+	 * Checks to see if the supplied expression is a non-empty string that is an existing function name.
+	 * If so, nothing happens, otherwise throws an exception
 	 * @param mixed $expression The expression/value to be checked
 	 * @param string $parameterName The name of the parameter that is being checked
 	 * @param string $functionName The name of the function/method that the check occured within. If not provided, the name of the calling function will be used.
 	 * @throws InvalidParameterTypeException If the supplied expression is not a string
 	 * @throws InvalidParameterValueException If the supplied expression is an empty string or not a valid function name
 	 */
-	public static function InsureExistingFunction($expression, $parameterName = "expression", $functionName = null){
+	public static function InsureExistingFunction($expression, $parameterName = "functionName", $functionName = null){
 		if(!is_string($expression)){
 			throw new InvalidParameterTypeException($parameterName, $functionName ?: debug_backtrace(0, 2)[1]["function"], "string");
 		}
@@ -705,6 +882,172 @@ class Params extends Object{
 		}
 		if(!function_exists($expression)){
 			throw new InvalidParameterValueException($parameterName, $functionName ?: debug_backtrace(0, 2)[1]["function"], "existing function name");
+		}
+	}
+	/**
+	 * Checks to see if the supplied object and function name are valid to identify an existing method.
+	 * If so, nothing happens, otherwise throws an exception
+	 * @param object $object The object to which the method to be checked belongs
+	 * @param string $methodName The name of the method to insure
+	 * @param string $objectParameterName The name of the parameter that represents the object in the calling method/function
+	 * @param string $methodNameParameterName The name of the parameter of the method name from the calling function/method
+	 * @param string $functionName The name of the function/method that the check occured within. If not provided, the name of the calling function will be used.
+	 * @throws InvalidParameterTypeException If $methodName is not a string or $object is not an object
+	 * @throws InvalidParameterValueException If $methodName is empty, $object is null or the method does not exist
+	 */
+	public static function InsureExistingMethod($object, $methodName, $objectParameterName = "object", $methodNameParameterName = "methodName", $functionName = null){
+		if(!is_string($methodName)){
+			throw new InvalidParameterTypeException($methodNameParameterName, $functionName ?: debug_backtrace(0, 2)[1]["function"], "string");
+		}
+		if($methodName === ""){
+			throw new InvalidParameterValueException($methodNameParameterName, $functionName ?: debug_backtrace(0, 2)[1]["function"], "non-null object");
+		}
+		if(!is_object($object)){
+			throw new InvalidParameterTypeException($objectParameterName, $functionName ?: debug_backtrace(0, 2)[1]["function"], "object");
+		}
+		if(is_null($object)){
+			throw new InvalidParameterValueException($objectParameterName, $functionName ?: debug_backtrace(0, 2)[1]["function"], "non-null object");
+		}
+		if(!method_exists($object, $methodName)){
+			throw new InvalidParameterValueException(
+					"{$objectParameterName}->{$methodNameParameterName}", $functionName ?: debug_backtrace(0, 2)[1]["function"], "existing function name"
+			);
+		}
+	}
+	/**
+	 * Checks to see if the supplied class name and method name constitute a valid existing static method name.
+	 * If so, nothing happens, otherwise throws an exception
+	 * @param string $className The name of the class that contains the static method
+	 * @param string $methodName The name of the method to insure
+	 * @param string $calssNameParameterName The name of the class name parameter from the calling function/method
+	 * @param string $methodNameParameterName The name of the method name parameter from the calling function/method
+	 * @param string $functionName The name of the function/method that the check occured within. If not provided, the name of the calling function will be used.
+	 * @throws InvalidParameterTypeException If $methodName or $className is not a string
+	 * @throws InvalidParameterValueException If $className is not the name of an existing class,
+	 * $className or $methodName is an empty string or the combination is not a valid static method name
+	 */
+	public static function InsureExistingStaticMethod(
+			$className, $methodName, $calssNameParameterName = "className",
+			$methodNameParameterName = "methodName", $functionName = null){
+		if(!is_string($className)){
+			throw new InvalidParameterTypeException($calssNameParameterName, $functionName ?: debug_backtrace(0, 2)[1]["function"], "string");
+		}
+		if(!is_string($methodName)){
+			throw new InvalidParameterTypeException($methodNameParameterName, $functionName ?: debug_backtrace(0, 2)[1]["function"], "string");
+		}
+		if($className === ""){
+			throw new InvalidParameterValueException($calssNameParameterName, $functionName ?: debug_backtrace(0, 2)[1]["function"], "non-empty string");
+		}
+		if($methodName === ""){
+			throw new InvalidParameterValueException($methodNameParameterName, $functionName ?: debug_backtrace(0, 2)[1]["function"], "non-empty string");
+		}
+		if(!class_exists($className)){
+			throw new InvalidParameterValueException($calssNameParameterName, $functionName ?: debug_backtrace(0, 2)[1]["function"], "existing class name");
+		}
+		if(!method_exists($className, $methodName)){
+			throw new InvalidParameterValueException(
+					"{$calssNameParameterName}::{$methodNameParameterName}", $functionName ?: debug_backtrace(0, 2)[1]["function"], "existing static method name"
+			);
+		}
+	}
+	/**
+	 * Checks to see if the supplied expression is a non-empty string that is an existing callable function name.
+	 * If so, nothing happens, otherwise throws an exception
+	 * @param mixed $expression The expression/value to be checked
+	 * @param string $parameterName The name of the parameter that is being checked
+	 * @param string $functionName The name of the function/method that the check occured within. If not provided, the name of the calling function will be used.
+	 * @throws InvalidParameterTypeException If the supplied expression is not a string
+	 * @throws InvalidParameterValueException If the supplied expression is an empty string or not a valid callable function name
+	 */
+	public static function InsureCallableFunction($expression, $parameterName = "functionName", $functionName = null){
+		if(!is_string($expression)){
+			throw new InvalidParameterTypeException($parameterName, $functionName ?: debug_backtrace(0, 2)[1]["function"], "string");
+		}
+		if($expression === ""){
+			throw new InvalidParameterValueException($parameterName, $functionName ?: debug_backtrace(0, 2)[1]["function"], "non-empty string");
+		}
+		if(!function_exists($expression)){
+			throw new InvalidParameterValueException($parameterName, $functionName ?: debug_backtrace(0, 2)[1]["function"], "existing function name");
+		}
+		if(!is_callable($expression)){
+			throw new InvalidParameterValueException($parameterName, $functionName ?: debug_backtrace(0, 2)[1]["function"], "existing callable function name");
+		}
+	}
+	/**
+	 * Checks to see if the supplied object and function name are valid to identify an existing callable method.
+	 * If so, nothing happens, otherwise throws an exception
+	 * @param object $object The object to which the method to be checked belongs
+	 * @param string $methodName The name of the method to insure
+	 * @param string $objectParameterName The name of the parameter that represents the object in the calling method/function
+	 * @param string $methodNameParameterName The name of the parameter of the method name from the calling function/method
+	 * @param string $functionName The name of the function/method that the check occured within. If not provided, the name of the calling function will be used.
+	 * @throws InvalidParameterTypeException If $methodName is not a string or $object is not an object
+	 * @throws InvalidParameterValueException If $methodName is empty, $object is null, the method does not exist or the method is not callable
+	 */
+	public static function InsureCallableMethod($object, $methodName, $objectParameterName = "object", $methodNameParameterName = "methodName", $functionName = null){
+		if(!is_string($methodName)){
+			throw new InvalidParameterTypeException($methodNameParameterName, $functionName ?: debug_backtrace(0, 2)[1]["function"], "string");
+		}
+		if($methodName === ""){
+			throw new InvalidParameterValueException($methodNameParameterName, $functionName ?: debug_backtrace(0, 2)[1]["function"], "non-null object");
+		}
+		if(!is_object($object)){
+			throw new InvalidParameterTypeException($objectParameterName, $functionName ?: debug_backtrace(0, 2)[1]["function"], "object");
+		}
+		if(is_null($object)){
+			throw new InvalidParameterValueException($objectParameterName, $functionName ?: debug_backtrace(0, 2)[1]["function"], "non-null object");
+		}
+		if(!method_exists($object, $methodName)){
+			throw new InvalidParameterValueException(
+					"{$objectParameterName}->{$methodNameParameterName}", $functionName ?: debug_backtrace(0, 2)[1]["function"], "existing object method name"
+			);
+		}
+		if(!is_callable(array($object, $methodName))){
+			throw new InvalidParameterValueException(
+					"{$objectParameterName}->{$methodNameParameterName}", $functionName ?: debug_backtrace(0, 2)[1]["function"], "existing callable object method name"
+			);
+		}
+	}
+	/**
+	 * Checks to see if the supplied class name and method name constitute a valid existing callable static method name.
+	 * If so, nothing happens, otherwise throws an exception
+	 * @param string $className The name of the class that contains the static method
+	 * @param string $methodName The name of the method to insure
+	 * @param string $calssNameParameterName The name of the class name parameter from the calling function/method
+	 * @param string $methodNameParameterName The name of the method name parameter from the calling function/method
+	 * @param string $functionName The name of the function/method that the check occured within. If not provided, the name of the calling function will be used.
+	 * @throws InvalidParameterTypeException If $methodName or $className is not a string
+	 * @throws InvalidParameterValueException If $className is not the name of an existing class,
+	 * $className or $methodName is an empty string, the combination is not a valid static method name or the method is not callable
+	 */
+	public static function InsureCallableStaticMethod(
+			$className, $methodName, $calssNameParameterName = "className",
+			$methodNameParameterName = "methodName", $functionName = null){
+		if(!is_string($className)){
+			throw new InvalidParameterTypeException($calssNameParameterName, $functionName ?: debug_backtrace(0, 2)[1]["function"], "string");
+		}
+		if(!is_string($methodName)){
+			throw new InvalidParameterTypeException($methodNameParameterName, $functionName ?: debug_backtrace(0, 2)[1]["function"], "string");
+		}
+		if($className === ""){
+			throw new InvalidParameterValueException($calssNameParameterName, $functionName ?: debug_backtrace(0, 2)[1]["function"], "non-empty string");
+		}
+		if($methodName === ""){
+			throw new InvalidParameterValueException($methodNameParameterName, $functionName ?: debug_backtrace(0, 2)[1]["function"], "non-empty string");
+		}
+		if(!class_exists($className)){
+			throw new InvalidParameterValueException($calssNameParameterName, $functionName ?: debug_backtrace(0, 2)[1]["function"], "existing class name");
+		}
+		if(!method_exists($className, $methodName)){
+			throw new InvalidParameterValueException(
+					"{$calssNameParameterName}::{$methodNameParameterName}", $functionName ?: debug_backtrace(0, 2)[1]["function"], "existing static method name"
+			);
+		}
+		if(!is_callable(array($className, $methodName))){
+			throw new InvalidParameterValueException(
+					"{$calssNameParameterName}::{$methodNameParameterName}", $functionName ?: debug_backtrace(0, 2)[1]["function"],
+					"name of a callable static method"
+			);
 		}
 	}
 	/**
