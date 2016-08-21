@@ -617,19 +617,22 @@ final class Strings extends Object{
 	###########################################################################
 	/**
 	 * Extracts a string from mixed variable. Depending on the variable, tries to return a string representation (mostly suitable for use in the framework)
-	 * <ul>
+	 * <ol>
+	 * 	<li>If null, empty string, empty array, return the empty string.</li>
+	 * 	<li>If a string, return the string as is.</li>
 	 *  <li>if a scalar, return the scalar enclosed in a string</li>
 	 *  <li>if IObject, calls the __toString() method</li>
 	 *  <li>if object that has __toString() or ToString() method, calls one of them (__toString first)</li>
 	 *  <li>if array, goes through the elements one by one and:</li>
 	 *  <li>tries to obtain a string from it (any array elements will be recursively expanded with an indent string suitable to the level of depth)</li>
 	 *  <li>adds the string to the result as a new line</li>
-	 * </ul>
+	 * </ol>
 	 * @param mixed $var The variable to extract a string out of
 	 * @return string
 	 */
 	public static function Extract($var){
 		if($var === null || $var === '' || (is_array($var) && count($var) == 0)){return '';}
+		else if(is_string($var)){return $var;}
 		else if(is_scalar($var)){return "$var";}
 		else if(is_a($var, 'Core\IObject')){return $var->__toString();}
 		else if(is_object($var)){
