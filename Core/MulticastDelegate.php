@@ -3,6 +3,7 @@ namespace Core;
 /**
  * Base Delegate class for multicast delegates. Multicast delegates have invocation lists and are capable of invoking more than one method/function each time.
  * @property array $Parameters An array of parameters to be used with the function/method
+ * @property Delegate[] $InvocationList An array of Delegate objects that represent the current invocation list of the multicast delegate
  */
 class MulticastDelegate extends Delegate{
 	/**
@@ -37,6 +38,13 @@ class MulticastDelegate extends Delegate{
 				}
 			}
 		}
+	}
+	/**
+	 * Returns the internal invocation list as. This method is a read only getter for the InvocationList property.
+	 * @return Delegate[]
+	 */
+	public function InvocationList(){
+		return $this->_callList;
 	}
 	/**
 	 * Adds a single delegate to the invocation list. Tries to create a delegate out of the parameter as follows:
