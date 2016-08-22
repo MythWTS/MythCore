@@ -396,7 +396,7 @@ final class DateTime extends Object{
 	}
 	/**
 	 * Accessor for the full timestamp as would be returned by microtime(true) including the microseconds part
-	 * @param float $valueThe value to assign in setter mode
+	 * @param float $value The value to assign in setter mode
 	 * @throws InvalidParameterTypeException If value provided in setter mode is not a float
 	 * @return float
 	 */
