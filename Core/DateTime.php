@@ -97,8 +97,8 @@ final class DateTime extends Object{
 	###########################################################################
 	/**
 	 * Creates a new instance of DateTime object based on a UNIX timestamp (the number of seconds between the Unix Epoch
-	 * (January 1 1970 00:00:00 GMT) and the time specified).
-	 * @param integer $timestamp The UNIX timestamp to initialize the object from
+	 * (January 1 1970 00:00:00 GMT) and the time specified) or a full float timestamp.
+	 * @param integer|float $timestamp The UNIX timestamp to initialize the object from or the full float timestamp. If this is float, $microSeconds must be null
 	 * @param inetger $microSeconds The number of micro seconds
 	 * @throws InvalidParameterTypeException If the value of the timestamp is provided and not an integer
 	 * @throws InvalidParameterValueException If the timestamp is provided and not greater than or equals 0
@@ -117,6 +117,10 @@ final class DateTime extends Object{
 				Params::InsureInt($microSeconds, "microSeconds"); Params::InsureInRange($microSeconds, 0, 999999);
 				$this->_microSecond = $microSeconds;
 			}
+		}
+		elseif (is_float($timestamp) && is_null($microSeconds)){
+			$this->_timestamp = (integer)$timestamp;
+			$this->_microSecond = (integer)(($timestamp - $this->_timestamp) * 1000000);
 		}
 		else{
 			Params::InsureInt($timestamp, "timestamp"); Params::InsureGTE($timestamp, 0, "timestamp");
@@ -428,8 +432,35 @@ final class DateTime extends Object{
 	 * @link http://php.net/manual/en/function.strftime.php | Documentation of strftime() that lists the valid format strings
 	 * @return string
 	 */
-	public function FormatPHP($format){
+	public function PHPFormat($format){
 		return strftime(U::ES($format), $this->_timestamp);
+	}
+	###########################################################################
+	# Operations Methods
+	###########################################################################
+	/**
+	 * Adds the specified time interval to the current object's date-time
+	 * @param TimeSpan $interval The interval to add to this date
+	 * @return \Core\DateTime
+	 */
+	public function Add(TimeSpan $interval){
+		return new DateTime($this->FullTimestamp + $interval->FullTimestamp);
+	}
+	/**
+	 * Subtracts the specified time interval from the current object's date-time
+	 * @param TimeSpan $intervalThe interval to subtract from this date
+	 * @return \Core\DateTime
+	 */
+	public function Subtract(TimeSpan $interval){
+		return new DateTime($this->FullTimestamp - $interval->FullTimestamp);
+	}
+	/**
+	 * Returns the difference between this date and another time and returns the resulting TimeSpan
+	 * @param DateTime $date The date to subtract from this one
+	 * @return \Core\TimeSpan
+	 */
+	public function Difference(DateTime $date){
+		return new TimeSpan($this->FullTimestamp - $date->FullTimestamp);
 	}
 	###########################################################################
 	# Private Methods
@@ -494,6 +525,9 @@ final class DateTime extends Object{
 	 * Recalculates all private fields based on the timestamp field
 	 */
 	private function updateFromTimeStamp(){
+		if($this->_timestamp < 0){
+			$this->_timestamp = -$this->_timestamp;
+		}
 		$d = getdate($this->_timestamp);
 		$this->_day = $d["mday"];
 		$this->_hour = $d["hours"];

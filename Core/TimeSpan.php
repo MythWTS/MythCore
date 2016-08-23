@@ -59,6 +59,51 @@ final class TimeSpan extends Object{
 	 */
 	private $_timestamp;
 	###########################################################################
+	# Constructor & Factory Methods
+	###########################################################################
+	/**
+	 * Creates a new TimeSpan object from a number of seconds value. Not a standard UNIX timestamp 
+	 * @param integer|float $totalSeconds The amount of seconds representing the time span either as an integer or as a float
+	 * @throws InvalidParameterTypeException If the totalSeconds is not a float nor an integer
+	 */
+	public function __construct($totalSeconds = null){
+		if($totalSeconds === null){
+			$this->_days = $this->_hours = $this->_microSeconds = $this->_minutes = $this->_months = $this->_seconds = $this->_years = $this->_timestamp = 0;
+		}
+		else {
+			$t = 0;
+			if(is_int($totalSeconds)){
+				$this->_microSeconds = 0;
+				$this->_timestamp = $totalSeconds;
+			}
+			elseif (is_float($totalSeconds)){
+				$this->_timestamp = (integer)$totalSeconds;
+				$this->_microSeconds = (integer)(($totalSeconds - $t) * 1000000);
+			}
+			else{
+				throw new InvalidParameterTypeException("totalSeconds", __METHOD__, "either a float or an integer");
+			}
+			$this->updateFromTimestamp();
+		}
+	}
+	/**
+	 * Creates a new instance of TimeSpan based on the components provided
+	 * @param integer $years The number of years in the time span
+	 * @param integer $months The number of months in the time span
+	 * @param integer $days The number of days in the time span
+	 * @param integer $hours The number of hours in the time span
+	 * @param integer $minutes The number of minutes in the time span
+	 * @param integer $seconds The number of seconds in the time span
+	 * @param integer $microseconds The number of micro-seconds in the time span
+	 * @return \Core\TimeSpan
+	 */
+	public static function From($years, $months = 0, $days = 0, $hours = 0, $minutes = 0, $seconds = 0, $microseconds = 0){
+		return new TimeSpan(
+				(float)($seconds + ($minutes * 60) + ($hours * 3600) + ($days * 86400) + ($months * 2592000) + ($years * 31536000)) + 
+				(((float)$microseconds) / 1000000)
+		);
+	}
+	###########################################################################
 	# Public Properties
 	###########################################################################
 	/**
@@ -296,51 +341,6 @@ final class TimeSpan extends Object{
 		}
 	}
 	###########################################################################
-	# Constructor & Factory Methods
-	###########################################################################
-	/**
-	 * Creates a new TimeSpan object from a number of seconds value. Not a standard UNIX timestamp 
-	 * @param integer|float $totalSeconds The amount of seconds representing the time span either as an integer or as a float
-	 * @throws InvalidParameterTypeException If the totalSeconds is not a float nor an integer
-	 */
-	public function __construct($totalSeconds = null){
-		if($totalSeconds === null){
-			$this->_days = $this->_hours = $this->_microSeconds = $this->_minutes = $this->_months = $this->_seconds = $this->_years = $this->_timestamp = 0;
-		}
-		else {
-			$t = 0;
-			if(is_int($totalSeconds)){
-				$this->_microSeconds = 0;
-				$this->_timestamp = $totalSeconds;
-			}
-			elseif (is_float($totalSeconds)){
-				$this->_timestamp = (integer)$totalSeconds;
-				$this->_microSeconds = (integer)(($totalSeconds - $t) * 1000000);
-			}
-			else{
-				throw new InvalidParameterTypeException("totalSeconds", __METHOD__, "either a float or an integer");
-			}
-			$this->updateFromTimestamp();
-		}
-	}
-	/**
-	 * Creates a new instance of TimeSpan based on the components provided
-	 * @param integer $years The number of years in the time span
-	 * @param integer $months The number of months in the time span
-	 * @param integer $days The number of days in the time span
-	 * @param integer $hours The number of hours in the time span
-	 * @param integer $minutes The number of minutes in the time span
-	 * @param integer $seconds The number of seconds in the time span
-	 * @param integer $microseconds The number of micro-seconds in the time span
-	 * @return \Core\TimeSpan
-	 */
-	public static function From($years, $months = 0, $days = 0, $hours = 0, $minutes = 0, $seconds = 0, $microseconds = 0){
-		return new TimeSpan(
-				(float)($seconds + ($minutes * 60) + ($hours * 3600) + ($days * 86400) + ($months * 2592000) + ($years * 31536000)) + 
-				(((float)$microseconds) / 1000000)
-		);
-	}
-	###########################################################################
 	# Formatting Methods
 	###########################################################################
 	/**
@@ -358,6 +358,9 @@ final class TimeSpan extends Object{
 	 * Updates the fields from the timestamp
 	 */
 	private function updateFromTimestamp(){
+		if($this->_timestamp < 0){
+			$this->_timestamp = -$this->_timestamp;
+		}
 		$t = $this->_timestamp;
 		$this->_years = $t / 31536000;
 		$t = $t % 31536000;
