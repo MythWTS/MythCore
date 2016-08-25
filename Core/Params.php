@@ -503,6 +503,43 @@ class Params extends Object{
 		if(!is_int($expression)){
 			throw new InvalidParameterTypeException($parameterName, $functionName ?: debug_backtrace(0, 2)[1]["function"], "integer");
 		}
+		return $expression;
+	}
+	/**
+	 *  Checks a value/expression to see if it evaluates to an integer value that is greater than or equals 0. If so, expression is returned. If not, throws an exception.
+	 * @param mixed $expression The value to be checked
+	 * @param string $parameterName The name of the parameter that is being checked
+	 * @param string $functionName The name of the function/method that the check occured within. If not provided, the name of the calling function will be used.
+	 * @throws InvalidParameterTypeException If the value of the parameter is not an integer
+	 * @throws InvalidParameterValueException If the value of the parameter is less than zero
+	 * @return integer
+	 */
+	public static function GetInsuredGTE0Int($expression, $parameterName = "expression", $functionName = null){
+		if(!is_int($expression)){
+			throw new InvalidParameterTypeException($parameterName, $functionName ?: debug_backtrace(0, 2)[1]["function"], "integer");
+		}
+		elseif($expression < 0){
+			throw new InvalidParameterValueException($parameterName, $functionName ?: debug_backtrace(0, 2)[1]["function"], ">= 0");
+		}
+		return $expression;
+	}
+	/**
+	 *  Checks a value/expression to see if it evaluates to an integer value that is greater than or equals 1. If so, expression is returned. If not, throws an exception.
+	 * @param mixed $expression The value to be checked
+	 * @param string $parameterName The name of the parameter that is being checked
+	 * @param string $functionName The name of the function/method that the check occured within. If not provided, the name of the calling function will be used.
+	 * @throws InvalidParameterTypeException If the value of the parameter is not an integer
+	 * @throws InvalidParameterValueException If the value of the parameter is less than 1
+	 * @return integer
+	 */
+	public static function GetInsuredPositiveInt($expression, $parameterName = "expression", $functionName = null){
+		if(!is_int($expression)){
+			throw new InvalidParameterTypeException($parameterName, $functionName ?: debug_backtrace(0, 2)[1]["function"], "integer");
+		}
+		elseif($expression < 1){
+			throw new InvalidParameterValueException($parameterName, $functionName ?: debug_backtrace(0, 2)[1]["function"], ">= 0");
+		}
+		return $expression;
 	}
 	/**
 	 * Checks a value/expression to see if it evaluates to a float value. If so, expression is returned. If not, throws an exception.
