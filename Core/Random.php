@@ -3,6 +3,7 @@ namespace Core;
 /**
  * Utility class to generate random values. Based on the mt_rand() native method
  * @todo Create a set of methods to generate arrays of random elements
+ * @todo Add support for hexadecimal, octal and maybe binary format generation
  */
 final class Random extends Object{
 	###########################################################################
@@ -110,6 +111,11 @@ final class Random extends Object{
 	 */
 	private static $_alphaNumericWhite; //67
 	/**
+	 * A shuffled array of alphanumeric and special characters
+	 * @var array
+	 */
+	private static $_alphaNumericSpecial; //94
+	/**
 	 * A shuffled array of all printable characters
 	 * @var array
 	 */
@@ -134,6 +140,8 @@ final class Random extends Object{
 	 * 		<dd>String of alphanumeric or horizontal whitespace characters. Supports {cnh}, {cnh:n}, {cnh:n1-n2}</dd>
 	 * 		<dt>{cnv}</dt>
 	 * 		<dd>String of alphanumeric or vertical whitespace characters. Supports {cnv}, {cnv:n}, {cnv:n1-n2}</dd>
+	 * 		<dt>{cns}</dt>
+	 * 		<dd>String of alphanumeric or special characters. Supports {cns}, {cns:n}, {cns:n1-n2}</dd>
 	 * 		<dt>{cnw}</dt>
 	 * 		<dd>String of alphanumeric or whitespace characters. Supports {cnw}, {cnw:n}, {cnw:n1-n2}</dd>
 	 * 		<dt>{ch}</dt>
@@ -256,6 +264,13 @@ final class Random extends Object{
 	 			'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
 	 			'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ' ', "\t"
 	 	);
+	 	self::$_alphaNumericSpecial = array(
+	 			'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
+	 			'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
+	 			'0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+	 			'`', '~', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '_', '=', '+',
+	 			']', '}', '[', '{', '"', "\'", ';', ':', '/', '?', '.', '>', ',', '<', '\\', '|'
+	 	);
 	 	self::$_alphaNumericVWhite = array(
 	 			'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
 	 			'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
@@ -277,6 +292,7 @@ final class Random extends Object{
 	 	self::$_pattern = "/\{(\\S{1,3})(:(\\d+)(-(\\d+))?)?\}/";
 	 	shuffle(self::$_alpha);
 	 	shuffle(self::$_alphaNumeric);
+	 	shuffle(self::$_alphaNumericSpecial);
 	 	shuffle(self::$_alphaNumericWhite);
 	 	shuffle(self::$_alphaWhite);
 	 	shuffle(self::$_digits);
@@ -319,6 +335,21 @@ final class Random extends Object{
 		$res = "";
 		for($i=0; $i<$length; $i++){
 			$res .= self::$_printable[mt_rand(0, 98)];
+		}
+		return $res;
+	}
+	/**
+	 * Returns a random alphanumeric or special characters string of the specified length
+	 * @param integer $length The length of the generated string
+	 * @throws InvalidParameterTypeException If the length is not an integer
+	 * @throws InvalidParameterValueException If the length is not greater than 0
+	 * @return string
+	 */
+	public static function NextAlphaNumericOrSpecialString($length = 1){
+		Params::InsureInt($length, "length"); Params::InsureGT($length, 0, "length");
+		$res = "";
+		for($i=0; $i<$length; $i++){
+			$res .= self::$_alphaNumericSpecial[mt_rand(0, 93)];
 		}
 		return $res;
 	}
@@ -578,6 +609,13 @@ final class Random extends Object{
 	 */
 	public static function NextPrintableChar(){
 		return self::$_printable[mt_rand(0, 89)];
+	}
+	/**
+	 * Returns a random alphanumeric or special character
+	 * @return string
+	 */
+	public static function NextAlphaNumericOrSpecialChar(){
+		return self::$_alphaNumericSpecial[mt_rand(0, 93)];
 	}
 	/**
 	 * Returns a random alphanumeric or horizontal whitespace character
@@ -874,6 +912,7 @@ final class Random extends Object{
 					switch ($cmd){
 						case "cs" : $source = self::$_printable; $sourceLength = 99; break;
 						case "cnw" : $source = self::$_alphaNumericWhite; $sourceLength = 67; break;
+						case "cns" : $source = self::$_alphaNumericSpecial; $sourceLength = 94; break;
 						case "cnh" : $source = self::$_alphaNumericHWhite; $sourceLength = 64; break;
 						case "cnv" : $source = self::$_alphaNumericVWhite; $sourceLength = 65; break;
 						case "cw" : $source = self::$_alphaWhite; $sourceLength = 57; break;
