@@ -185,76 +185,24 @@ final class Random extends Object{
 	public static function Next($format){
 		$res = U::ES($format);
 		if(!U::NAW($res)){
-			$matches = array();
-			preg_match_all(self::$_pattern, $res, $matches, PREG_OFFSET_CAPTURE | PREG_SET_ORDER);
-			$replacements = array();
-			foreach ($matches as $match){
-				$matchStart = $match[0][1];
-				$matchLength = strlen($match[0][0]);
-				$replacement = "";
-				$cmd = $match[1][0];
-				$matchCount = count($match);
-				switch ($cmd){
-					case "+": $replacement = self::$_signs[mt_rand(0, 1)]; break;
-					case "fr":
-					case "fri":
-						$replacement = $cmd == "fri" ? self::NextFractionInclusive() : (float)(1 / (float)mt_rand(2));
-						if($matchCount == 2){$replacement = "{$replacement}";}
-						elseif($matchCount >= 4){$replacement = sprintf("%.{$match[3][0]}f", $replacement);}
-						break;
-					case "i":
-					case "f":
-					case "n":
-						$min = $matchCount == 2 || $matchCount == 4 ? null : (float)$match[3][0];
-						$max = $matchCount == 2 ? null : ($matchCount == 4 ? (float)$match[3][0] : (float)$match[5][0]);
-						if($cmd == "i"){$replacement = self::NextInt((integer)$min, (integer)$max);}
-						elseif($cmd == "f"){$replacement = self::NextFloat($min, $max);}
-						else{
-							$s = mt_rand(0, 1);
-							$replacement = $s ? self::NextInt($min, $max) : self::NextFloat($min, $max);
-						}
-						$replacement = "{$replacement}";
-						break;
-					default:
-						$source = array();
-						$sourceLength = 2;
-						$length = 1;
-						switch ($cmd){
-							case "cs" : $source = self::$_printable; $sourceLength = 99; break;
-							case "cnw" : $source = self::$_alphaNumericWhite; $sourceLength = 67; break;
-							case "cnh" : $source = self::$_alphaNumericHWhite; $sourceLength = 64; break;
-							case "cnv" : $source = self::$_alphaNumericVWhite; $sourceLength = 65; break;
-							case "cw" : $source = self::$_alphaWhite; $sourceLength = 57; break;
-							case "ch" : $source = self::$_alphaHWhite; $sourceLength = 54; break;
-							case "cv" : $source = self::$_alphaVWhite; $sourceLength = 55; break;
-							case "cn" : $source = self::$_alphaNumeric; $sourceLength = 62; break;
-							case "l" : $source = self::$_alpha; $sourceLength = 52; break;
-							case "ul" : $source = self::$_upper; $sourceLength = 26; break;
-							case "ll" : $source = self::$_lower; $sourceLength = 26; break;
-							case "p" : $source = self::$_special; $sourceLength = 32; break;
-							case "w" : $source = self::$_whitespace; $sourceLength = 5; break;
-							case "wh" : $source = self::$_hWhitespace; $sourceLength = 2; break;
-							case "wv" : $source = self::$_vWhitespace; $sourceLength = 3; break;
-							case "d" : $source = self::$_digits; $sourceLength = 10; break;
-						}
-						switch($matchCount){
-							case 4: $length = (integer)$match[3][0]; break;
-							case 6: $length = mt_rand((integer)$match[3][0], (integer)$match[5][0]); break;
-						}
-						for($i = 0; $i < $length; $i++){
-							$replacement .= $source[mt_rand(0, $sourceLength - 1)];
-						}
-						break;
-				}
-				$replacements[] = array($matchStart, $matchLength, $replacement);
-			}
-			$start = 0; $t = "";
-			foreach ($replacements as $replacement){
-				$t .= substr($res, $start, $replacement[0] - $start) . $replacement[2];
-				$start = $replacement[0] + $replacement[1];
-			}
-			$t .= substr($res, $start);
-			$res = $t;
+			$res = self::performReplacements($res, self::getReplacements(self::getMatches($res)));
+		}
+		return $res;
+	}
+	/**
+	 * Creates an array with randomly generated strings based on a format. The format is the same used for Next().
+	 * @param mixed $format The format used to generate the random text.
+	 * @param integer $count The number of strings to generate.
+	 * @see \Core\Random::Next()
+	 * @return string[]
+	 */
+	public static function NextArray($format, $count = 1){
+		Params::InsureInt($count, "count"); Params::InsureGTE($count, 0, "count");
+		$f = U::ES($format);
+		$res = array();
+		$matches = self::getMatches($f);
+		for($i = 0; $i < $count; $i++){
+			$res[] = self::performReplacements($f, self::getReplacements($matches));
 		}
 		return $res;
 	}
@@ -850,6 +798,109 @@ final class Random extends Object{
 		else {
 			throw new InvalidParameterTypeException("elements", __METHOD__, "array, string or ArrayAccess object");
 		}
+	}
+	###########################################################################
+	# Private Internal Methods
+	###########################################################################
+	/**
+	 * Returns an array of information about matches of random generation placeholders in a format.
+	 * @param string $format The frormat to get matches for
+	 * @return array
+	 */
+	private static function getMatches($format){
+		$matches = array();
+		preg_match_all(self::$_pattern, $format, $matches, PREG_OFFSET_CAPTURE | PREG_SET_ORDER);
+		return $matches;
+	}
+	/**
+	 * Performs a replacment on a format string based on an array of replacement instructions. Each member of the replacements array should in turn be an array
+	 * of three members, namely:
+	 * <ul>
+	 * 	<li>$replacements[i][0] = the start position of the replacement to be done relative to the format string</li>
+	 * 	<li>$replacements[i][1] = the length of the string to be replaced in the format string</li>
+	 * 	<li>$replacements[i][2] = the string to use as replacement, usually a randomly generated text</li>
+	 * </ul>
+	 * @param string $format The format to use to perform replacements on
+	 * @param array $replacements An array of replacements with array members each with three members, start position, length and replacement string
+	 * @return string
+	 */
+	private static function performReplacements($format, array $replacements){
+		$start = 0; $t = "";
+		foreach ($replacements as $replacement){
+			$t .= substr($format, $start, $replacement[0] - $start) . $replacement[2];
+			$start = $replacement[0] + $replacement[1];
+		}
+		$t .= substr($format, $start);
+		return $t;
+	}
+	/**
+	 * Returns an array of replacement instructions to be performed based on a set of matches of random generation placeholders
+	 * @param array $matches the matches array as returned by preg_match_all()
+	 * @return array
+	 */
+	private static function getReplacements(array $matches){
+		$replacements = array();
+		foreach ($matches as $match){
+			$matchStart = $match[0][1];
+			$matchLength = strlen($match[0][0]);
+			$replacement = "";
+			$cmd = $match[1][0];
+			$matchCount = count($match);
+			switch ($cmd){
+				case "+": $replacement = self::$_signs[mt_rand(0, 1)]; break;
+				case "fr":
+				case "fri":
+					$replacement = $cmd == "fri" ? self::NextFractionInclusive() : (float)(1 / (float)mt_rand(2));
+					if($matchCount == 2){$replacement = "{$replacement}";}
+					elseif($matchCount >= 4){$replacement = sprintf("%.{$match[3][0]}f", $replacement);}
+					break;
+				case "i":
+				case "f":
+				case "n":
+					$min = $matchCount == 2 || $matchCount == 4 ? null : (float)$match[3][0];
+					$max = $matchCount == 2 ? null : ($matchCount == 4 ? (float)$match[3][0] : (float)$match[5][0]);
+					if($cmd == "i"){$replacement = self::NextInt((integer)$min, (integer)$max);}
+					elseif($cmd == "f"){$replacement = self::NextFloat($min, $max);}
+					else{
+						$s = mt_rand(0, 1);
+						$replacement = $s ? self::NextInt($min, $max) : self::NextFloat($min, $max);
+					}
+					$replacement = "{$replacement}";
+					break;
+				default:
+					$source = array();
+					$sourceLength = 2;
+					$length = 1;
+					switch ($cmd){
+						case "cs" : $source = self::$_printable; $sourceLength = 99; break;
+						case "cnw" : $source = self::$_alphaNumericWhite; $sourceLength = 67; break;
+						case "cnh" : $source = self::$_alphaNumericHWhite; $sourceLength = 64; break;
+						case "cnv" : $source = self::$_alphaNumericVWhite; $sourceLength = 65; break;
+						case "cw" : $source = self::$_alphaWhite; $sourceLength = 57; break;
+						case "ch" : $source = self::$_alphaHWhite; $sourceLength = 54; break;
+						case "cv" : $source = self::$_alphaVWhite; $sourceLength = 55; break;
+						case "cn" : $source = self::$_alphaNumeric; $sourceLength = 62; break;
+						case "l" : $source = self::$_alpha; $sourceLength = 52; break;
+						case "ul" : $source = self::$_upper; $sourceLength = 26; break;
+						case "ll" : $source = self::$_lower; $sourceLength = 26; break;
+						case "p" : $source = self::$_special; $sourceLength = 32; break;
+						case "w" : $source = self::$_whitespace; $sourceLength = 5; break;
+						case "wh" : $source = self::$_hWhitespace; $sourceLength = 2; break;
+						case "wv" : $source = self::$_vWhitespace; $sourceLength = 3; break;
+						case "d" : $source = self::$_digits; $sourceLength = 10; break;
+					}
+					switch($matchCount){
+						case 4: $length = (integer)$match[3][0]; break;
+						case 6: $length = mt_rand((integer)$match[3][0], (integer)$match[5][0]); break;
+					}
+					for($i = 0; $i < $length; $i++){
+						$replacement .= $source[mt_rand(0, $sourceLength - 1)];
+					}
+					break;
+			}
+			$replacements[] = array($matchStart, $matchLength, $replacement);
+		}
+		return $replacements;
 	}
 }
 Random::Initialize();
