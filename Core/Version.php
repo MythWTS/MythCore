@@ -24,15 +24,15 @@ class Version extends Object{
 	 */
 	private $_minor;
 	/**
-	 * The revision version component
-	 * @var integer
-	 */
-	private $_revision;
-	/**
 	 * The build version component
 	 * @var integer
 	 */
 	private $_build;
+	/**
+	 * The revision version component
+	 * @var integer
+	 */
+	private $_revision;
 	/**
 	 * A regex pattern to be used to match components of a version string in Parse()
 	 * @var string
@@ -67,9 +67,9 @@ class Version extends Object{
 		elseif($this->_major == $version->_major){
 			if($this->_minor > $version->_minor){return true;}
 			elseif($this->_minor == $version->_minor){
-				if($this->_revision > $version->_revision){return true;}
-				elseif($this->_revision == $version->_revision){
-					return $this->_build > $version->_build;
+				if($this->_build > $version->_build){return true;}
+				elseif($this->_build == $version->_build){
+					return $this->_revision > $version->_revision;
 				}
 			}
 		}
@@ -93,9 +93,9 @@ class Version extends Object{
 		elseif($this->_major == $version->_major){
 			if($this->_minor < $version->_minor){return true;}
 			elseif($this->_minor == $version->_minor){
-				if($this->_revision < $version->_revision){return true;}
-				elseif($this->_revision == $version->_revision){
-					return $this->_build < $version->_build;
+				if($this->_build < $version->_build){return true;}
+				elseif($this->_build == $version->_build){
+					return $this->_revision < $version->_revision;
 				}
 			}
 		}
@@ -116,14 +116,14 @@ class Version extends Object{
 	 * Creates a new instance from the supplied components
 	 * @param integer $major The major version component
 	 * @param integer $minor The minor version component
-	 * @param integer $revision The revision version component
 	 * @param integer $build The build version component
+	 * @param integer $revision The revision version component
 	 */
-	public function __construct($major = 0, $minor = 0, $revision = 0, $build = 0){
+	public function __construct($major = 0, $minor = 0, $build = 0, $revision = 0){
 		$this->_major = Params::GetInsuredGTE0Int($major, "major");
 		$this->_minor = Params::GetInsuredGTE0Int($minor, "minor");
-		$this->_revision = Params::GetInsuredGTE0Int($revision, "revision");
 		$this->_build = Params::GetInsuredGTE0Int($build, "build");
+		$this->_revision = Params::GetInsuredGTE0Int($revision, "revision");
 	}
 	/**
 	 * Parses a string value and creates a Version object that represents the version parsed from the string
@@ -138,9 +138,9 @@ class Version extends Object{
 			$componentsCount = count($matches) - 1;
 			$major = (integer)$matches[1];
 			$minor = (integer)$matches[2];
-			$revision = $componentsCount > 2 ? (integer)$matches[3] : 0;
-			$build = $componentsCount > 3 ? (integer)$matches[4] : 0;
-			return new Version($major, $minor, $revision, $build);
+			$build = $componentsCount > 2 ? (integer)$matches[3] : 0;
+			$revision = $componentsCount > 3 ? (integer)$matches[4] : 0;
+			return new Version($major, $minor, $build, $revision);
 		}
 		else{
 			throw new InvalidParameterValueException(
@@ -178,6 +178,19 @@ class Version extends Object{
 		}
 	}
 	/**
+	 * Accessor for the Build version component
+	 * @param integer $value The value to assign to this property in assign mode
+	 * @return number
+	 */
+	public function Build($value = null){
+		if($value === null){
+			return $this->_build;
+		}
+		else{
+			$this->_build = Params::GetInsuredGTE0Int($value, "value");
+		}
+	}
+	/**
 	 * Accessor for the Revision version component
 	 * @param integer $value The value to assign to this property in assign mode
 	 * @return integer
@@ -204,28 +217,15 @@ class Version extends Object{
 	public function MinorRevision(){
 		return $this->_revision & BitMasks::$Word01->Value;
 	}
-	/**
-	 * Accessor for the Build version component
-	 * @param integer $value The value to assign to this property in assign mode
-	 * @return number
-	 */
-	public function Build($value = null){
-		if($value === null){
-			return $this->_build;
-		}
-		else{
-			$this->_build = Params::GetInsuredGTE0Int($value, "value");
-		}
-	}
 	###########################################################################
 	# Base Overrides
 	###########################################################################
 	/**
-	 * Returns a string representation of the version number of the format major.minor.revision.build
+	 * Returns a string representation of the version number of the format major.minor.build.revision
 	 * {@inheritDoc}
 	 * @see \Core\Object::__toString()
 	 */
 	public function __toString(){
-		return "{$this->_major}.{$this->_minor}.{$this->_revision}.{$this->_build}";
+		return "{$this->_major}.{$this->_minor}.{$this->_build}.{$this->_revision}";
 	}
 }
