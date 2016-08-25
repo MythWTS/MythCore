@@ -4,6 +4,7 @@ namespace Core;
  * A utility static class for string manipulation methods.This class is mainly a wrapper around php functions
  * It adds support to exceptions and type checking whenever possible. Most of the methods require an input string that can actually be
  * any type that can be converted to a string either using a __toString(), ToString() method or via casting and in the case of arrays, via joining
+ * @todo Add utility methods to verify character classes such as hex-digit, octal digit, decimal digit, float digits ... etc
  */
 final class Strings extends Object{
 	###########################################################################
