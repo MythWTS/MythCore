@@ -13,7 +13,6 @@ namespace Core;
 class FormatException extends ExceptionBase{
 	/**
 	 * Creates a new instance of the exception
-	 * @param string $featureName
 	 */
 	public function __construct(){
 		parent::__construct("An invalid format or format string was used", 4);
