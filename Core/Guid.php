@@ -111,12 +111,6 @@ final class Guid extends Object{
 	 */
 	public static function Initialize(){
 		self::$_empty = new Guid(0, 0, 0, 0, 0, 0, 0);
-		echo '$_dualWordMax: ' . self::$_dualWordMax . "<br/>\n";
-		echo '$_wordMax: ' . self::$_wordMax . "<br/>\n";
-		echo '$_time_hi_max: ' . self::$_time_hi_max . "<br/>\n";
-		echo '$_clk_seq_max: ' . self::$_clk_seq_max . "<br/>\n";
-		echo '$_clk_seq_mask: ' . self::$_clk_seq_mask . "<br/>\n";
-		echo '$_version: ' . self::$_version . "<br/>\n";
 	}
 	###########################################################################
 	# Factory Methods
