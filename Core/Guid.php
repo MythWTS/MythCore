@@ -76,6 +76,16 @@ final class Guid extends Object{
 	 */
 	private static $_clk_seq_mask = 0x8000; //32768
 	/**
+	 * A regex pattern to read a uuid v4.0 guid formatted as a string
+	 * @var string
+	 */
+	private static $_pattern = '/^([\dabcdef]{8})-([\dabcdef]{4})-4([\dabcdef]{3})-([\dabcdef]{4})-([\dabcdef]{4})([\dabcdef]{4})([\dabcdef]{4})$/';
+	/**
+	 * A regex pattern used only for the validation of a v4.0 uuid Guid string
+	 * @var unknown
+	 */
+	private static $_validationPattern = '/^[\dabcdef]{8}-[\dabcdef]{4}-4[\dabcdef]{3}-([\dabcdef]{4})-[\dabcdef]{12}$/';
+	/**
 	 * The empty Guid object
 	 * @var \Core\Guid
 	 */
@@ -136,6 +146,58 @@ final class Guid extends Object{
 		$res->_node_mid = $guid->_node_mid; $res->_time_hi = $guid->_time_hi; $res->_time_low = $guid->_time_low;
 		$res->_time_mid = $guid->_time_mid;
 		return $res;
+	}
+	/**
+	 * Prases a string into a new Guid object. To validate the string before parsing, use Validate()
+	 * @see \Core\Guid::Validate()
+	 * @param mixed $guidString String-convertable variable containing the guid formatted as a uuid v4.0 guid.
+	 * @throws InvalidParameterFormatException If the format of the supplied string does not convert into a valid uuid v4.0 guid
+	 * @return \Core\Guid
+	 */
+	public static function Parse($guidString){
+		$string = strtolower(U::ES($guidString));
+		$matches = array();
+		if(preg_match_all(self::$_pattern, $string, $matches, PREG_SET_ORDER)){
+			$match = $matches[0];
+			$timeLowDualWord = $timeMidWord = $timeHiWord = $clkSeqWord = $nodeHiWord = $nodeMidWord = $nodeLowWord = 0;
+			sscanf($match[1], "%x", $timeLowDualWord);
+			sscanf($match[2], "%x", $timeMidWord);
+			sscanf($match[3], "%x", $timeHiWord);
+			sscanf($match[4], "%x", $clkSeqWord);
+			sscanf($match[5], "%x", $nodeHiWord);
+			sscanf($match[6], "%x", $nodeMidWord);
+			sscanf($match[7], "%x", $nodeLowWord);
+			if(($clkSeqWord & 0xc000) != 0x8000){
+				throw new InvalidParameterFormatException(
+						"guidString", __METHOD__,
+						"<8 hex digits>-<4 hex digits>-4<3 hex digits>-<4 hex digits with the leftmost two bits as 10>-<12 hex digits>"
+				);
+			}
+			return new Guid($timeLowDualWord, $timeMidWord, $timeHiWord, $clkSeqWord & 0x3fff, $nodeHiWord, $nodeMidWord, $nodeLowWord);
+		}
+		else{
+			throw new InvalidParameterFormatException(
+					"guidString", __METHOD__,
+					"<8 hex digits>-<4 hex digits>-4<3 hex digits>-<4 hex digits with the leftmost two bits as 10>-<12 hex digits>"
+			);
+		}
+	}
+	/**
+	 * Validates the supplied string (or string convertable variable) and returns whether it is formatted as a valid uuid v4.0 guid.
+	 * This method does not try to parse the string, it only validates it so it is a little bit less resource consuming than Parse()
+	 * @see \Core\Guid::Parse()
+	 * @param mixed $guidString String-convertable variable containing the guid formatted as a uuid v4.0 guid.
+	 * @return boolean
+	 */
+	public static function Validate($guidString){
+		$string  = strtolower(U::ES($guidString));
+		$matches = array();
+		if(preg_match_all(self::$_validationPattern, $string, $matches, PREG_SET_ORDER)){
+			$clkSeqWord = 0;
+			sscanf($matches[0][1], "%x", $clkSeqWord);
+			return ($clkSeqWord & 0xc000) == 0x8000;
+		}
+		return false;
 	}
 	###########################################################################
 	# Comparison Operators
