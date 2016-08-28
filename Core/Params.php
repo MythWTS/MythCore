@@ -828,6 +828,34 @@ class Params extends Object{
 		return $expression;
 	}
 	/**
+	 * Checks a value/expression to see if it evaluates to an instantiable class's name. If so, expression is returned. If not, throws an exception.
+	 * @param mixed $expression The value to be checked
+	 * @param string $parameterName The name of the parameter that is being checked
+	 * @param string $functionName The name of the function/method that the check occured within. If not provided, the name of the calling function will be used.
+	 * @throws InvalidParameterTypeException If the type of the parameter is not a string
+	 * @throws InvalidParameterValueException If the value of the parameter is not a valid instantiable class name
+	 * @return string
+	 */
+	public static function GetInsuredInstantiable($expression, $parameterName = "expression", $functionName = null){
+		if(!is_string($expression)){
+			throw new InvalidParameterTypeException(
+					$parameterName, $functionName ?: debug_backtrace(0, 2)[1]["function"], "string containing an existing instantiable class name"
+			);
+		}
+		if(!class_exists($expression)){
+			throw new InvalidParameterValueException(
+					$parameterName, $functionName ?: debug_backtrace(0, 2)[1]["function"], "string containing an existing instantiable class name"
+			);
+		}
+		$t = new Type($expression);
+		if(!$t->IsInstantiable){
+			throw new InvalidParameterValueException(
+					$parameterName, $functionName ?: debug_backtrace(0, 2)[1]["function"], "string containing an existing instantiable class name"
+			);
+		}
+		return $expression;
+	}
+	/**
 	 * Checks a value/expression to see if it evaluates to an existing class's name. If so, expression is returned. If not, throws an exception.
 	 * @param mixed $expression The value to be checked
 	 * @param string $parameterName The name of the parameter that is being checked
@@ -1848,6 +1876,26 @@ class Params extends Object{
 		}
 		if(!class_exists($expression)){
 			throw new InvalidParameterValueException($parameterName, $functionName ?: debug_backtrace(0, 2)[1]["function"], "an existing class name");
+		}
+	}
+	/**
+	 * Checks a value/expression to see if it evaluates to an instantiable class's name. If so, nothing happens. If not, throws an exception.
+	 * @param mixed $expression The value to be checked
+	 * @param string $parameterName The name of the parameter that is being checked
+	 * @param string $functionName The name of the function/method that the check occured within. If not provided, the name of the calling function will be used.
+	 * @throws InvalidParameterTypeException If the type of the parameter is not a string
+	 * @throws InvalidParameterValueException If the value of the parameter is not a valid instantiable class name
+	 */
+	public static function InsureInstantiable($expression, $parameterName = "expression", $functionName = null){
+		if(!is_string($expression)){
+			throw new InvalidParameterTypeException($parameterName, $functionName ?: debug_backtrace(0, 2)[1]["function"], "string containing an instantiable class name");
+		}
+		if(!class_exists($expression)){
+			throw new InvalidParameterValueException($parameterName, $functionName ?: debug_backtrace(0, 2)[1]["function"], "an instantiable class name");
+		}
+		$tn = new Type($expression);
+		if(!$tn->IsInstantiable){
+			throw new InvalidParameterValueException($parameterName, $functionName ?: debug_backtrace(0, 2)[1]["function"], "an instantiable class name");
 		}
 	}
 	/**
