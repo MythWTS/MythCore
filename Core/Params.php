@@ -831,7 +831,7 @@ class Params extends Object{
 	 * Checks a value/expression to see if it evaluates to an existing class's name. If so, expression is returned. If not, throws an exception.
 	 * @param mixed $expression The value to be checked
 	 * @param string $parameterName The name of the parameter that is being checked
-	 * @param unknown $functionName The name of the function/method that the check occured within. If not provided, the name of the calling function will be used.
+	 * @param string $functionName The name of the function/method that the check occured within. If not provided, the name of the calling function will be used.
 	 * @throws InvalidParameterTypeException If the type of the parameter is not a string
 	 * @throws InvalidParameterValueException If the value of the parameter is not a valid existing class name
 	 * @return string
@@ -849,7 +849,7 @@ class Params extends Object{
 	 * Checks a value/expression to see if it evaluates to an existing interface's name. If so, expression is returned. If not, throws an exception.
 	 * @param mixed $expression The value to be checked
 	 * @param string $parameterName The name of the parameter that is being checked
-	 * @param unknown $functionName The name of the function/method that the check occured within. If not provided, the name of the calling function will be used.
+	 * @param string $functionName The name of the function/method that the check occured within. If not provided, the name of the calling function will be used.
 	 * @throws InvalidParameterTypeException If the type of the parameter is not a string
 	 * @throws InvalidParameterValueException If the value of the parameter is not a valid existing interface's name
 	 * @return string
@@ -866,7 +866,7 @@ class Params extends Object{
 	 * Checks a value/expression to see if it evaluates to an existing trait's name. If so, expression is returned. If not, throws an exception.
 	 * @param mixed $expression The value to be checked
 	 * @param string $parameterName The name of the parameter that is being checked
-	 * @param unknown $functionName The name of the function/method that the check occured within. If not provided, the name of the calling function will be used.
+	 * @param string $functionName The name of the function/method that the check occured within. If not provided, the name of the calling function will be used.
 	 * @throws InvalidParameterTypeException If the type of the parameter is not a string
 	 * @throws InvalidParameterValueException If the value of the parameter is not a valid existing trait's name
 	 * @return string
@@ -1838,7 +1838,7 @@ class Params extends Object{
 	 * Checks a value/expression to see if it evaluates to an existing class's name. If so, nothing happens. If not, throws an exception.
 	 * @param mixed $expression The value to be checked
 	 * @param string $parameterName The name of the parameter that is being checked
-	 * @param unknown $functionName The name of the function/method that the check occured within. If not provided, the name of the calling function will be used.
+	 * @param string $functionName The name of the function/method that the check occured within. If not provided, the name of the calling function will be used.
 	 * @throws InvalidParameterTypeException If the type of the parameter is not a string
 	 * @throws InvalidParameterValueException If the value of the parameter is not a valid existing class name
 	 */
@@ -1854,7 +1854,7 @@ class Params extends Object{
 	 * Checks a value/expression to see if it evaluates to an existing interface's name. If so, nothing happens. If not, throws an exception.
 	 * @param mixed $expression The value to be checked
 	 * @param string $parameterName The name of the parameter that is being checked
-	 * @param unknown $functionName The name of the function/method that the check occured within. If not provided, the name of the calling function will be used.
+	 * @param string $functionName The name of the function/method that the check occured within. If not provided, the name of the calling function will be used.
 	 * @throws InvalidParameterTypeException If the type of the parameter is not a string
 	 * @throws InvalidParameterValueException If the value of the parameter is not a valid existing interface's name
 	 */
@@ -1870,7 +1870,7 @@ class Params extends Object{
 	 * Checks a value/expression to see if it evaluates to an existing trait's name. If so, nothing happens. If not, throws an exception.
 	 * @param mixed $expression The value to be checked
 	 * @param string $parameterName The name of the parameter that is being checked
-	 * @param unknown $functionName The name of the function/method that the check occured within. If not provided, the name of the calling function will be used.
+	 * @param string $functionName The name of the function/method that the check occured within. If not provided, the name of the calling function will be used.
 	 * @throws InvalidParameterTypeException If the type of the parameter is not a string
 	 * @throws InvalidParameterValueException If the value of the parameter is not a valid existing trait's name
 	 */
