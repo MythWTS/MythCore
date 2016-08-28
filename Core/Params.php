@@ -1569,6 +1569,22 @@ class Params extends Object{
 		}
 	}
 	/**
+	 *  Checks a value/expression to see if it evaluates to an integer value that is greater than or equals 0. If so, nothing happens. If not, throws an exception.
+	 * @param mixed $expression The value to be checked
+	 * @param string $parameterName The name of the parameter that is being checked
+	 * @param string $functionName The name of the function/method that the check occured within. If not provided, the name of the calling function will be used.
+	 * @throws InvalidParameterTypeException If the value of the parameter is not an integer
+	 * @throws InvalidParameterValueException If the value of the parameter is less than zero
+	 */
+	public static function InsureUnsignedInt($expression, $parameterName = "expression", $functionName = null){
+		if(!is_int($expression)){
+			throw new InvalidParameterTypeException($parameterName, $functionName ?: debug_backtrace(0, 2)[1]["function"], "integer");
+		}
+		elseif($expression < 0){
+			throw new InvalidParameterValueException($parameterName, $functionName ?: debug_backtrace(0, 2)[1]["function"], ">= 0");
+		}
+	}
+	/**
 	 *  Checks a value/expression to see if it evaluates to an integer value that is greater than or equals 1. If so, nothing happens. If not, throws an exception.
 	 * @param mixed $expression The value to be checked
 	 * @param string $parameterName The name of the parameter that is being checked
