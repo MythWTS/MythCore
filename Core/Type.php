@@ -69,6 +69,9 @@ namespace Core;
  * @property string[] $Traits An array of the names of the traits used by this type
  */
 final class Type extends Object{
+	###########################################################################
+	# Private Fields
+	###########################################################################
 	/**
 	 * Whether the type is a primitive php type (string, integer, float, boolean, array, null)
 	 * @var bool
@@ -120,10 +123,72 @@ final class Type extends Object{
 	 */
 	private $_reflect;
 	###########################################################################
+	# Static Fields
+	###########################################################################
+	/**
+	 * @var \Core\Type $_int An off-the-shelf Type object to represent the native/primitive integer type
+	 * @var \Core\Type $_float An off-the-shelf Type object to represent the native/primitive float type
+	 * @var \Core\Type $_bool An off-the-shelf Type object to represent the native/primitive boolean type
+	 * @var \Core\Type $_string An off-the-shelf Type object to represent the native/primitive string type
+	 * @var \Core\Type $_array An off-the-shelf Type object to represent the native/primitive array type
+	 * @var \Core\Type $_null An off-the-shelf Type object to represent the native/primitive null type
+	 */
+	private static $_int, $_float, $_bool, $_string, $_array, $_null;
+	###########################################################################
+	# Static Properties
+	###########################################################################
+	/**
+	 * Returns an off-the-shelf Type object representing the native PHP integer type
+	 * @return \Core\Type
+	 */
+	public static function PHPInt(){return self::$_int;}
+	/**
+	 * Returns an off-the-shelf Type object representing the native PHP float type
+	 * @return \Core\Type
+	 */
+	public static function PHPFloat(){return self::$_float;}
+	/**
+	 * Returns an off-the-shelf Type object representing the native PHP bool type
+	 * @return \Core\Type
+	 */
+	public static function PHPBool(){return self::$_bool;}
+	/**
+	 * Returns an off-the-shelf Type object representing the native PHP string type
+	 * @return \Core\Type
+	 */
+	public static function PHPString(){return self::$_string;}
+	/**
+	 * Returns an off-the-shelf Type object representing the native PHP array type
+	 * @return \Core\Type
+	 */
+	public static function PHPArray(){return self::$_array;}
+	/**
+	 * Returns an off-the-shelf Type object representing the native PHP null type
+	 * @return \Core\Type
+	 */
+	public static function PHPNull(){return self::$_null;}
+	###########################################################################
 	# Constructor & Factory Methods
 	###########################################################################
 	/**
+	 * Static Constructor
+	 */
+	public static function Initialize(){
+		self::$_array = new Type("array");
+		self::$_bool = new Type("boolean");
+		self::$_float = new Type("float");
+		self::$_int = new Type("integer");
+		self::$_null = new Type("null");
+		self::$_string = new Type("string");
+	}
+	/**
 	 * Creates a new Type object from the fully qualified name of a class or type. For essential/trivial types use int, integer, float, string, bool, boolean, null, array
+	 * Note that aliases of primitive types are allowed and will be converted to the actual name as follows:
+	 * <ul>
+	 * 	<li>int, long => integer</li>
+	 * 	<li>bool => boolean</li>
+	 * 	<li>double, real => float</li>
+	 * </ul>
 	 * @param string $fullyQualifiedName The fully qualified name of the type to create an instance of the Type class for
 	 * @throws InvalidParameterValueException If the name supplied is not a valid type or class name
 	 */
@@ -132,10 +197,24 @@ final class Type extends Object{
 		if(U::NAE($name)){
 			throw new InvalidParameterValueException("fullyQualifiedName", "Type()", "a value convertable to a non-empty string");
 		}
-		if($name == "string" || $name == "integer" || $name == "bool" || $name == "float" || $name == "boolean" || $name == "bool" || $name == "null" || $name == "array"){
+		if(
+				$name == "string" || $name == "array" || $name == "null" ||
+				$name == "bool" || $name == "boolean" || $name == "int" || $name == "integer" || $name == "long" ||
+				$name == "float" || $name == "real" || $name == "double"
+		){
 			$this->_isAbstract = $this->_isInterface = $this->_isTrait = $this->_isClass = false;
 			$this->_isPrimitive = $this->_isBuiltIn = $this->_isFinal = true;
-			$this->_typeName = $name;
+			$n = $name;
+			if($n == "int" || $n == "long"){
+				$n = "integer";
+			}
+			elseif ($n == "double" || $n == "real"){
+				$name = "float";
+			}
+			elseif ($n == "bool"){
+				$n = "boolean";
+			}
+			$this->_typeName = $n;
 			$this->_namespace = "";
 			$this->_reflect = null;
 		}
@@ -169,24 +248,12 @@ final class Type extends Object{
 		if(is_object($object)){
 			return new Type(get_class($object));
 		}
-		elseif (is_null($object)){
-			return new Type("null");
-		}
-		elseif (is_array($object)){
-			return new Type("array");
-		}
-		elseif (is_bool($object)){
-			return new Type("bool");
-		}
-		elseif (is_int($object)){
-			return new Type("int");
-		}
-		elseif (is_float($object)){
-			return new Type("float");
-		}
-		elseif (is_string($object)){
-			return new Type("string");
-		}
+		elseif (is_null($object)){return self::$_null;}
+		elseif (is_array($object)){return self::$_array;}
+		elseif (is_bool($object)){return self::$_bool;}
+		elseif (is_int($object)){return self::$_int;}
+		elseif (is_float($object)){return self::$_float;}
+		elseif (is_string($object)){return self::$_string;}
 		else {
 			throw new InvalidParameterValueException("object", "\\Core\\Type::Of()", "a valid object, primitive type variable, interface, trait, or null");
 		}
@@ -464,7 +531,7 @@ final class Type extends Object{
 	 * @return string
 	 */
 	public function FullName(){
-		return "{$this->_namespace}\\{$this->_typeName}";
+		return $this->_isPrimitive? $this->_typeName : "{$this->_namespace}\\{$this->_typeName}";
 	}
 	/**
 	 * The fully qualified name of the parent class or an empty string if the type has no parent or the type is not a class
@@ -886,3 +953,4 @@ final class Type extends Object{
 		}
 	}
 }
+Type::Initialize();
