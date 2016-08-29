@@ -7,15 +7,23 @@ namespace Core;
  * The way this works is as follows:
  * <ul>
  * 	<li>Format consumers (methods like Write(), WriteLine(), Format()) read the format and if they encounter a specifier with formatting options then,</li>
+ * 	<li>
+ * 		The registered global formatters are called one by one if any exists. If any of them return a non-null value, it is returned.
+ * 		By default, the framework has a CoreGlobalFormatter object registered as the default global formatter. This formatter follows the line of execution
+ * 		outlined here and executes it.
+ * 	</li>
  * 	<li>The consumer will check for registered formatters in CoreConfig::Instance. If one exists, it will be used</li>
  * 	<li>
- * 		If no formatter was registered for the type in the CoreConfig instance, the consumer will check the type of the object.
- * 		If the object is IFormattable, a formatter will be obtained using the GetFormatter() method
+ * 		If no type formatters were registered or the ones that are couldn't format the object, it is checked to see if it is a native PHP primitive type.
+ * 		If it is, the default formatting rules for primitive types are used, otherwise:
  * 	</li>
+ * 	<li>The consumer will check the type of the object. If the object is IFormattable, a formatter will be obtained using the GetFormatter() method.</li>
  * 	<li>The formatter's Format() method will be called with the format options</li>
- * 	<li>If the object is not formattable or if no options were encountered, the normal method will be used (checking for ToString())</li>
+ * 	<li>If the object is not formattable or if no options were encountered, the normal method will be used (using U::ES())</li>
  * </ul>
+ * @see \Core\CoreGlobalFormatter
  * @see \Core\IFormattable
+ * @see \Core\U::ES()
  */
 interface IFormatter extends IObject{
 	/**
