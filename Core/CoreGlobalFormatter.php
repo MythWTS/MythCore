@@ -26,7 +26,18 @@ namespace Core;
  * @see \Core\U::ES()
  */
 final class CoreGlobalFormatter extends Object implements IFormatter{
-	public function __construct(){}
+	use TSingleton;
+	/**
+	 * Property method to return the only instance of the singleton
+	 * @return \Core\CoreGlobalFormatter
+	 */
+	public static function Instance(){
+		return self::$_instance?: self::$_instance = new CoreGlobalFormatter();
+	}
+	/**
+	 * Empty private constructor
+	 */
+	private function __construct(){}
 	/**
 	 * Returns a string representation of the object to format using the supplied formatting options. This method is called by format consuming methods like
 	 * Write(), WriteLine(), Format(). This allows the framework to be extensible and customizable without changing the code of the framework itself.
