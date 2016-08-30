@@ -63,15 +63,16 @@ final class CoreGlobalFormatter extends Object implements IFormatter{
 				}
 			}
 		}
-		if($type->IsPrimitive()){
-			///TODO: Add code to handle default primitive types, either through a separate formatter or through the code here
-		}
-		elseif(is_a($objectToFormat, '\Core\IFormattable')){
+		if(is_a($objectToFormat, '\Core\IFormattable')){
 			$formatter = $objectToFormat->GetFormatter();
 			$formatted = $formatter->Format($formattingOptions, $objectToFormat);
 			if($formatted !== null){
 				return $formatted;
 			}
+		}
+		elseif($type->IsPrimitive()){
+			///TODO: Add code to handle standard formtting of primitive types
+			///TODO: Decide how to handle primitive types' formatting (different formatters for each type, parser for options, one formatter for all, this class?)
 		}
 		return U::ES($objectToFormat);
 	}
