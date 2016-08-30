@@ -13,6 +13,8 @@ namespace Core;
  * @property integer $StreamDefaultChunkSize The currently used chunk size for streams in the framework [get, set]
  * @property string $ClassFilesExtension The currently used file extension for code files for the class loader [get, set]
  * @property integer $GlobalFormattersCount The number of global formatters registered [get]
+ * @property array $GlobalFormatters An array of global formatter objects and types registered [get]
+ * @property array $TypeFormatters An array of type formatter objects and types registered [get]
  */
 final class CoreConfig extends Object{
 	use TSingleton;
