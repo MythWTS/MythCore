@@ -7,6 +7,7 @@ namespace Core;
  * @todo Add utility methods to verify character classes such as hex-digit, octal digit, decimal digit, float digits ... etc
  */
 final class Strings extends Object{
+	use TStaticFormatConsumer;
 	###########################################################################
 	# Constants
 	###########################################################################
@@ -1036,23 +1037,6 @@ final class Strings extends Object{
 			throw new InvalidParameterTypeException("number", "Strings::FormatNumber()", "number");
 		}
 		return number_format($number, $decimals, U::ES($decimalsPoint), U::ES($thousandsSeparator));
-	}
-	/**
-	 * Replaces occurences of {n} with the nth parameter supplied. First parameter after the format is considered to be parameter 0.
-	 * @param mixed $format The format string to use
-	 * @return string
-	 */
-	public static function Format($format){
-		$argsCount = func_num_args();
-		$res = U::ES($format);
-		if($argsCount !== 1){
-			$args = func_get_args();
-			for($i = 0; $i<$argsCount; $i++){
-				$arg = $args[$i + 1];
-				$res = str_replace("\{" . $i . "\}", U::ES($arg), $res);
-			}
-		}
-		return preg_replace("\\{.*?\\}", "", $res);
 	}
 	###########################################################################
 	# Strings Operations
