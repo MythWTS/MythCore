@@ -13,8 +13,12 @@ namespace Core;
 class FormatException extends ExceptionBase{
 	/**
 	 * Creates a new instance of the exception
+	 * @param string $message An optional message to add to the standard message of "An invalid format or format string was used."
 	 */
-	public function __construct(){
-		parent::__construct("An invalid format or format string was used", 4);
+	public function __construct($message = ''){
+		parent::__construct(
+				"An invalid format or format string was used." . ($message? " Error message:\n{$message}" : ''),
+				4
+		);
 	}
 }
