@@ -27,6 +27,9 @@ namespace Core;
  */
 final class CoreGlobalFormatter extends Object implements IFormatter{
 	use TSingleton;
+	###########################################################################
+	# Overwrite of the Instance Method
+	###########################################################################
 	/**
 	 * Property method to return the only instance of the singleton
 	 * @return \Core\CoreGlobalFormatter
@@ -34,10 +37,16 @@ final class CoreGlobalFormatter extends Object implements IFormatter{
 	public static function Instance(){
 		return self::$_instance?: self::$_instance = new CoreGlobalFormatter();
 	}
+	###########################################################################
+	# Empty Private Constructor
+	###########################################################################
 	/**
 	 * Empty private constructor
 	 */
 	private function __construct(){}
+	###########################################################################
+	# Entry Point Method Format()
+	###########################################################################
 	/**
 	 * Returns a string representation of the object to format using the supplied formatting options. This method is called by format consuming methods like
 	 * Write(), WriteLine(), Format(). This allows the framework to be extensible and customizable without changing the code of the framework itself.
@@ -70,10 +79,10 @@ final class CoreGlobalFormatter extends Object implements IFormatter{
 				return $formatted;
 			}
 		}
-		elseif($type->IsPrimitive()){
+		else{
 			///TODO: Add code to handle standard formtting of primitive types
 			///TODO: Decide how to handle primitive types' formatting (different formatters for each type, parser for options, one formatter for all, this class?)
+			$options = FormattingOption::Parse($formattingOptions);
 		}
-		return U::ES($objectToFormat);
 	}
 }
