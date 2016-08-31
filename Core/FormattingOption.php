@@ -87,7 +87,7 @@ final class FormattingOption extends Object{
 		}
 		elseif(count($matches) != 0){
 			foreach ($matches as $match){
-				$res[] = trim($match[1], '`');
+				$res[] = $match[1];
 			}
 		}
 		elseif(count($matches) == 0 && !U::NAW($paramsString)){
