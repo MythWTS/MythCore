@@ -71,7 +71,7 @@ trait TStaticFormatConsumer{
 	 * Regex pattern to use to match format specifiers in format strings
 	 * @var string
 	 */
-	private static $_formatPattern = '/\{\s*(\d+)\s*(?:\:((?:[^{}`]|`(?:[^`]|\\`)*`)*))?\}/';
+	private static $_formatPattern = '/\{\s*(\d+)\s*(?:\:((?:[^{}`]|`(?:[^`\\\\]|\\\\`)*`)*))?\}/';
 	###########################################################################
 	# Methods
 	###########################################################################
