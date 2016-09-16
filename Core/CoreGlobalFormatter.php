@@ -85,4 +85,27 @@ final class CoreGlobalFormatter extends Object implements IFormatter{
 			$options = FormattingOption::Parse($formattingOptions);
 		}
 	}
+	###########################################################################
+	# Private Utility Methods
+	###########################################################################
+	private function validateOptionsForType($typeName, array $options){
+		$validNames = array('width', 'w', 'padding', 'p', 'padding-right', 'pr', 'padding-left', 'pl', 'overflow', 'o', 'padding-side', 'ps', 'null', 'n');
+		switch($typeName){
+			case 'integer':
+			case 'float':
+				$validNames[] = 'base'; $validNames[] = 'b'; $validNames[] = 'signed'; $validNames[] = 's'; $validNames[] = 'grouped'; $validNames[] = 'g';
+				$validNames[] = 'group-separator'; $validNames[] = 'gs'; $validNames[] = 'group-every'; $validNames[] = 'ge';
+				break;
+			case 'Core\DateTime':
+			case 'Core\TimeSpan':
+			case 'Core\Guid':
+			case 'Core\Version':
+		}
+		foreach ($options as $option){
+			if(!in_array($option->Name(), $validNames)){
+				return false;
+			}
+		}
+		return true;
+	}
 }
